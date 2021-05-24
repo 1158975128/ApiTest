@@ -16,7 +16,7 @@ pipeline {
                 echo 'Build Area...'
             }
         }
-        Stage('API test'){
+        stage('API test'){
             steps{
                 echo 'APT test Area...'
             }
