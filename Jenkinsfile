@@ -1,9 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('FetchCode') {
             steps {
-                sh 'echo "This is from shell script!!!"'
+                echo 'Fetch Code step...'
+            }
+        }
+        stage('UnitTest'){
+            steps{
+                echo 'Unit Test...'
+            }
+        }
+        stage('Build'){
+            steps{
+                echo 'Build Area...'
+            }
+        }
+        Stage('API test'){
+            steps{
+                echo 'APT test Area...'
             }
         }
     }
