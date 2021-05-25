@@ -9,7 +9,7 @@ pipeline {
                 echo 'build master branch'
                 sh 'mvn --version'
                 sh 'mvn clean package'
-                sh 'jave -jar target/fuliye.jar'
+                sh 'java -jar target/fuliye.jar'
             }
         }
         stage('build test') {
