@@ -20,11 +20,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ServerApplication {
 
-	@Value("${http.port}")
-	private Integer port;
-	@Value("${http.maxPostSize}")
-	private Integer maxPostSize;
-
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
 	}

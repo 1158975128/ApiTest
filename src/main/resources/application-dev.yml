@@ -114,7 +114,7 @@ token:
     seconds: 86400
 
 ##http端口
-http:
+server:
   port: 8088
   #100m
   maxPostSize: 104857600
