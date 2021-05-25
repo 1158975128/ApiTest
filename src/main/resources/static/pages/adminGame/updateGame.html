@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+<style type="text/css">
+.layui-upload-img{width: auto; height: 196px; margin: 0 10px 10px 0;}
+</style>
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal layui-form" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>包名</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='游戏名' type='text' readonly="true" name='name' id='name' >
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>游戏名</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='游戏名' type='text' readonly="true" name='gamename' id='gamename' >
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>游戏类型</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='游戏类型' type='text' readonly="true" name='type' id='type'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>游戏模式</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='游戏模式' type='text' readonly="true" name='mode' id='mode'>
+				</div>
+			</div>
+			<div class='form-group'>
+		    	<label class='col-md-2 control-label'>初始游戏</label>
+		    	<div class="col-md-10">
+		      		<input type="checkbox" id="isDefault" name="isDefault" lay-skin="switch" disabled="disabled" lay-text="ON|OFF" value="1" >
+		   		</div>
+		    </div>
+		    <div class='form-group'>
+				<label class='col-md-2 control-label'>图标</label>
+				<div class='col-md-10'>
+					<input type="hidden" name="icon" id="iconVal">
+					<div class="layui-upload-icon">
+				      <img class="layui-upload-img" id="icon" >
+				    </div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>图片</label>
+				<div class='col-md-10'>
+					<input type="hidden" name="pic" id="picVal">
+				  <div class="layui-upload-list">
+				    <img class="layui-upload-img" id="pic" >
+				  </div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>描述</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='描述' type='text' readonly="true" name='description' id='description' >
+				</div>
+			</div>
+			
+			<div class='form-group'>
+		    	<label class='col-md-2 control-label status'>审核</label>
+		    	<div class="col-md-10">
+		      		<input type="checkbox" id="check" lay-skin="switch" lay-text="通过|不通过" value="true" >
+		   		</div>
+		   		<input type="hidden" name="status" id="status">
+		    </div>
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='gameList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+	layui.use(['form','element','layer'], function(){
+		  var layer = layui.layer;
+		  var element = layui.element;
+		  var form = layui.form;
+	  });
+		
+		initData();
+		
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/games/'+id,
+					async : false,
+					success : function(data) {
+						var status=data.status==0 || data.status==1?"审核":"批准";
+						$('.status').text(status);
+						$('#status').val(data.status);
+						$('#id').val(data.id);
+						$('#name').val(data.name);
+						$('#gamename').val(data.gamename);
+						if(data.isDefault==1){
+							$("#isDefault").prop("checked",true);
+						}
+						$('#picVal').val(data.pic);
+						$('#iconVal').val(data.icon);
+					 	var domain = window.location.origin;
+				    	var pic=domain+data.pic;
+				    	var icon=domain+data.icon;
+						$('#pic').attr('src',pic);
+						$('#icon').attr('src',icon);
+						$('#type').val(data.type);
+						$('#mode').val(data.mode);
+						$('#description').val(data.description);
+						$('#createTime').val(data.createTime);
+						$('#updateTime').val(data.updateTime);
+					}
+				});
+			}
+		}
+
+		function update() {
+			var id = getUrlParam("id");
+			var status=$('#status').val();
+			var check=$('#check').prop("checked");
+			$.ajax({
+				type : 'post',
+				url : '/games/checkGame',
+				data : {
+					id:id,
+					status:status,
+					check:check
+				},
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "gameList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

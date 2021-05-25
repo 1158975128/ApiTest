@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.admin.server.dao.UserDefaultDao">
+
+    <!--根据用户id和机器类型查询用户默认数据-->
+    <select id="selectOneUserDefault" parameterType="com.zw.admin.server.model.UserDefault" resultType="com.zw.admin.server.model.UserDefault">
+        select * from user_default where user_id=#{userId} and default_robot_type =#{defaultRobotType} limit 1
+    </select>
+
+    <!--添加用户默认数据-->
+    <insert id="insertUserDefault" parameterType="com.zw.admin.server.model.UserDefault">
+        insert into user_default
+        (user_id,default_game_type,default_game_mode,create_time,default_time,default_range,
+        default_trajectory,default_speed,default_power_protect,default_assistive_type,default_user_range,default_robot_type,last_game,issync,
+        default_game_action,default_body_parts,default_neutral,default_user_custom_range,default_stretch_time,default_stretch_count)
+        values (#{userId},#{defaultGameType},#{defaultGameMode},now(),#{defaultTime},#{defaultRange},#{defaultTrajectory},
+        #{defaultSpeed},#{defaultPowerProtect},#{defaultAssistiveType},#{defaultUserRange},#{defaultRobotType},#{lastGame},#{issync},
+        #{defaultGameAction},#{defaultBodyParts},#{defaultNeutral},#{defaultUserCustomRange},#{defaultStretchTime},#{defaultStretchCount})
+    </insert>
+
+    <!--添加用户默认数据-->
+    <update id="updateUserDefault" parameterType="com.zw.admin.server.model.UserDefault">
+        update user_default
+        <include refid="set"/>
+        where user_id=#{userId} and default_robot_type =#{defaultRobotType}
+    </update>
+
+    <sql id="set">
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="defaultGameType != null">
+                default_game_type = #{defaultGameType},
+            </if>
+            <if test="defaultGameMode != null">
+                default_game_mode = #{defaultGameMode},
+            </if>
+            <if test="defaultTime != null">
+                default_time = #{defaultTime},
+            </if>
+            <if test="defaultRange != null">
+                default_range = #{defaultRange},
+            </if>
+            <if test="defaultTrajectory != null">
+                default_trajectory = #{defaultTrajectory},
+            </if>
+            <if test="defaultSpeed != null">
+                default_speed = #{defaultSpeed},
+            </if>
+            <if test="defaultPowerProtect != null">
+                default_power_protect = #{defaultPowerProtect},
+            </if>
+            <if test="defaultAssistiveType != null">
+                default_assistive_type = #{defaultAssistiveType},
+            </if>
+            <if test="defaultUserRange != null">
+                default_user_range = #{defaultUserRange},
+            </if>
+            <if test="defaultRobotType != null">
+                default_robot_type = #{defaultRobotType},
+            </if>
+            <if test="lastGame != null">
+                last_game = #{lastGame},
+            </if>
+            <if test="issync != null">
+                issync = #{issync},
+            </if>
+            <if test="defaultGameAction != null">
+                default_game_action = #{defaultGameAction},
+            </if>
+            <if test="defaultBodyParts != null">
+                default_body_parts = #{defaultBodyParts},
+            </if>
+            <if test="defaultNeutral != null">
+                default_neutral = #{defaultNeutral},
+            </if>
+            <if test="defaultUserCustomRange != null">
+                default_user_custom_range = #{defaultUserCustomRange},
+            </if>
+            <if test="defaultStretchTime != null">
+                default_stretch_time = #{defaultStretchTime},
+            </if>
+            <if test="defaultStretchCount != null">
+                default_stretch_count = #{defaultStretchCount},
+            </if>
+        </set>
+    </sql>
+
+</mapper>

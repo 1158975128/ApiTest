@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.admin.server.dao.XiaoShouYiDao">
+
+    <sql id="where">
+        <where>
+            <if test="params.id != null and params.id != ''">
+                and id = #{params.id}
+            </if>
+            <if test="params.clientId != null and params.clientId != ''">
+                and client_id = #{params.clientId}
+            </if>
+            <if test="params.clientSecret != null and params.clientSecret != ''">
+                and client_secret = #{params.clientSecret}
+            </if>
+            <if test="params.redirectUri != null and params.redirectUri != ''">
+                and redirect_uri = #{params.redirectUri}
+            </if>
+            <if test="params.username != null and params.username != ''">
+                and username = #{params.username}
+            </if>
+            <if test="params.password != null and params.password != ''">
+                and password = #{params.password}
+            </if>
+            <if test="params.securityToken != null and params.securityToken != ''">
+                and security_token = #{params.securityToken}
+            </if>
+            <if test="params.tokenUrl != null and params.tokenUrl != ''">
+                and token_url = #{params.tokenUrl}
+            </if>
+            <if test="params.timeOut != null and params.timeOut != ''">
+                and time_out = #{params.timeOut}
+            </if>
+            <if test="params.connectName != null and params.connectName != ''">
+                and connect_name = #{params.connectName}
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" resultType="XiaoShouYi">
+        select * from xiao_shou_yi t
+        <include refid="where"/>
+        ${params.orderBy} limit #{offset}, #{limit}
+    </select>
+
+    <update id="update">
+        update xiao_shou_yi t
+        <set>
+            <if test="clientId != null">
+                client_id = #{clientId},
+            </if>
+            <if test="clientSecret != null">
+                client_secret = #{clientSecret},
+            </if>
+            <if test="redirectUri != null">
+                redirect_uri = #{redirectUri},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="securityToken != null">
+                security_token = #{securityToken},
+            </if>
+            <if test="tokenUrl != null">
+                token_url = #{tokenUrl},
+            </if>
+            <if test="timeOut != null">
+                time_out = #{timeOut},
+            </if>
+            <if test="connectName != null">
+                connect_name = #{connectName},
+            </if>
+        </set>
+        where t.id = #{id}
+    </update>
+</mapper>

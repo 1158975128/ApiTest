@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zw.admin.server.dao.UserTrainReportDao">
+
+    <sql id="where">
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="reportId != null and reportId != ''">
+            and report_id = #{reportId}
+        </if>
+        <if test="userId != null and userId != ''">
+            and user_id = #{userId}
+        </if>
+        <if test="machineId != null and machineId != ''">
+            and machine_id = #{machineId}
+        </if>
+        <if test="trainLogId != null and trainLogId != ''">
+            and train_log_id = #{trainLogId}
+        </if>
+        <if test="gameId != null and gameId != ''">
+            and game_id = #{gameId}
+        </if>
+        <if test="type != null">
+            and type = #{type}
+        </if>
+        <if test="mode != null">
+            and mode = #{mode}
+        </if>
+        <if test="category != null">
+            and category = #{category}
+        </if>
+        <if test="data != null and data != ''">
+            and data = #{data}
+        </if>
+        <if test="machineType != null and machineType != ''">
+            and machine_type = #{machineType}
+        </if>
+        <if test="updateTime != null">
+            and update_time &lt;= #{updateTime}
+        </if>
+    </sql>
+
+    <update id="update">
+        update user_train_report t
+        <set>
+            <if test="report_id != null">
+                report_id = #{reportId},
+            </if>
+            <if test="user_id != null">
+                user_id = #{userId},
+            </if>
+            <if test="machine_id != null">
+                machine_id = #{machineId},
+            </if>
+            <if test="train_log_id != null">
+                train_log_id = #{trainLogId},
+            </if>
+            <if test="game_id != null">
+                game_id = #{gameId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="mode != null">
+                mode = #{mode},
+            </if>
+            <if test="category != null">
+                category = #{category},
+            </if>
+            <if test="data != null">
+                data = #{data},
+            </if>
+        </set>
+        where t.id = #{id}
+    </update>
+
+    <!--根据训练日志id查询-->
+    <select id="selectByTrainsLogId" resultType="com.zw.admin.server.model.UserTrainReport">
+        select  * from user_train_report where train_log_id = #{trainLogId}
+    </select>
+
+    <!--根据模式，type，category查询历史数据-->
+    <select id="selectReportByMode" parameterType="com.zw.admin.server.model.UserTrainReport" resultType="java.lang.String">
+        select data from user_train_report
+        <where>
+            data is not null
+            <include refid="where"/>
+            order by id desc
+        </where>
+        <if test="limit !=null">
+            limit #{limit}
+        </if>
+    </select>
+
+</mapper>

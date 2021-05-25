@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>userId</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='userId' type='text' name='userId' id='userId' data-bv-notempty='true' data-bv-notempty-message='userId 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>xpromvalue</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='xpromvalue' type='text' name='xpromvalue' id='xpromvalue' data-bv-notempty='true' data-bv-notempty-message='xpromvalue 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>xaromvalue</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='xaromvalue' type='text' name='xaromvalue' id='xaromvalue' data-bv-notempty='true' data-bv-notempty-message='xaromvalue 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>ypromvalue</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='ypromvalue' type='text' name='ypromvalue' id='ypromvalue' data-bv-notempty='true' data-bv-notempty-message='ypromvalue 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>yaromvalue</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='yaromvalue' type='text' name='yaromvalue' id='yaromvalue' data-bv-notempty='true' data-bv-notempty-message='yaromvalue 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>prompoints</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='prompoints' type='text' name='prompoints' id='prompoints' data-bv-notempty='true' data-bv-notempty-message='prompoints 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>arompoints</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='arompoints' type='text' name='arompoints' id='arompoints' data-bv-notempty='true' data-bv-notempty-message='arompoints 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>type</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='type' type='text' name='type' id='type' data-bv-notempty='true' data-bv-notempty-message='type 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>promarea</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='promarea' type='text' name='promarea' id='promarea' data-bv-notempty='true' data-bv-notempty-message='promarea 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>aromarea</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='aromarea' type='text' name='aromarea' id='aromarea' data-bv-notempty='true' data-bv-notempty-message='aromarea 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>createtime</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='createtime' type='text' name='createtime' id='createtime' data-bv-notempty='true' data-bv-notempty-message='createtime 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>promfourpoints</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='promfourpoints' type='text' name='promfourpoints' id='promfourpoints' data-bv-notempty='true' data-bv-notempty-message='promfourpoints 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>aromfourpoints</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='aromfourpoints' type='text' name='aromfourpoints' id='aromfourpoints' data-bv-notempty='true' data-bv-notempty-message='aromfourpoints 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>remark</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='remark' type='text' name='remark' id='remark' data-bv-notempty='true' data-bv-notempty-message='remark 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>image</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='image' type='text' name='image' id='image' data-bv-notempty='true' data-bv-notempty-message='image 不能为空'>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='dbereportdataList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'post',
+				url : '/dbereportdatas',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        location.href = "dbereportdataList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

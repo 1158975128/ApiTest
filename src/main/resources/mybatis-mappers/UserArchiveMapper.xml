@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zw.admin.server.dao.UserArchiveDao">
+
+    <sql id="where">
+        <where>
+            <if test="params.id != null and params.id != ''">
+                and id = #{params.id}
+            </if>
+            <if test="params.user_id != null and params.user_id != ''">
+                and user_id = #{params.userId}
+            </if>
+            <if test="params.machine_type != null and params.machine_type != ''">
+                and machine_type = #{params.machineType}
+            </if>
+            <if test="params.key != null and params.key != ''">
+                and `key` = #{params.key}
+            </if>
+        </where>
+    </sql>
+
+    <update id="update">
+        update user_archive t
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="machineType != null">
+                machine_type = #{machineType},
+            </if>
+            <if test="key != null">
+                `key` = #{key},
+            </if>
+            <if test="createTime !=null">
+                create_time = #{createTime},
+            </if>
+            <if test="archive !=null">
+                archive = #{archive},
+            </if>
+            <if test="updateTime !=null">
+                update_time =#{updateTime},
+            </if>
+        </set>
+        where t.id = #{id}
+    </update>
+
+    <!--查询用户存档信息-->
+    <select id="selectUserArchive" resultType="com.zw.admin.server.model.UserArchive">
+        SELECT user_id,machine_type,`key`,update_time,id,archive FROM user_archive
+        <where>
+            user_id = #{userId}
+            <if test="machineType !=null">
+                and machine_type = #{machineType}
+            </if>
+            <if test="key !=null">
+                and `key` = #{key}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+</mapper>

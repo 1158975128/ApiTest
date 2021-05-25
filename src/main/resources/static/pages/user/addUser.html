@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../layui/css/layui.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-2 control-label">姓名</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="姓名" type="text" name="name"
+					data-bv-notempty="true"
+						data-bv-notempty-message="姓名 不能为空">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-2 control-label">性别</label>
+				<div class="col-md-10" style="width: 100px">
+					<select class="form-control input-sm" name="sex" id="sex">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">年龄</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="年龄" type="text" name="age">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">身高(cm)</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="身高" type="text" name="height">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">体重(kg)</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="体重" type="text" name="weight">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">手机号</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="手机号" type="text" maxlength="11" name="phone"
+					data-bv-notempty="true"
+					data-bv-notempty-message="手机不能为空"
+					data-bv-regexp="true" data-bv-regexp-regexp="^1[3-5678]\d{9}$" data-bv-regexp-message="手机格式不正确">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">邮箱</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="邮箱" type="text" maxlength="50" name="email"
+					data-bv-notempty="true"
+					data-bv-notempty-message="邮箱不能为空"
+					data-bv-regexp="true" data-bv-regexp-regexp="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" data-bv-regexp-message="邮箱格式不正确">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">密码</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="密码" type="text" name="password"
+						data-bv-notempty="true"
+						data-bv-notempty-message="密码 不能为空">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-2 control-label">受损侧</label>
+				<div class="col-md-10">
+					<input class="form-control" placeholder="受损侧" type="text" name="badposition">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-2 control-label">备注</label>
+				<div class="col-md-10">
+					<textarea class="form-control" rows="3" placeholder="备注"  name="remark"></textarea>
+				</div>
+			</div>
+			
+			
+			
+			<!-- <div class="form-group">
+				<label class="col-md-2 control-label">角色</label>
+				<div class="checkbox" id="roles">
+				</div>
+			</div> -->
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='userList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/my/roles/role.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript" src="../../js/dict.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		    var laydate = layui.laydate;
+		    laydate.render({
+	           elem: '#birthday'
+	        });
+		});
+		
+		showDictSelect("sex", "sex");
+
+		//initRoles();
+	
+		$('#form').bootstrapValidator();
+		
+		function add() {
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'post',
+				url : '/register',
+				data : formdata,
+				success : function(data) {
+					if(data.code==0){
+						layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+	                        location.href = "userList.html";
+	                    });
+					}else{
+						layer.msg(data.msg, {shift: -1, time: 1000}, function(){
+	                    });
+					}
+					
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

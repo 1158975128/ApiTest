@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.admin.server.dao.SysIpDao">
+
+	<select id="listRf" resultType="SysIp">
+		select * from sys_ip t
+		<where>
+			<if test="id != null and id != 0">
+				and id = #{id} 
+			</if>
+		</where>
+	</select>
+
+	<sql id="where">
+		<where>
+			<if test="params.id != null and params.id != ''">
+				and id = #{params.id} 
+			</if>
+			<if test="params.name != null and params.name != ''">
+				and name = #{params.name} 
+			</if>
+			<if test="params.ip != null and params.ip != ''">
+				and ip = #{params.ip} 
+			</if>
+			<if test="params.frontIp != null and params.frontIp != ''">
+				and front_ip = #{params.frontIp} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from sys_ip t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="SysIp">
+		select * from sys_ip t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+	<update id="update">
+		update sys_ip t
+		<set>
+			<if test="name != null">
+				name = #{name}, 
+			</if>
+			<if test="ip != null">
+				ip = #{ip}, 
+			</if>
+			<if test="frontIp != null">
+				front_ip = #{frontIp}, 
+			</if>
+		</set>
+
+		where t.id = #{id}
+	</update>
+
+</mapper>

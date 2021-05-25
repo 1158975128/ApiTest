@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.admin.server.dao.UserPlaceRelDao">
+    <sql id="where">
+        <where>
+            <if test="params.id != null and params.id != ''">
+                and id = #{params.id}
+            </if>
+            <if test="params.user_id != null and params.user_id != ''">
+                and user_id = #{params.userId}
+            </if>
+            <if test="params.place != null and params.place != ''">
+                and place = #{params.place}
+            </if>
+        </where>
+    </sql>
+
+    <update id="update">
+        update user_place_rel t
+        <set>
+            <if test="user_id != null">
+                user_id = #{userId},
+            </if>
+            <if test="place != null">
+                place = #{place},
+            </if>
+        </set>
+        where t.id = #{id}
+    </update>
+
+    <!--根据用户查询场所集合,场所id关联-->
+    <!--<select id="selectMachineIdByUserId" resultType="java.lang.String">
+        SELECT
+            i.sn
+        FROM
+            user_place_rel r
+        JOIN machine_info i ON r.place_id = i.place_id where r.user_id=#{userId}
+    </select>-->
+
+    <!--根据用户查询场所集合，场所名称关联-->
+    <select id="selectMachineIdByUserId" resultType="java.lang.String">
+        SELECT
+            i.sn
+        FROM
+            user_place_rel r
+        JOIN machine_info i ON r.place = i.place where r.user_id=#{userId}
+    </select>
+
+    <!--添加用户和场所关系-->
+    <insert id="saveUserPlaceRelBatch">
+        INSERT INTO user_place_rel
+        (user_id,place_id,place)
+        VALUES
+        <foreach collection ="places" item="item" separator =",">
+            (#{userId}, #{item.id},#{item.place})
+        </foreach >
+    </insert>
+
+    <!--根据用户id查询可分配场所-->
+    <select id="selectPlaceByUserId" resultType="java.util.Map">
+        SELECT
+        p.id,
+        p.place
+        FROM
+        place p
+        LEFT JOIN user_place_rel r ON p.id = r.place_id
+        <where>
+            <if test="userId !=null">
+               and r.user_id = #{userId}
+            </if>
+        </where>
+        GROUP BY
+        p.id
+    </select>
+
+    <delete id="removeRelByUserId">
+        delete from user_place_rel where user_id = #{userId}
+    </delete>
+</mapper>

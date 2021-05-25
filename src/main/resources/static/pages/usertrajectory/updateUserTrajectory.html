@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>trajectoryid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='trajectoryid' type='text' name='trajectoryid' id='trajectoryid' data-bv-notempty='true' data-bv-notempty-message='trajectoryid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>creatorid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='creatorid' type='text' name='creatorid' id='creatorid' data-bv-notempty='true' data-bv-notempty-message='creatorid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>modifyid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='modifyid' type='text' name='modifyid' id='modifyid' data-bv-notempty='true' data-bv-notempty-message='modifyid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>name</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='name' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>machinetype</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='machinetype' type='text' name='machinetype' id='machinetype' data-bv-notempty='true' data-bv-notempty-message='machinetype 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>image</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='image' type='text' name='image' id='image' data-bv-notempty='true' data-bv-notempty-message='image 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>weight</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='weight' type='text' name='weight' id='weight' data-bv-notempty='true' data-bv-notempty-message='weight 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>height</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='height' type='text' name='height' id='height' data-bv-notempty='true' data-bv-notempty-message='height 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>point</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='point' type='text' name='point' id='point' data-bv-notempty='true' data-bv-notempty-message='point 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>createdate</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='createdate' type='text' name='createdate' id='createdate' data-bv-notempty='true' data-bv-notempty-message='createdate 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>updatedate</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='updatedate' type='text' name='updatedate' id='updatedate' data-bv-notempty='true' data-bv-notempty-message='updatedate 不能为空'>
+				</div>
+			</div>
+
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='userTrajectoryList.html'">返回</button>
+						<!-- <button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button> -->
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+		
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/userTrajectorys/'+id,
+					async : false,
+					success : function(data) {
+						$('#id').val(data.id);
+						$('#trajectoryid').val(data.trajectoryid);
+						$('#creatorid').val(data.creatorid);
+						$('#modifyid').val(data.modifyid);
+						$('#name').val(data.name);
+						$('#machinetype').val(data.machinetype);
+						$('#image').val(data.image);
+						$('#weight').val(data.weight);
+						$('#height').val(data.height);
+						$('#point').val(data.point);
+						$('#createdate').val(data.createdate);
+						$('#updatedate').val(data.updatedate);
+
+					}
+				});
+			}
+		}
+
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'put',
+				url : '/userTrajectorys',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "userTrajectoryList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

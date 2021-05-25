@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>注册</title>
+<link href="css/login.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="login">
+		<div class="message">后台管理系统</div>
+		<div id="darkbannerwrap"></div>
+
+		<form id="login-form" method="post" onsubmit="return false;">
+			<input id="username" name="username" placeholder="手机或邮箱" type="text"
+				autocomplete="off">
+			<hr class="hr15">
+			<input id="password" name="password" placeholder="密码" type="password"
+				autocomplete="off">
+			<hr class="hr15">
+			<input id="repassword"  placeholder="密码确认" type="password"
+			autocomplete="off">
+			<hr class="hr15">
+			<label><input type='radio' class="roleId" name='roleId' value=5>
+						家庭用户</label> &nbsp&nbsp
+			<label><input type='radio' class="roleId" name='roleId' value=1>
+						治疗师</label> &nbsp&nbsp
+			<!-- <label><input type='radio' class="roleId" name='roleId' value=3>
+						开发者</label> &nbsp&nbsp -->
+			<hr class="hr15">
+			
+			<ul>
+				<li>
+					<button style="width: 45%;float: left;" type="submit"
+					onclick="login()">返回</button>
+					<!--<button style="width: 45%;float: right;" type="submit"
+					onclick="register(this)">注册</button>-->
+				</li>
+				<li>
+					<span id="info" style="color: red;float: left;"></span>
+				</li>
+			</ul>
+			<hr class="hr20">
+			<span id="info" style="color: red"></span>
+		</form>
+	</div>
+
+</body>
+<script src="js/libs/jquery-2.1.1.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+function register(obj) {
+	
+	$(obj).attr("disabled", true);
+
+	var username = $.trim($('#username').val());
+	var password = $.trim($('#password').val());
+	var repassword = $.trim($('#repassword').val());
+	
+	var identity = $("input[name='roleId']:checked").val();
+	
+	var phoneReg = /^1[3-56789]\d{9}$/;
+	var mailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+	var phone="";
+	var email="";
+	if (username == "" || password == "" || repassword == "") {
+		$("#info").html('手机邮箱或者密码不能为空');
+		$(obj).attr("disabled", false);
+		return false;
+	}
+	if(phoneReg.test(username)){
+		phone=username;
+	}else if(mailReg.test(username)){
+		email=username;
+	}else {
+		$("#info").html('请输入正确手机或邮箱');
+		$(obj).attr("disabled", false);
+		return false;
+	}	
+	if(!identity){
+		$("#info").html('请选择注册身份');
+		$(obj).attr("disabled", false);
+		return false;
+	}
+	
+	if(password!=repassword){
+		$("#info").html('请确认密码相同');
+		$(obj).attr("disabled", false);
+		return false;
+	}
+		
+		$.ajax({
+			type : 'post',
+			url : '/register',
+			data : {
+				phone:phone,
+				email:email,
+				identity:identity,
+				password:password
+			},
+			success : function(data) {
+				if(data.code==0){
+					alert("注册成功")
+					window.setTimeout(function(){
+						$(obj).attr("disabled", false);
+						location.href = "login.html";
+					},1000); 
+				}else{
+					$("#info").html(data.msg);
+					$(obj).attr("disabled", false);
+				}
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				var msg = xhr.responseText;
+				var response = JSON.parse(msg);
+				$("#info").html(response.msg);
+				$(obj).attr("disabled", false);
+			}
+		});
+}
+function login(){
+	location.href = 'login.html';
+	
+}
+</script>
+</html>

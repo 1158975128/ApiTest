@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>忘记密码</title>
+    <link href="css/login.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<div class="login">
+    <div class="message">后台管理系统</div>
+    <div id="darkbannerwrap"></div>
+
+    <form id="login-form" method="post" onsubmit="return false;">
+        <input id="username" name="username" placeholder="手机或邮箱 " type="text"
+               autocomplete="off">
+        <hr class="hr15">
+        <input id="oldPassword" name="oldPassword" placeholder="旧密码" type="password"
+               autocomplete="off">
+        <hr class="hr15">
+        <input id="newPassword" name="newPassword" placeholder="新密码" type="password"
+               autocomplete="off">
+        <hr class="hr15">
+        <input id="rePassword" placeholder="密码确认" type="password"
+               autocomplete="off">
+        <hr class="hr15">
+        <ul>
+            <li>
+                <button style="width: 45%;float: left;" type="submit"
+                        onclick="login()">返回
+                </button>
+                <button style="width: 45%;float: right;" type="submit"
+                        onclick="forget(this)">修改
+                </button>
+            </li>
+            <li>
+                <span id="info" style="color: red;float: left;"></span>
+            </li>
+        </ul>
+        <hr class="hr20">
+        <span id="info" style="color: red"></span>
+    </form>
+</div>
+
+</body>
+<script src="js/libs/jquery-2.1.1.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    function forget(obj) {
+        $(obj).attr("disabled", true);
+        var username = $.trim($('#username').val());
+        var oldPassword = $.trim($('#oldPassword').val());
+        var newPassword = $.trim($('#newPassword').val());
+        var rePassword = $.trim($('#rePassword').val());
+        
+        var phoneReg = /^\d{11}$/
+		var mailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+		var phone="";
+		var email="";
+		if(phoneReg.test(username)){
+			phone=username;
+		}else if(mailReg.test(username)){
+			email=username;
+		}else{
+			$("#info").html('手机或邮箱格式错误');
+			$(obj).attr("disabled", false);
+			return false;
+		}
+        
+        if (username == "" || oldPassword == "" || newPassword == "" || rePassword == "") {
+            $("#info").html('手机或邮箱或者密码不能为空');
+            $(obj).attr("disabled", false);
+        } else if (newPassword != rePassword) {
+            $("#info").html('请确认密码相同');
+            $(obj).attr("disabled", false);
+        } else if (oldPassword == newPassword) {
+            $("#info").html('新旧密码相同');
+            $(obj).attr("disabled", false);
+        } else {
+            $.ajax({
+                type: 'post',
+                url: '/forget',
+                data: {
+    				phone:phone,
+    				email:email,
+    				oldPassword:oldPassword,
+    				newPassword:newPassword
+    			},
+                success: function (data) {
+                    if (data.code == 0) {
+                        alert("修改成功")
+                        window.setTimeout(function () {
+                            $(obj).attr("disabled", false);
+                            location.href = "login.html";
+                        }, 1000);
+                    } else {
+                        $("#info").html(data.msg);
+                        $(obj).attr("disabled", false);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    var msg = xhr.responseText;
+                    var response = JSON.parse(msg);
+                    $("#info").html(response.msg);
+                    $(obj).attr("disabled", false);
+                }
+            });
+
+        }
+    }
+
+    function login() {
+        location.href = 'login.html';
+    }
+</script>
+</html>
