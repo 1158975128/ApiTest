@@ -25,7 +25,7 @@ spring:
         allow: 127.0.0.1
   redis:
     #host: 47.103.109.120
-    host: 127.0.0.1
+    host: 47.103.97.21
     port: 6379
     timeout: 10000
     sentinels: redis:26379
@@ -35,7 +35,7 @@ spring:
       maxIdle: 10
       testOnReturn: true
       testOnBorrow: true
-#    password: Fftai*^&2015
+    password: Fftai*^&2015
     database: 1
   mail:
     default-encoding: UTF-8
