@@ -9,7 +9,6 @@ pipeline {
                 echo 'build master branch'
                 sh 'mvn clean package'
                 sh 'nohup java -jar target/fuliye.jar &'
-                bat 'choice /t 180 /d y /n >nul'
             }
         }
         stage('build test') {
@@ -20,7 +19,6 @@ pipeline {
                 echo 'build test branch'
                 sh 'mvn clean package'
                 sh 'nohup java -jar target/fuliye.jar &'
-                bat 'choice /t 180 /d y /n >nul'
             }
         }
         stage('API test'){
