@@ -115,7 +115,7 @@ token:
 
 ##http端口
 http:
-  port: 8080
+  port: 8081
   #100m
   maxPostSize: 104857600
 
