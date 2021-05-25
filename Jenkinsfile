@@ -1,35 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('FetchCode from master') {
+        stage('build master') {
             when{
                 branch 'master'
             }
             steps {
-                echo 'Fetch Code from master...'
+                echo 'build master branch'
+                sh 'mvn clean package'
+                sh 'jave -jar target/fuliye.jar'
             }
         }
-        stage('FetchCode from test') {
+        stage('build test') {
             when {
                 branch 'test'
             }
             steps{
-                echo 'Fetch Code from test ...'
-            }
-        }
-        stage('UnitTest'){
-            steps{
-                echo 'Unit Test...'
-            }
-        }
-        stage('Build'){
-            steps{
-                echo 'Build Area...'
+                echo 'build test branch'
+                sh 'mvn clean package'
+                sh 'jave -jar target/fuliye.jar'
             }
         }
         stage('API test'){
             steps{
                 echo 'APT test Area...'
+                bat 'jmeter -n -t "D:\\DevOps\\Test_JMeter\\HTTP Request.jmx" -l "D:\\DevOps\\Test_JMeter\\output_report.jtl"'
             }
         }
     }
