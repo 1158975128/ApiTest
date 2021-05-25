@@ -1,9 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('FetchCode') {
+        stage('FetchCode from master') {
+            when{
+                branch 'master'
+            }
             steps {
-                echo 'Fetch Code step...'
+                echo 'Fetch Code from master...'
+            }
+        }
+        stage('FetchCode from test') {
+            when {
+                branch 'test'
+            }
+            steps{
+                echo 'Fetch Code from test ...'
             }
         }
         stage('UnitTest'){
