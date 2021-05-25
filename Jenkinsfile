@@ -7,9 +7,8 @@ pipeline {
             }
             steps {
                 echo 'build master branch'
-                sh 'mvn --version'
                 sh 'mvn clean package'
-                sh 'java -jar target/fuliye.jar'
+                sh 'nohup java -jar target/fuliye.jar &'
             }
         }
         stage('build test') {
