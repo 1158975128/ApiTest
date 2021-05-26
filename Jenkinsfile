@@ -9,6 +9,7 @@ pipeline {
                 echo 'build master branch'
                 sh 'mvn clean package'
                 sh 'nohup java -jar target/fuliye.jar &'
+                sh 'sleep 3m'
             }
         }
         stage('build test') {
@@ -19,6 +20,7 @@ pipeline {
                 echo 'build test branch'
                 sh 'mvn clean package'
                 sh 'nohup java -jar target/fuliye.jar &'
+                sh 'sleep 3m'
             }
         }
         stage('API test'){
