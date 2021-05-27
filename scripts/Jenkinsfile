@@ -7,7 +7,7 @@ pipeline {
             }
             steps {
                 echo 'build master branch'
-                sh './build.sh'
+                sh './scripts/build.sh'
             }
         }
         stage('test_Build') {
@@ -16,19 +16,19 @@ pipeline {
             }
             steps{
                 echo 'build test branch'
-                sh './build.sh'
+                sh './scripts/build.sh'
             }
         }
         stage('API_Test'){
             steps{
                 echo 'APT test Area...'
-                bat 'call test_JMeter.bat'
+                bat 'call scripts/test_JMeter.bat'
             }
         }
     }
     post{
         always{
-            sh './kill-service.sh'
+            sh './scripts/kill-service.sh'
         }
         success{
             echo 'This workflow is successful!'
