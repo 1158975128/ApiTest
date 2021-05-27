@@ -1,4 +1,4 @@
-PID=`cat ../target/jmeter.pid.txt`
+PID=`cat target/jmeter.pid.txt`
 echo $PID;
 if [ ! \"$PID\" ] ;then
 	     echo \"pid is not exist\"
