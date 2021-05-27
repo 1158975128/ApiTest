@@ -1,44 +1,40 @@
 pipeline {
     agent any
     stages {
-        stage('build master') {
+        stage('master_Build') {
             when{
                 branch 'master'
             }
             steps {
                 echo 'build master branch'
-                sh 'mvn clean package'
-                sh 'nohup java -jar target/fuliye.jar &'
-                sh 'sleep 3m'
+                sh './scripts/build.sh'
             }
         }
-        stage('build test') {
+        stage('test_Build') {
             when {
                 branch 'test'
             }
             steps{
                 echo 'build test branch'
-                sh 'mvn clean package'
-                sh 'nohup java -jar target/fuliye.jar &'
-                sh 'sleep 3m'
+                sh './scripts/build.sh'
             }
         }
-        stage('API test'){
+        stage('API_Test'){
             steps{
                 echo 'APT test Area...'
-                bat 'jmeter -n -t "D:\\DevOps\\Test_JMeter\\HTTP Request.jmx" -l "D:\\DevOps\\Test_JMeter\\output_report.jtl"'
+                bat './test_JMeter.bat'
             }
         }
     }
     post{
         always{
-            echo 'This will always run'
+            sh './scripts/kill-service.sh'
         }
         success{
-            echo 'This will run only if successful'
+            echo 'This workflow is successful!'
         }
         failure{
-            echo 'This will run only if failed'
+            echo 'This workflow is failed!'
         }
     }
 }
