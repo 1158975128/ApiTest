@@ -22,7 +22,7 @@ pipeline {
         stage('API_Test'){
             steps{
                 echo 'APT test Area...'
-                bat './test_JMeter.bat'
+                bat 'call ./scripts/test_JMeter.bat'
             }
         }
     }
