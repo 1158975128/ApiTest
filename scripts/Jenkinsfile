@@ -2,20 +2,8 @@ pipeline {
     agent any
     stages {
         stage('master_Build') {
-            when{
-                branch 'master'
-            }
             steps {
                 echo 'build master branch'
-                sh './scripts/build.sh'
-            }
-        }
-        stage('test_Build') {
-            when {
-                branch 'test'
-            }
-            steps{
-                echo 'build test branch'
                 sh './scripts/build.sh'
             }
         }
