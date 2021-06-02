@@ -5,7 +5,7 @@ pipeline {
             genericVariables:[
                 [key: 'ref', value: '$.ref']
             ],
-            token: 'myToken',
+            token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
             regexpFilterText: '$ref',
