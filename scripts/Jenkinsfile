@@ -24,7 +24,7 @@ pipeline {
                 allOf{
                     branch 'master';
                     expression {
-                        return $action == 'opened';
+                        return '$action' == 'opened';
                     }
                 }
             }
