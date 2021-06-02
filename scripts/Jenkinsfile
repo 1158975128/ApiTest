@@ -5,7 +5,7 @@ pipeline {
             genericVariables:[
                 [key: 'ref', value: '$.ref'],
                 [key: 'action', value: '$.action'],
-                [key: 'base_repo' value: '$.pull_request.base.ref']
+                [key: 'base_repo', value: '$.pull_request.base.ref']
             ],
             token: 'genericToken',
             printContributedVariables: true,
