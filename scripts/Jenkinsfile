@@ -1,5 +1,16 @@
 pipeline {
     agent any
+    triggers {
+        GenericTrigger(
+            genericVariables:[
+                [key: 'ref', value: '$.ref']
+            ],
+            printContributedVariables: true,
+            printPostContent: true,
+            regexpFilterText: '$ref',
+            regexpFilterExpression: 'refs/heads/master'
+        )
+    }
     stages {
         stage('Build') {
             steps {
