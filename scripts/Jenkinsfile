@@ -4,12 +4,12 @@ pipeline {
         GenericTrigger(
             genericVariables:[
                 [key: 'ref', value: '$.ref']
+                [key: 'action', value: '$.action']
+                [key: 'base_repo' value: '$.pull_request.base.ref']
             ],
             token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
-            regexpFilterText: '$ref',
-            regexpFilterExpression: '^refs/heads/master$'
         )
     }
     stages {
@@ -20,6 +20,14 @@ pipeline {
             }
         }
         stage('API_Test'){
+            when {
+                allOf{
+                    branch 'master';
+                    expression {
+                        return $action == 'opened';
+                    }
+                }
+            }
             steps{
                 echo 'APT test Area...'
                 bat 'call scripts/test_JMeter.bat'
