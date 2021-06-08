@@ -5,7 +5,7 @@ pipeline {
             genericVariables:[
                 [key: 'commit_0', value: '$.commits.[0].message', defaultValue: ''],
                 [key: 'commit_1', value: '$.commits.[1].message', defaultValue: ''],
-                [key: 'ref', value: '$.ref', regexpFilter: '(master|Dev|Test)$', defaultValue: ''],
+                [key: 'ref', value: '$.ref', regexpFilter: '^refs/heads/', defaultValue: ''],
                 [key: 'action', value: '$.action', defaultValue: ''],
                 [key: 'base_repo', value: '$.pull_request.base.ref', defaultValue: '']
             ],
