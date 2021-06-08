@@ -4,7 +4,7 @@ pipeline {
         GenericTrigger(
             genericVariables:[
                 [key: 'commit_0', value: '$.commits.[0].id'],
-                [key: 'commit1', value: '$.commits.id[1]'],
+                [key: 'commit_1', value: '$.commits.[1].id'],
                 [key: 'ref', value: '$.ref'],
                 [key: 'action', value: '$.action'],
                 [key: 'base_repo', value: '$.pull_request.base.ref']
@@ -12,7 +12,7 @@ pipeline {
             token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
-            causeString: 'branch is $ref \n commit_0 is $commit_0 \n commit1 is $commit1 \n action is $action'
+            causeString: 'branch is $ref \n commit_0 is $commit_0 \n commit_1 is $commit_1 \n action is $action'
             //regexpFilterText: '$ref'+'-'+'$commit'+'-'+'$action'+'-'+'$base_repo',
             //regexpFilterExpression: '((^refs/heads/.+-.+--$)|(^--opened-master$))'
         )
