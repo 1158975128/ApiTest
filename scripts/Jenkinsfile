@@ -10,9 +10,9 @@ pipeline {
             ],
             token: 'genericToken',
             printContributedVariables: true,
-            printPostContent: true,
-            regexpFilterText: '$ref'+'-'+'$commit'+'-'+'$action'+'-'+'$base_repo',
-            regexpFilterExpression: '((^refs/heads/.+-.+--$)|(^--opened-master$))'
+            printPostContent: true
+            //regexpFilterText: '$ref'+'-'+'$commit'+'-'+'$action'+'-'+'$base_repo',
+            //regexpFilterExpression: '((^refs/heads/.+-.+--$)|(^--opened-master$))'
         )
     }
     stages {
