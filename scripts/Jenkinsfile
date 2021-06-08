@@ -5,6 +5,7 @@ pipeline {
             genericVariables:[
                 [key: 'commit_0', value: '$.commits.[0].message', defaultValue: ''],
                 [key: 'commit_1', value: '$.commits.[1].message', defaultValue: ''],
+                [key: 'commit_2', value: '$.commits.[2].message', defaultValue: ''],
                 [key: 'ref', value: '$.ref', regexpFilter: '^refs/heads/', defaultValue: ''],
                 [key: 'action', value: '$.action', defaultValue: ''],
                 [key: 'base_repo', value: '$.pull_request.base.ref', defaultValue: '']
@@ -12,9 +13,9 @@ pipeline {
             token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
-            causeString: '@@branch is $ref \n commit_0 is $commit_0 \n commit_1 is $commit_1 \n action is $action \n BRANCH_NAME is ' + env.BRANCH_NAME,
+            causeString: 'branch is $ref \n commit_0 is $commit_0 \n commit_1 is $commit_1 \n action is $action \n BRANCH_NAME is ' + env.BRANCH_NAME,
             regexpFilterText: '$commit_0'+'--@@--'+'$commit_1'+'--@@--'+'$ref',
-            regexpFilterExpression: '(^(?!Merge).*--@@--(?!Merge)).*--@@--('+env.BRANCH_NAME+')'
+            regexpFilterExpression: '(^(?!Merge).*--@@--(?!Merge)).*--@@--('+env.BRANCH_NAME+')$'
         )
     }
     stages {
