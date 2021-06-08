@@ -4,12 +4,15 @@ pipeline {
         GenericTrigger(
             genericVariables:[
                 [key: 'ref', value: '$.ref'],
+                [key: 'commit', value: '$.commits.id[1]'],
                 [key: 'action', value: '$.action'],
                 [key: 'base_repo', value: '$.pull_request.base.ref']
             ],
             token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
+            regexpFilterText: '$ref'+'-'+'$commit'+'-'+'$action'+'-'+'$base_repo',
+            regexpFilterExpression: '((^refs/heads/.+-.+--$)|(^--opened-master$))'
         )
     }
     stages {
