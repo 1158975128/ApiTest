@@ -12,7 +12,7 @@ pipeline {
             token: 'genericToken',
             printContributedVariables: true,
             printPostContent: true,
-            causeString: 'branch is $ref \n commit0 is $commit0 \n commit1 is $commit1 \n action is $action'
+            causeString: 'branch is $ref \n commit_0 is $commit_0 \n commit1 is $commit1 \n action is $action'
             //regexpFilterText: '$ref'+'-'+'$commit'+'-'+'$action'+'-'+'$base_repo',
             //regexpFilterExpression: '((^refs/heads/.+-.+--$)|(^--opened-master$))'
         )
