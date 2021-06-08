@@ -13,4 +13,3 @@ from master .txt
 17：26
 17：30
 ==
-aa
