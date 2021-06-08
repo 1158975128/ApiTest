@@ -13,8 +13,8 @@ pipeline {
             printContributedVariables: true,
             printPostContent: true,
             causeString: 'branch is $ref \n commit_0 is $commit_0 \n commit_1 is $commit_1 \n action is $action \n BRANCH_NAME is ' + env.BRANCH_NAME,
-            regexpFilterText: '$commit_0'+'--@@--'+'$commit_1'+'--@@--'+'$ref',
-            regexpFilterExpression: '(^(?!Merge).*--@@--(?!Merge)).*--@@--(master|Dev|Test)$'
+            regexpFilterText: '$ref',
+            regexpFilterExpression: '(master|Dev|Test)$'
         )
     }
     stages {
