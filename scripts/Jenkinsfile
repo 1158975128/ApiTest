@@ -19,12 +19,13 @@ pipeline {
             when {
                 allOf {
                     branch 'master';
-                    /*expression {
-                        return '$action' == 'opened';
-                    }*/
+                    expression {
+                        return "$action" == 'opened';
+                    }
                 }
             }
             steps {
+                echo "Force Aborted!! No Error!!"
                 script {
                     currentBuild.result = SUCCESS
                     return
