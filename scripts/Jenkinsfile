@@ -40,7 +40,9 @@ pipeline {
         stage('API_Test'){
             when {
                 allOf{
-                    branch '^(?!master)$';
+                    expression {
+                        return env.BRANCH_NAME != 'master';
+                    }
                     expression {
                         return '$action' == 'opened';
                     }
