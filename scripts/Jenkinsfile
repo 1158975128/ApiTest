@@ -15,6 +15,22 @@ pipeline {
         )
     }
     stages {
+        stage('if_aborted') {
+            when {
+                allOf {
+                    branch 'master';
+                    expression {
+                        return '$action' == 'opened';
+                    }
+                }
+            }
+            steps {
+                script {
+                    currentBuild.result = SUCCESS
+                    return
+                }
+            }
+        }
         stage('Build') {
             steps {
                 echo 'build master branch'
@@ -22,14 +38,14 @@ pipeline {
             }
         }
         stage('API_Test'){
-            /**when {
+            when {
                 allOf{
-                    branch 'master';
+                    branch '^(?!master)$';
                     expression {
                         return '$action' == 'opened';
                     }
                 }
-            }  **/
+            }
             steps{
                 echo 'APT test Area...'
                 bat 'call scripts/test_JMeter.bat'
