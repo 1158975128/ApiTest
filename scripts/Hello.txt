@@ -16,6 +16,4 @@ from master .txt
 aacc
 <<<<<<< HEAD
 ===
-=======
-////
 de
