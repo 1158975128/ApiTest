@@ -19,9 +19,9 @@ pipeline {
             when {
                 allOf {
                     branch 'master';
-                    expression {
+                    /*expression {
                         return '$action' == 'opened';
-                    }
+                    }*/
                 }
             }
             steps {
@@ -43,9 +43,9 @@ pipeline {
                     expression {
                         return env.BRANCH_NAME != 'master';
                     }
-                    expression {
+                    /*expression {
                         return '$action' == 'opened';
-                    }
+                    }*/
                 }
             }
             steps{
