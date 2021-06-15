@@ -44,7 +44,7 @@ pipeline {
                         return env.BRANCH_NAME != 'master';
                     }
                     expression {
-                        return '$action' == 'opened';
+                        return "$action" == 'opened';
                     }
                 }
             }
