@@ -2,7 +2,7 @@ pipeline {
     agent any
     triggers {
         GenericTrigger(
-            token: 'masterPipline',
+            token: 'masterPipeline',
             printContributedVariables: true,
             printPostContent: true
         )
