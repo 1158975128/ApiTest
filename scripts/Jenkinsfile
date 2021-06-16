@@ -3,8 +3,8 @@ pipeline {
     triggers {
         GenericTrigger(
             genericVariables:[
-                [key: 'action', value: '$.action', defaultValue: ''],
-                [key: 'base_repo', value: '$.pull_request.base.ref', defaultValue: '']
+                [key: 'action', value: '$.action', defaultValue: ' '],
+                [key: 'base_repo', value: '$.pull_request.base.ref', defaultValue: ' ']
             ],
             token: 'genericToken',
             printContributedVariables: true,
@@ -41,9 +41,7 @@ pipeline {
         stage('API_Test'){
             when {
                 allOf{
-                    expression {
-                        return env.BRANCH_NAME != 'master';
-                    }
+                    branch '(Dev|Test)'
                     expression {
                         return "$action" == 'opened';
                     }
