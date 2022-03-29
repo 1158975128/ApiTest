@@ -1,0 +1,42 @@
+<elements>
+    <element>
+        <name>organization</name>
+        <type>css</type>
+        <value>.organization-checkout-list >li:nth-child(10)</value>
+    </element>
+    <element>
+        <name>shou-ye</name>
+        <type>css</type>
+        <value>icon-icon_shouye</value>
+    </element>
+    <element>
+        <name>unread-msg</name>
+        <type>css</type>
+        <value>.outer.unread-msg</value>
+    </element>
+    <element>
+        <name>unplan-patient</name>
+        <type>css</type>
+        <value>.outer.unplan-patient</value>
+    </element>
+    <element>
+        <name>unfinish-judge</name>
+        <type>css</type>
+        <value>.outer.unfinish-judge</value>
+    </element>
+    <element>
+        <name>unfinish-order</name>
+        <type>css</type>
+        <value>.outer.unfinish-order</value>
+    </element>
+    <element>
+        <name>outfinish-order</name>
+        <type>css</type>
+        <value>.outer.finished-order</value>
+    </element>
+    <element>
+        <name>unconfirm</name>
+        <type>css</type>
+        <value>.outer.unconfirm-patient</value>
+    </element>
+</elements>
