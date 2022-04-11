@@ -37,6 +37,7 @@ class Department_Type():
         new_epartment_Name = self.version.getLocator(self.driver, 'Disease_name').text
         return new_epartment_Name
         log.info("新增成功")
+        # 122
 
     def add_none_department(self):
         department_preserve = self.version.getLocator(self.driver, "Treatment_Preserve")
