@@ -34,4 +34,9 @@
         <type>css</type>
         <value>.dialog-footer .el-button--default</value>
     </element>
+    <element>
+        <name>Organization</name>
+        <type>css</type>
+        <value>.content ul>li:nth-child(10)</value>
+    </element>
 </elements>

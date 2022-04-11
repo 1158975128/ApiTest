@@ -10,8 +10,9 @@ from page_objects.treatment_preserve.disease_type import Disease_Type
 
 log = MyLogging(__name__).logger
 
-
-class DiseaseType(unittest.TestCase):
+def my_sum(a,b):
+    return  a+b
+class TestDiseaseType(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = Browser.open_browser()
@@ -21,7 +22,9 @@ class DiseaseType(unittest.TestCase):
     def test_01_disease_type_page(self):
         print("TestCase:验证疾病类型页格式正确<br/>")
 
-    @parameterized.expand([("测试新增疾病类型", True), ("", False)])
+
+
+    @parameterized.expand([("","测试新增疾病类型", True), ("", "", False)])
     def test_02_version_update(self, test_case, disease_name, result):
         print("TestCase:" + test_case)
         self.type = Disease_Type(self.driver)
