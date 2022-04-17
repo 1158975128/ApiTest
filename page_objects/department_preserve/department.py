@@ -1,6 +1,6 @@
 import os
 import time
-
+import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from config.public_data.delay_time import *
@@ -10,8 +10,7 @@ from page_objects.navigate_bar_all.navigate_version import VersionExpanded
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-department_type_map = '/Users/pca001/Downloads/devops_test/page_element/department_preserve/department.xml'
-
+disease_type_map = map_path + "/department_preserve/department.xml"
 
 delay_time = DelayTime.short_time.value
 
@@ -19,7 +18,7 @@ delay_time = DelayTime.short_time.value
 class Department_Type():
     def __init__(self, driver):
         self.driver = driver
-        self.version = ObjectMap(department_type_map)
+        self.version = ObjectMap(disease_type_map)
         # self.management = VersionExpanded(self.driver)
         # self.management.navigate_version_control()
 
@@ -31,10 +30,12 @@ class Department_Type():
         new_additional = self.version.getLocator(self.driver, "New_Additional")
         new_additional.click()
         import_words = self.version.getLocator(self.driver, "Import_Words")
-        import_words.send_keys("测试新增部门")
+        import_words.send_keys("测试新增部门" + str(int(random.random() * 1000)))
         ensure = self.version.getLocator(self.driver, "Ensure")
         ensure.click()
-        new_epartment_Name = self.version.getLocator(self.driver, 'Disease_name').text
+        # 防止新建部门名称获取失败
+        time.sleep(1)
+        new_epartment_Name = self.version.getLocator(self.driver, 'Department_Name').text
         return new_epartment_Name
         log.info("新增成功")
         # 122

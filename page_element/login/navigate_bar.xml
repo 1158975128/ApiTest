@@ -15,6 +15,16 @@
         <value>.icon-icon_huanzheguanli</value>
     </element>
     <element>
+        <name>Registration</name>
+        <type>css</type>
+        <value>.icon-icon_dengjiguahao</value>
+    </element>
+    <element>
+        <name>Seedoctor</name>
+        <type>css</type>
+        <value>.icon-icon_dengjiguahao</value>
+    </element>
+    <element>
         <name>DengJiGuaHao</name>
         <type>css</type>
         <value>.icon-icon_dengjiguahao</value>

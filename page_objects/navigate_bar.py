@@ -17,6 +17,21 @@ class NavigateBar(object):
         self.driver = driver
         self.navigate = ObjectMap(navigate_bar_map)
         log.info("end of init")
+    def go_to_home_page(self):
+        shou_ye = self.navigate.getLocator(self.driver, 'ShouYe')
+        shou_ye.click()
+
+    def go_to_patient(self):
+        patient = self.navigate.getLocator(self.driver, 'HuanZheGuanLi')
+        patient.click()
+
+    def go_to_registration(self):
+        registration = self.navigate.getLocator(self.driver, 'Registration')
+        registration.click()
+
+    def go_to_See_doctor(self):
+        see_doctor = self.navigate.getLocator(self.driver, 'rttttttttF       zzzzzzzzzzzzzzzzzz')
+        see_doctor.click()
 
     def navigate_bar(self):
         organization = self.navigate.getLocator(self.driver, 'Organization')
