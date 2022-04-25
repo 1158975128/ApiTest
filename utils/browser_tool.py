@@ -4,9 +4,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../drivers"))
-# driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址
-driver_path = '/Users/pca001/Downloads/chromedriver'
-
+driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址
 
 class Browser:
     @staticmethod
