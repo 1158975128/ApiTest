@@ -25,6 +25,16 @@
         <value>.icon-icon_dengjiguahao</value>
     </element>
     <element>
+        <name>Department_Preserve</name>
+        <type>xpath</type>
+        <value>//*[@name='科室维护']</value>
+    </element>
+    <element>
+        <name>Department</name>
+        <type>xpath</type>
+        <value>//*[@name='部门']</value>
+    </element>
+    <element>
         <name>DengJiGuaHao</name>
         <type>css</type>
         <value>.icon-icon_dengjiguahao</value>

@@ -30,8 +30,14 @@ class NavigateBar(object):
         registration.click()
 
     def go_to_See_doctor(self):
-        see_doctor = self.navigate.getLocator(self.driver, 'rttttttttF       zzzzzzzzzzzzzzzzzz')
+        see_doctor = self.navigate.getLocator(self.driver, 'Seedoctor')
         see_doctor.click()
+
+    def go_to_department(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        department_Preserv.click()
+        department = self.navigate.getLocator(self.driver, 'Department')
+        department.click()
 
     def navigate_bar(self):
         organization = self.navigate.getLocator(self.driver, 'Organization')

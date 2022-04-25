@@ -16,8 +16,6 @@ log = MyLogging(__name__).logger
 
 
 class TestDepartment():
-    # def __init__(self):
-
 
     def setup(self):
         self.driver = Browser.open_browser()
@@ -29,22 +27,49 @@ class TestDepartment():
         # self.Type.delete_disease()
         self.driver.quit()
 
-    def test_01_department_type_page(self):
+    data = [("新增部门", "部门名称","操作")]
+    @pytest.mark.parametrize("new_additional, check_department_name,check_operation_name",data)
+    def test_01_department_type_page(self,new_additional, check_department_name,check_operation_name):
         print("TestCase:验证部门页格式正确<br/>")
+        self.type = Department_Type(self.driver)
+        additional, department_name,operation_name = self.type.check_department_page()
+        assert additional == new_additional and department_name == check_department_name and operation_name == check_operation_name
+        log.info("TestCase:验证部门页格式正确<br/>")
 
-    # @parameterized.expand([("测试新增部门", True), ("", False)])
+
+
     data = [("测试新增部门", True)]
     @pytest.mark.parametrize("department, result",data)
     def test_02_add_department(self,department, result):
         # print("TestCase:" + test_case)
-        # a = input("aa")
         self.type = Department_Type(self.driver)
-        # time.sleep(3)
-        # log.info("新增部门成功")
-        # self.type = Department_Type(self.driver)
-        # self.type.add_none_department()
-        new_department = self.type.add_new_department()
+        new_department = self.type.add_new_department(department)
+        log.info("新增部门成功")
         print(new_department)
-        # b =input("bbb")
-        # assert department == new_department
-        # self.assertEqual(department, new_department+"输入空值失败")
+        assert department == new_department
+        self.type.delete_department()
+
+
+    data = [("测试新增部门","测试修改部门")]
+    @pytest.mark.parametrize("department,change_depar",data)
+    def test_03_change_department(self,department,change_depar):
+        self.type = Department_Type(self.driver)
+        new_department = self.type.add_new_department(department)
+        log.info("新增部门成功")
+        print(new_department)
+        self.driver.implicitly_wait(10)
+        change_department = self.type.change_department(change_depar)
+        print(change_department)
+        assert change_department == change_depar
+        self.type.delete_department()
+
+    data = [("测试删除部门")]
+    @pytest.mark.parametrize("delete_depar",data)
+    def test_04_delete_department(self,delete_depar):
+        self.type = Department_Type(self.driver)
+        new_department = self.type.add_new_department(delete_depar)
+        log.info("新增部门成功")
+        print(new_department)
+        self.driver.implicitly_wait(10)
+        delete = self.type.delete_department()
+        assert delete_depar != delete

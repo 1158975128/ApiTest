@@ -1,25 +1,5 @@
 <elements>
     <element>
-        <name>Person_Preserve</name>
-        <type>xpath</type>
-        <value>//*[@name="人员管理"]</value>
-    </element>
-    <element>
-        <name>Add_count</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[2]/div[1]/div/div[1]/button/span/span</value>
-    </element>
-    <element>
-        <name>Department_Preserve</name>
-        <type>xpath</type>
-        <value>//*[@name='科室维护']</value>
-    </element>
-    <element>
-        <name>Department</name>
-        <type>xpath</type>
-        <value>//*[@name='部门']</value>
-    </element>
-    <element>
         <name>New_Additional</name>
         <type>classname</type>
         <value>head-btn-text</value>
@@ -28,11 +8,6 @@
         <name>Import_Words</name>
         <type>classname</type>
         <value>el-input__inner</value>
-    </element>
-    <element>
-        <name>Confirm</name>
-        <type>css</type>
-        <value>.el-button.el-button--primary.el-button--medium.confirm-btn</value>
     </element>
     <element>
         <name>Cancel</name>
@@ -51,18 +26,32 @@
     </element>
     <element>
         <name>Change</name>
-        <type>css</type>
-        <value>.el-table__body-wrapper tr:nth-child(2) button.updateBtn</value>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[2]/table/tbody/tr[1]/td[2]/div/button[1]</value>
     </element>
     <element>
         <name>Delete</name>
         <type>css</type>
-        <value>.el-table__body-wrapper tr:nth-child(2) button.deleteBtn</value>
+        <value>.el-table__fixed-body-wrapper tr:nth-child(1) td:nth-child(2) button.deleteBtn</value>
+    </element>
+    <element>
+        <name>Delete_Ensure</name>
+        <type>css</type>
+        <value>.el-button.el-button--primary.el-button--small.el-button--primary</value>
     </element>
     <element>
         <name>Department_Name</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]/td[1]/div</value>
+        <type>css</type>
+        <value>.is-scrolling-none tr:nth-child(1) td:nth-child(1) div</value>
     </element>
-
+    <element>
+        <name>Check_Department_Name</name>
+        <type>css</type>
+        <value>.el-table__header-wrapper th:nth-child(1) div</value>
+    </element>
+    <element>
+        <name>Check_Operation_Name</name>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[1]/table/thead/tr/th[2]/div</value>
+    </element>
 </elements>
