@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ head.title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./echarts.min.js"></script>>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">{{ head.title }}</h2>
+                <p class='attribute'><strong>Start Time: </strong>{{ head.start_time }}</p>
+                <p class='attribute'><strong>Summary: </strong>{{ head.summary }}</p>
+                <p class='attribute'><strong>Description: </strong>Pass: 用例通过，Fail: 用例失败，Error: 用例错误，Skip: 用例未执行</p>
+            </div>
+        </div>
+        <div id="main" style="width: 1000px;height:400px;"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>Test Suite</th>
+                            <th>Result</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in items %}
+                        <tr class='{{ i.status }}'>
+                            <td class="col-md-6">{{ i.controller }}</td>
+                            <td class="col-md-6">{{ i.info }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      var option = {
+  tooltip: {
+    trigger: 'item'
+  },
+  series: [
+    {
+      type: 'pie',
+      radius: '80%',
+      data: [
+        { value: {{ total.skip }}, name: 'Skip' },
+        { value: {{ total.pass }}, name: 'Pass' },
+        { value: {{ total.error }}, name: 'Error' },
+        { value: {{ total.fail }}, name: 'Fail' }
+      ],
+      label: {
+        formatter: '{b}: {c}({d}%)',
+        color: 'inherit',
+        fontSize: 18,
+        fontWeight: 'bold',
+        rich: {
+          b: {
+            fontWeight: 'bolder'
+          },
+          d: {
+            fontWeight: 'bolder'
+          }
+        }
+      }
+    }
+  ]
+};
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+</body>
+</html>
