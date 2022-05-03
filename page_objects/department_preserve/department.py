@@ -36,7 +36,6 @@ class Department_Type():
 
 
 
-
     def add_new_department(self,dep_name):
         self.department.go_to_department()
         new_additional = self.version.getLocator(self.driver, "New_Additional")
@@ -51,16 +50,27 @@ class Department_Type():
         return new_epartment_Name
         log.info("新增成功")
 
-    def delete_department(self):
+    def delete_department(self,department_name):
         self.department.go_to_department()
-        delete = self.version.getLocator(self.driver, "Delete")
-        delete.click()
-        self.driver.implicitly_wait(10)
-        ensure = self.version.getLocator(self.driver, "Delete_Ensure")
-        ensure.click()
-        time.sleep(1)
-        new_epartment_Name = self.version.getLocator(self.driver, 'Department_Name').text
-        return new_epartment_Name
+        table = self.version.getLocator(self.driver, 'Table')
+        tabletrs = table.find_elements_by_tag_name('tr')
+        for i in range(1,len(tabletrs)+1):
+            path = ".is-scrolling-none tr:nth-child({}) td:nth-child({}) div".format(i, 1)
+            tablediv = self.driver.find_element_by_css_selector(path)
+            trs = tabletrs[i-1]
+            # 根据部门名称定位要删除的行
+            if tablediv.text == department_name:
+                tabletds = trs.find_elements_by_tag_name('td')
+                td = tabletds[1]
+                tablebuttons = td.find_elements_by_tag_name('button')
+                for tablebutton in tablebuttons:
+                    if tablebutton.text =="删除":
+                        tablebutton.click()
+                        self.driver.implicitly_wait(10)
+                        ensure = self.version.getLocator(self.driver, "Delete_Ensure")
+                        ensure.click()
+                # 防止删除成功后少行超出范围
+                break
         log.info("删除成功")
 
     def change_department(self,dep_name):
