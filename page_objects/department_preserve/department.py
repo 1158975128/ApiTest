@@ -44,11 +44,27 @@ class Department_Type():
         import_words.send_keys(dep_name)
         ensure = self.version.getLocator(self.driver, "Ensure")
         ensure.click()
-        # 防止新建部门名称获取失败
         time.sleep(1)
-        new_epartment_Name = self.version.getLocator(self.driver, 'Department_Name').text
-        return new_epartment_Name
         log.info("新增成功")
+
+    def find_department_name(self,name):
+        """
+        查找部门名称是否在列表中
+        :param name: 部门名称
+        :return: True/Flase
+        """
+        self.department.go_to_department()
+        department_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
+        flag = 0
+        for department_name in department_names:
+            if department_name.text == name:
+                flag = 1
+        if flag == 1:
+            return True
+        else:
+            print('没有匹配的'+name)
+            return False
+
 
     def delete_department(self,department_name):
         self.department.go_to_department()
