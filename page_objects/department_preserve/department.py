@@ -25,6 +25,10 @@ class Department_Type():
         # self.management.navigate_version_control()
 
     def check_department_page(self):
+        '''
+        检查页面元素是否正确
+        :return: new_additional,check_department_name,check_operation_name
+        '''
         self.department.go_to_department()
         time.sleep(1)
         new_additional = self.version.getLocator(self.driver, "New_Additional").text
@@ -33,11 +37,13 @@ class Department_Type():
         check_operation_name = self.version.getLocator(self.driver, 'Check_Operation_Name').text
         return new_additional,check_department_name,check_operation_name
 
-
-
-
     def add_new_department(self,dep_name):
+        '''
+        新增部门
+        :param dep_name: 新增部门的名称
+        '''
         self.department.go_to_department()
+        self.driver.implicitly_wait(20)
         new_additional = self.version.getLocator(self.driver, "New_Additional")
         new_additional.click()
         import_words = self.version.getLocator(self.driver, "Import_Words")
@@ -67,6 +73,11 @@ class Department_Type():
 
 
     def delete_department(self,department_name):
+        '''
+        删除部门
+        :param department_name: 传入删除的部门名称
+        Logic：遍历Tbody,根据传入的删除的部门名称找到对应的删除按钮，删除后跳出循环
+        '''
         self.department.go_to_department()
         table = self.version.getLocator(self.driver, 'Table')
         tabletrs = table.find_elements_by_tag_name('tr')
@@ -90,6 +101,11 @@ class Department_Type():
         log.info("删除成功")
 
     def change_department(self,department_name,change_depar):
+        '''
+        修改部门名称
+        :param department_name: 传入删除的部门名称
+        Logic：遍历Tbody,根据传入的修改的部门名称找到对应的删除按钮，修改后跳出循环
+        '''
         self.department.go_to_department()
         table = self.version.getLocator(self.driver, 'Table')
         tabletrs = table.find_elements_by_tag_name('tr')

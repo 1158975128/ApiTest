@@ -31,6 +31,10 @@ class TestDepartment():
     data = [("新增部门", "部门名称","操作")]
     @pytest.mark.parametrize("new_additional, check_department_name,check_operation_name",data)
     def test_01_department_type_page(self,new_additional, check_department_name,check_operation_name):
+        '''
+        Author：LX
+        Logic：验证部门页格式正确
+        '''
         print("TestCase:验证部门页格式正确<br/>")
         self.type = Department_Type(self.driver)
         additional, department_name,operation_name = self.type.check_department_page()
@@ -47,6 +51,10 @@ class TestDepartment():
 =======
     @parameterized.expand([("测试新增部门")])
     def test_02_add_department(self,department):
+        '''
+        Author：LX
+        Logic：测试新增部门
+        '''
         print("TestCase:入参传入department，查看新增部门是否成功" )
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
         department = department + now_time
@@ -55,6 +63,7 @@ class TestDepartment():
         self.type.add_new_department(department)
         log.info("新增部门成功")
         time.sleep(1)
+<<<<<<< HEAD
         new_department = self.type.find_department_name(department)
         print(new_department)
 <<<<<<< HEAD
@@ -68,7 +77,19 @@ class TestDepartment():
 
     data = [("测试新增部门","测试修改部门")]
     @pytest.mark.parametrize("department,change_depar",data)
+=======
+        self.assertTrue(self.type.find_department_name(department))
+        time.sleep(1)
+        self.type.delete_department(department)
+        time.sleep(1)
+
+    @parameterized.expand([("测试修改新增部门","测试修改部门")])
+>>>>>>> c7f9b90... 注释
     def test_03_change_department(self,department,change_depar):
+        '''
+        Author：LX
+        Logic：测试修改部门名称
+        '''
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
         department = department + now_time
         change_depar = change_depar + now_time
@@ -77,6 +98,7 @@ class TestDepartment():
         log.info("新增部门成功")
         self.driver.implicitly_wait(10)
         self.type.change_department(department,change_depar)
+<<<<<<< HEAD
         change_department = self.type.find_department_name(change_depar)
         print(change_department)
 <<<<<<< HEAD
@@ -89,13 +111,26 @@ class TestDepartment():
 
     data = [("测试删除部门")]
     @pytest.mark.parametrize("delete_depar",data)
+=======
+        self.assertTrue(self.type.find_department_name(change_depar))
+        time.sleep(1)
+        self.type.delete_department(change_depar)
+        time.sleep(1)
+
+    @parameterized.expand([("测试删除新增部门")])
+>>>>>>> c7f9b90... 注释
     def test_04_delete_department(self,delete_depar):
+        '''
+        Author：LX
+        Logic：测试删除部门
+        '''
         print("TestCase:入参传入delete_depar，查看删除部门是否成功")
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
         delete_depar = delete_depar + now_time
         self.type = Department_Type(self.driver)
         self.type.add_new_department(delete_depar)
         log.info("新增部门成功")
+<<<<<<< HEAD
         self.driver.implicitly_wait(10)
 <<<<<<< HEAD
         delete = self.type.delete_department()
@@ -116,3 +151,9 @@ class TestDepartment():
 if __name__ == '__main__':
     unittest.main()
 >>>>>>> 9aedfd0... 修改、删除方法
+=======
+        time.sleep(1)
+        self.type.delete_department(delete_depar)
+        time.sleep(1)
+        self.assertFalse(self.type.find_department_name(delete_depar))
+>>>>>>> c7f9b90... 注释
