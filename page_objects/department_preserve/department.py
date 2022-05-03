@@ -73,19 +73,31 @@ class Department_Type():
                 break
         log.info("删除成功")
 
-    def change_department(self,dep_name):
+    def change_department(self,department_name,change_depar):
         self.department.go_to_department()
-        change = self.version.getLocator(self.driver,"Change")
-        change.click()
-        self.driver.implicitly_wait(20)
-        import_words = self.version.getLocator(self.driver, "Import_Words")
-        import_words.clear()
-        import_words.send_keys(dep_name)
-        ensure = self.version.getLocator(self.driver, "Ensure")
-        ensure.click()
-        time.sleep(1)
-        change_epartment_Name = self.version.getLocator(self.driver, 'Department_Name').text
-        return change_epartment_Name
+        table = self.version.getLocator(self.driver, 'Table')
+        tabletrs = table.find_elements_by_tag_name('tr')
+        for i in range(1,len(tabletrs)+1):
+            path = ".is-scrolling-none tr:nth-child({}) td:nth-child({}) div".format(i, 1)
+            tablediv = self.driver.find_element_by_css_selector(path)
+            trs = tabletrs[i-1]
+            # 根据部门名称定位要修改的行
+            if tablediv.text == department_name:
+                tabletds = trs.find_elements_by_tag_name('td')
+                td = tabletds[1]
+                tablebuttons = td.find_elements_by_tag_name('button')
+                for tablebutton in tablebuttons:
+                    if tablebutton.text =="修改":
+                        tablebutton.click()
+                        self.driver.implicitly_wait(20)
+                        import_words = self.version.getLocator(self.driver, "Import_Words")
+                        import_words.clear()
+                        import_words.send_keys(change_depar)
+                        ensure = self.version.getLocator(self.driver, "Ensure")
+                        ensure.click()
+                        time.sleep(1)
+                # 修改成功后跳出循环
+                break
         log.info("修改成功")
 
 
