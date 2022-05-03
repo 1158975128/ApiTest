@@ -42,7 +42,7 @@
     <element>
         <name>Department_Name</name>
         <type>css</type>
-        <value>.is-scrolling-none tr:nth-child(1) td:nth-child(1) div</value>
+        <value>.is-scrolling-none tr td:nth-child(1) div</value>
     </element>
     <element>
         <name>Check_Department_Name</name>
@@ -53,5 +53,10 @@
         <name>Check_Operation_Name</name>
         <type>xpath</type>
         <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[1]/table/thead/tr/th[2]/div</value>
+    </element>
+    <element>
+        <name>Table</name>
+        <type>xpath</type>
+        <value>//*[@class="el-table__fixed-body-wrapper"]//tbody</value>
     </element>
 </elements>
