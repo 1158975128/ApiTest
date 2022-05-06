@@ -35,6 +35,11 @@
         <value>//*[@name='部门']</value>
     </element>
     <element>
+        <name>Position</name>
+        <type>xpath</type>
+        <value>//*[@name='职务']</value>
+    </element>
+    <element>
         <name>DengJiGuaHao</name>
         <type>css</type>
         <value>.icon-icon_dengjiguahao</value>

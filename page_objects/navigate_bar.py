@@ -29,9 +29,17 @@ class NavigateBar(object):
         registration = self.navigate.getLocator(self.driver, 'Registration')
         registration.click()
 
-    def go_to_See_doctor(self):
-        see_doctor = self.navigate.getLocator(self.driver, 'Seedoctor')
-        see_doctor.click()
+    def go_to_Position(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            department = self.navigate.getLocator(self.driver, 'Position')
+            department.click()
+        else:
+            department_Preserv.click()
+            department = self.navigate.getLocator(self.driver, 'Position')
+            department.click()
 
     def go_to_department(self):
         department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
