@@ -87,7 +87,7 @@ class Department_Type():
             table_tr_td1s = table_trs[i].find_elements(By.TAG_NAME,value='td')
             for table_tr_td1 in table_tr_td1s:
                 # 根据部门名称定位要删除的行
-                if table_tr_td1.get_attribute('textContent') == department_name:
+                if table_tr_td1.get_attribute('textContent').strip() == department_name:
                     table_tr_td2s = table_trs[i].find_elements(By.TAG_NAME,value='td')
                     # 获取tr里第二个td的所有button
                     table_buttons = table_tr_td2s[1].find_elements(By.TAG_NAME,value='button')
@@ -115,7 +115,7 @@ class Department_Type():
             table_tr_td1s = table_trs[i].find_elements(By.TAG_NAME,value='td')
             for table_tr_td1 in table_tr_td1s:
                 # 根据部门名称定位要修改的行
-                if table_tr_td1.get_attribute('textContent') == department_name:
+                if table_tr_td1.get_attribute('textContent').strip() == department_name:
                     table_tr_td2s = table_trs[i].find_elements(By.TAG_NAME,value='td')
                     # 获取tr里第二个td的所有button
                     table_buttons = table_tr_td2s[1].find_elements(By.TAG_NAME,value='button')

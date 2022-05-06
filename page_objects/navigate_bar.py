@@ -35,9 +35,15 @@ class NavigateBar(object):
 
     def go_to_department(self):
         department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
-        department_Preserv.click()
-        department = self.navigate.getLocator(self.driver, 'Department')
-        department.click()
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            department = self.navigate.getLocator(self.driver, 'Department')
+            department.click()
+        else:
+            department_Preserv.click()
+            department = self.navigate.getLocator(self.driver, 'Department')
+            department.click()
 
     def navigate_bar(self):
         organization = self.navigate.getLocator(self.driver, 'Organization')
