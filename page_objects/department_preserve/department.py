@@ -77,28 +77,29 @@ class Department_Type():
         删除部门
         :param department_name: 传入删除的部门名称
         Logic：遍历Tbody,根据传入的删除的部门名称找到对应的删除按钮，删除后跳出循环
+        :except
         '''
         self.department.go_to_department()
+        time.sleep(5)
         table = self.version.getLocator(self.driver, 'Table')
-        tabletrs = table.find_elements_by_tag_name('tr')
-        for i in range(1,len(tabletrs)+1):
-            path = ".is-scrolling-none tr:nth-child({}) td:nth-child({}) div".format(i, 1)
-            tablediv = self.driver.find_element_by_css_selector(path)
-            trs = tabletrs[i-1]
-            # 根据部门名称定位要删除的行
-            if tablediv.text == department_name:
-                tabletds = trs.find_elements_by_tag_name('td')
-                td = tabletds[1]
-                tablebuttons = td.find_elements_by_tag_name('button')
-                for tablebutton in tablebuttons:
-                    if tablebutton.text =="删除":
-                        tablebutton.click()
-                        self.driver.implicitly_wait(10)
-                        ensure = self.version.getLocator(self.driver, "Delete_Ensure")
-                        ensure.click()
-                # 防止删除成功后少行超出范围
-                break
-        log.info("删除成功")
+        table_trs = table.find_elements(By.TAG_NAME,value='tr')
+        for i in range(len(table_trs)):
+            table_tr_td1s = table_trs[i].find_elements(By.TAG_NAME,value='td')
+            for table_tr_td1 in table_tr_td1s:
+                # 根据部门名称定位要删除的行
+                if table_tr_td1.get_attribute('textContent') == department_name:
+                    table_tr_td2s = table_trs[i].find_elements(By.TAG_NAME,value='td')
+                    # 获取tr里第二个td的所有button
+                    table_buttons = table_tr_td2s[1].find_elements(By.TAG_NAME,value='button')
+                    for table_button in table_buttons:
+                        if table_button.text == "删除":
+                            table_button.click()
+                            self.driver.implicitly_wait(10)
+                            ensure = self.version.getLocator(self.driver, "Delete_Ensure")
+                            ensure.click()
+                    # 防止删除成功后少行超出范围
+                    break
+            log.info("删除成功")
 
     def change_department(self,department_name,change_depar):
         '''
@@ -107,29 +108,29 @@ class Department_Type():
         Logic：遍历Tbody,根据传入的修改的部门名称找到对应的删除按钮，修改后跳出循环
         '''
         self.department.go_to_department()
+        time.sleep(5)
         table = self.version.getLocator(self.driver, 'Table')
-        tabletrs = table.find_elements_by_tag_name('tr')
-        for i in range(1,len(tabletrs)+1):
-            path = ".is-scrolling-none tr:nth-child({}) td:nth-child({}) div".format(i, 1)
-            tablediv = self.driver.find_element_by_css_selector(path)
-            trs = tabletrs[i-1]
-            # 根据部门名称定位要修改的行
-            if tablediv.text == department_name:
-                tabletds = trs.find_elements_by_tag_name('td')
-                td = tabletds[1]
-                tablebuttons = td.find_elements_by_tag_name('button')
-                for tablebutton in tablebuttons:
-                    if tablebutton.text =="修改":
-                        tablebutton.click()
-                        self.driver.implicitly_wait(20)
-                        import_words = self.version.getLocator(self.driver, "Import_Words")
-                        import_words.clear()
-                        import_words.send_keys(change_depar)
-                        ensure = self.version.getLocator(self.driver, "Ensure")
-                        ensure.click()
-                        time.sleep(1)
-                # 修改成功后跳出循环
-                break
+        table_trs = table.find_elements(By.TAG_NAME,value='tr')
+        for i in range(len(table_trs)):
+            table_tr_td1s = table_trs[i].find_elements(By.TAG_NAME,value='td')
+            for table_tr_td1 in table_tr_td1s:
+                # 根据部门名称定位要修改的行
+                if table_tr_td1.get_attribute('textContent') == department_name:
+                    table_tr_td2s = table_trs[i].find_elements(By.TAG_NAME,value='td')
+                    # 获取tr里第二个td的所有button
+                    table_buttons = table_tr_td2s[1].find_elements(By.TAG_NAME,value='button')
+                    for table_button in table_buttons:
+                        if table_button.text == "修改":
+                            table_button.click()
+                            self.driver.implicitly_wait(20)
+                            import_words = self.version.getLocator(self.driver, "Import_Words")
+                            import_words.clear()
+                            import_words.send_keys(change_depar)
+                            ensure = self.version.getLocator(self.driver, "Ensure")
+                            ensure.click()
+                            time.sleep(1)
+                    # 修改成功后跳出循环
+                    break
         log.info("修改成功")
 
 
