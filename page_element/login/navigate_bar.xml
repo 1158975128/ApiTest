@@ -40,6 +40,16 @@
         <value>//*[@name='职务']</value>
     </element>
     <element>
+        <name>Treatment_Preserve</name>
+        <type>xpath</type>
+        <value>//*[@name='治疗维护']</value>
+    </element>
+    <element>
+        <name>Disease_Type</name>
+        <type>name</type>
+        <value>//*[@name='疾病类型']</value>
+    </element>
+    <element>
         <name>DengJiGuaHao</name>
         <type>css</type>
         <value>.icon-icon_dengjiguahao</value>

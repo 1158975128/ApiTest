@@ -30,16 +30,28 @@ class NavigateBar(object):
         registration.click()
 
     def go_to_Position(self):
-        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        position_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
         # 获取class的值，判断下拉框状态
-        department_class = department_Preserv.get_attribute('class').strip()
-        if department_class.endswith('is-opened'):
+        position_class = position_Preserv.get_attribute('class').strip()
+        if position_class.endswith('is-opened'):
             department = self.navigate.getLocator(self.driver, 'Position')
             department.click()
         else:
-            department_Preserv.click()
+            position_Preserv.click()
             department = self.navigate.getLocator(self.driver, 'Position')
             department.click()
+
+    def go_to_disease(self):
+        treatment_preserve = self.version.getLocator(self.driver, "Treatment_Preserve")
+        # 获取class的值，判断下拉框状态
+        treatment_class = treatment_preserve.get_attribute('class').strip()
+        if treatment_class.endswith('is-opened'):
+            disease_type = self.version.getLocator(self.driver, "Disease_Type")
+            disease_type.click()
+        else:
+            treatment_preserve.click()
+            disease_type = self.version.getLocator(self.driver, "Disease_Type")
+            disease_type.click()
 
     def go_to_department(self):
         department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')

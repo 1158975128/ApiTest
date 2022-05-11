@@ -1,5 +1,6 @@
 import time
 import unittest
+import pytest
 from page_objects.login.login_page import LoginPage
 from utils.browser_tool import Browser
 from common.logger import MyLogging
@@ -10,32 +11,30 @@ from page_objects.department_preserve.position import Position
 log = MyLogging(__name__).logger
 
 
-class TestPosition(unittest.TestCase):
+class TestPosition():
 
-    def setUp(self):
+    def setup(self):
         self.driver = Browser.open_browser()
         self.mylogin = LoginPage(self.driver)
         self.mylogin.login_fris('admin')
 
-    def tearDown(self):
+    def teardown(self):
         self.Position = Position(self.driver)
         self.driver.quit()
 
-    @parameterized.expand([('新增职务','职务名称','创建时间','修改时间','操作')])
+    data = [('新增职务','职务名称','创建时间','修改时间','操作')]
+    @pytest.mark.parametrize('new_additional,position,create_time,modification_time,operation',data)
     def test_01_positio_page(self,new_additional,position,create_time,modification_time,operation):
         '''
         验证职务页格式正确
         '''
         self.posion = Position(self.driver)
         page_list = self.posion.check_position_page()
-        self.assertEqual(new_additional,page_list[0])
-        self.assertEqual(position,page_list[1])
-        self.assertEqual(create_time,page_list[2])
-        self.assertEqual(modification_time,page_list[3])
-        self.assertEqual(operation,page_list[4])
+        assert new_additional==page_list[0] and position==page_list[1] and create_time==page_list[2] and modification_time==page_list[3] and operation==page_list[4]
         log.info("TestCase:验证职务页格式正确<br/>")
 
-    @parameterized.expand([("测试新增职务")])
+    data = [("测试新增职务")]
+    @pytest.mark.parametrize('position',data)
     def test_02_add_position(self,position):
         '''
         测试新增职务
@@ -47,12 +46,13 @@ class TestPosition(unittest.TestCase):
         self.position.add_new_position(position)
         log.info("新增职务成功")
         time.sleep(1)
-        self.assertTrue(self.position.find_position_name(position))
+        assert self.position.find_position_name(position) is True
         time.sleep(1)
         self.position.delete_position(position)
         time.sleep(1)
 
-    @parameterized.expand([("测试修改新增职务","测试修改职务")])
+    data = [("测试修改新增职务","测试修改职务")]
+    @pytest.mark.parametrize('position,modify_position',data)
     def test_03_modify_position(self,position,modify_position):
         '''
         测试修改职务
@@ -67,12 +67,13 @@ class TestPosition(unittest.TestCase):
         log.info("新增职务成功")
         self.driver.implicitly_wait(10)
         self.position.modify_position(position,modify_position)
-        self.assertTrue(self.position.find_position_name(modify_position))
+        assert self.position.find_position_name(modify_position) is True
         time.sleep(1)
         self.position.delete_position(modify_position)
         time.sleep(1)
 
-    @parameterized.expand([("测试删除新增职务")])
+    data = [("测试删除新增职务")]
+    @pytest.mark.parametrize('delete_position',data)
     def test_04_delete_position(self,delete_position):
         '''
         测试删除职务
@@ -86,4 +87,4 @@ class TestPosition(unittest.TestCase):
         time.sleep(1)
         self.position.delete_position(delete_position)
         time.sleep(1)
-        self.assertFalse(self.position.find_position_name(delete_position))
+        assert self.position.find_position_name(delete_position) is False

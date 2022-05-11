@@ -1,11 +1,15 @@
 import os
 import time
 import unittest
+<<<<<<< HEAD
 from random import random
 
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+=======
+import pytest
+>>>>>>> ca9524a... pytest
 from page_objects.login.login_page import LoginPage
 from utils.browser_tool import Browser
 from common.logger import MyLogging
@@ -29,7 +33,11 @@ class TestDepartment():
         self.driver.quit()
 
     data = [("新增部门", "部门名称","操作")]
+<<<<<<< HEAD
     @pytest.mark.parametrize("new_additional, check_department_name,check_operation_name",data)
+=======
+    @pytest.mark.parametrize('new_additional, check_department_name,check_operation_name',data)
+>>>>>>> ca9524a... pytest
     def test_01_department_type_page(self,new_additional, check_department_name,check_operation_name):
         '''
         Author：LX
@@ -38,6 +46,7 @@ class TestDepartment():
         print("TestCase:验证部门页格式正确<br/>")
         self.type = Department_Type(self.driver)
         additional, department_name,operation_name = self.type.check_department_page()
+<<<<<<< HEAD
         assert additional == new_additional and department_name == check_department_name and operation_name == check_operation_name
         log.info("TestCase:验证部门页格式正确<br/>")
 
@@ -50,6 +59,13 @@ class TestDepartment():
         # print("TestCase:" + test_case)
 =======
     @parameterized.expand([("测试新增部门")])
+=======
+        assert additional==new_additional and department_name==check_department_name and operation_name==check_operation_name
+        log.info("TestCase:验证部门页格式正确<br/>")
+
+    data = [("测试新增部门")]
+    @pytest.mark.parametrize('department',data)
+>>>>>>> ca9524a... pytest
     def test_02_add_department(self,department):
         '''
         Author：LX
@@ -63,6 +79,7 @@ class TestDepartment():
         self.type.add_new_department(department)
         log.info("新增部门成功")
         time.sleep(1)
+<<<<<<< HEAD
 <<<<<<< HEAD
         new_department = self.type.find_department_name(department)
         print(new_department)
@@ -79,12 +96,20 @@ class TestDepartment():
     @pytest.mark.parametrize("department,change_depar",data)
 =======
         self.assertTrue(self.type.find_department_name(department))
+=======
+        assert self.type.find_department_name(department) is True
+>>>>>>> ca9524a... pytest
         time.sleep(1)
         self.type.delete_department(department)
         time.sleep(1)
 
+<<<<<<< HEAD
     @parameterized.expand([("测试修改新增部门","测试修改部门")])
 >>>>>>> c7f9b90... 注释
+=======
+    data = [("测试修改新增部门","测试修改部门")]
+    @pytest.mark.parametrize('department,change_depar',data)
+>>>>>>> ca9524a... pytest
     def test_03_change_department(self,department,change_depar):
         '''
         Author：LX
@@ -98,6 +123,7 @@ class TestDepartment():
         log.info("新增部门成功")
         self.driver.implicitly_wait(10)
         self.type.change_department(department,change_depar)
+<<<<<<< HEAD
 <<<<<<< HEAD
         change_department = self.type.find_department_name(change_depar)
         print(change_department)
@@ -113,12 +139,19 @@ class TestDepartment():
     @pytest.mark.parametrize("delete_depar",data)
 =======
         self.assertTrue(self.type.find_department_name(change_depar))
+=======
+        assert self.type.find_department_name(change_depar)  is True
+>>>>>>> ca9524a... pytest
         time.sleep(1)
         self.type.delete_department(change_depar)
-        time.sleep(1)
 
+<<<<<<< HEAD
     @parameterized.expand([("测试删除新增部门")])
 >>>>>>> c7f9b90... 注释
+=======
+    data = [("测试删除新增部门")]
+    @pytest.mark.parametrize('delete_depar',data)
+>>>>>>> ca9524a... pytest
     def test_04_delete_department(self,delete_depar):
         '''
         Author：LX
@@ -155,5 +188,9 @@ if __name__ == '__main__':
         time.sleep(1)
         self.type.delete_department(delete_depar)
         time.sleep(1)
+<<<<<<< HEAD
         self.assertFalse(self.type.find_department_name(delete_depar))
 >>>>>>> c7f9b90... 注释
+=======
+        assert self.type.find_department_name(delete_depar) is False
+>>>>>>> ca9524a... pytest
