@@ -28,8 +28,10 @@ class TestDepartment():
     @pytest.mark.parametrize('new_additional, check_department_name,check_operation_name',data)
     def test_01_department_type_page(self,new_additional, check_department_name,check_operation_name):
         '''
-        Author：LX
-        Logic：验证部门页格式正确
+        验证部门页格式正确
+        :param new_additional: 新增部门按钮
+        :param check_department_name: 部门名称
+        :param check_operation_name: 操作
         '''
         print("TestCase:验证部门页格式正确<br/>")
         self.type = Department_Type(self.driver)
@@ -41,8 +43,8 @@ class TestDepartment():
     @pytest.mark.parametrize('department',data)
     def test_02_add_department(self,department):
         '''
-        Author：LX
-        Logic：测试新增部门
+        测试新增部门
+        :param department: 需要传入新增部门名称
         '''
         print("TestCase:入参传入department，查看新增部门是否成功" )
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
@@ -60,8 +62,9 @@ class TestDepartment():
     @pytest.mark.parametrize('department,change_depar',data)
     def test_03_change_department(self,department,change_depar):
         '''
-        Author：LX
-        Logic：测试修改部门名称
+        测试修改部门名称
+        :param department: 传入新增部门名称
+        :param change_depar: 传入修改部门名称
         '''
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
         department = department + now_time
@@ -79,8 +82,8 @@ class TestDepartment():
     @pytest.mark.parametrize('delete_depar',data)
     def test_04_delete_department(self,delete_depar):
         '''
-        Author：LX
-        Logic：测试删除部门
+        测试删除部门
+        :param delete_depar: 传入删除的部门名称
         '''
         print("TestCase:入参传入delete_depar，查看删除部门是否成功")
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
