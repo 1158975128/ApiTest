@@ -1,0 +1,42 @@
+<elements>
+    <element>
+        <name>LoginTitle</name>
+        <type>xpath</type>
+        <value>//*[@id="content-panel"]/p</value>
+    </element>
+    <element>
+        <name>PhoneOrEmail</name>
+        <type>classname</type>
+        <value>el-input__inner</value>
+    </element>
+    <element>
+        <name>Pwd</name>
+        <type>xpath</type>
+        <value>//*[@id="content-panel"]/form/div[2]/div/div/input</value>
+    </element>
+    <element>
+        <name>ForgetPwd</name>
+        <type>xpath</type>
+        <value>//*[@id="content-panel"]/form/div[3]/div/p</value>
+    </element>
+    <element>
+        <name>LoginButton</name>
+        <type>xpath</type>
+        <value>//*[@id="content-panel"]/form/div[4]/button</value>
+    </element>
+    <element>
+        <name>LoginPrimary</name>
+        <type>css</type>
+        <value>.dialog-footer .el-button.el-button--primary</value>
+    </element>
+    <element>
+        <name>Cancel</name>
+        <type>css</type>
+        <value>.dialog-footer .el-button--default</value>
+    </element>
+    <element>
+        <name>Organization</name>
+        <type>css</type>
+        <value>.content ul>li:nth-child(10)</value>
+    </element>
+</elements>

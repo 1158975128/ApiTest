@@ -1,0 +1,63 @@
+<elements>
+    <element>
+        <name>Origin_select</name>
+        <type>css</type>
+        <value>.head>.params-filter-multiple</value>
+    </element>
+    <element>
+        <name>Hospital_select</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] ul li:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Name_input</name>
+        <type>css</type>
+        <value>.head .patient-name-input .el-input__inner</value>
+    </element>
+    <element>
+        <name>Check_name</name>
+        <type>css</type>
+        <value>.el-row>div .card-head .title</value>
+    </element>
+    <element>
+        <name>Add_Treatment</name>
+        <type>css</type>
+        <value>.small span</value>
+    </element>
+    <element>
+        <name>Item_name</name>
+        <type>css</type>
+        <value>.el-row .el-autocomplete .el-input__inner</value>
+    </element>
+    <element>
+        <name>Item_name_select</name>
+        <type>css</type>
+        <value>.el-autocomplete-suggestion__wrap.el-scrollbar__wrap li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Region_name</name>
+        <type>css</type>
+        <value>.el-row [placeholder="请选择部位"]</value>
+    </element>
+    <element>
+        <name>Region_name_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>[aria-hidden="false"] ul>li:nth-child(1)</value>
+    </element>
+
+    <element>
+        <name>Department_name</name>
+        <type>css</type>
+        <value>.el-row [placeholder="请选择治疗科室"]</value>
+    </element>
+    <element>
+        <name>Department_name_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>[aria-hidden="false"] li:nth-child(3)</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.colorful:nth-child(2)</value>
+    </element>
+</elements>
