@@ -6,8 +6,7 @@ from page_objects.login.login_page import LoginPage
 from utils.browser_tool import Browser
 from common.logger import MyLogging
 from parameterized import parameterized
-from page_objects.patient.add_patient import Patient_Type
-from page_objects.patient.find_patiend import Find_patient
+from page_objects.patient.patient_manage import Patient_Manage
 from datetime import datetime
 
 
@@ -22,50 +21,63 @@ class Test_Patient():
         self.mylogin.login_fris('admin')
 
     def teardown(self):
-        self.Patient = Patient_Type(self.driver)
+        self.Patient = Patient_Manage(self.driver)
         self.driver.quit()
 
+    data = [("新增患者", "门诊", "全部患者")]
+    @pytest.mark.parametrize('new_patient,origin_droplist,patient_droplist', data)
+    def test_01_department_type_page(self,new_patient,origin_droplist,patient_droplist):
+        '''
+        检查患者管理页面是否正确
+        :param new_patient: 新增患者按钮
+        :param origin_droplist: 默认患者来源为门诊
+        :param patient_droplist:默认为全部患者
+        :return:
+        '''
+        self.patient = Patient_Manage(self.driver)
+        page_list = self.patient.check_patient_page()
+        print(page_list)
+        assert new_patient == page_list[0] and origin_droplist == page_list[1] and patient_droplist == page_list[2]
+        log.info("TestCase:验证检查患者管理页面<br/>")
+
+    data = [("测试患者","关节炎","关")]
+    @pytest.mark.parametrize('patient,disease,diagnosis',data)
+    def test_02_add_department(self,patient,disease,diagnosis):
+        '''
+        测试新增住院患者
+        :param patient: 患者姓名
+        :param disease: 疾病类型
+        :param diagnosis: 功能诊断
+        '''
+        now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
+        patient = patient + now_time
+        self.patient = Patient_Manage(self.driver)
+        self.patient.add_new_patient(patient,disease,diagnosis)
+        self.patient.find_patient(patient)
+        check_name = self.patient.patient_name(patient)
+        log.info("新增患者成功")
+        time.sleep(1)
+        assert check_name is True
+
+    data = [("测试患者","关节炎","关","ui_test")]
+    @pytest.mark.parametrize('patient,disease,diagnosis,item_name',data)
+    def test_02_add_department(self,patient,disease,diagnosis,item_name):
+        '''
+        测试新增住院患者
+        :param patient: 患者姓名
+        :param disease: 疾病类型
+        :param diagnosis: 功能诊断
+        '''
+        now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
+        patient = patient + now_time
+        self.patient = Patient_Manage(self.driver)
+        self.patient.add_new_patient(patient,disease,diagnosis)
+        self.patient.find_patient(patient)
+        self.patient.add_treatment_item(patient,item_name)
+        print(patient)
 
 
-    # data = [("dep_name")]
-    # @pytest.mark.parametrize('patient_name',data)
-    # def test_01_department_type_page(self,patient_name):
-    #     self.find_patient = Find_patient(self.driver)
-    #     self.find_patient.find_patient(patient_name)
-    #     self.find_patient.add_treatment_item()
-    #     time.sleep(3)
 
-
-    # data = [("dep_name")]
-    # @pytest.mark.parametrize('patient_name',data)
-    def test_01_department_type_page(self):
-        self.patient = Patient_Type(self.driver)
-        self.patient.check_patient_page()
-    #     self.patient.find_patient(patient_name)
-        # self.patient.add_new_patient()
-        # additional, department_name,operation_name = self.type.check_department_page()
-        # assert additional==new_additional and department_name==check_department_name and operation_name==check_operation_name
-        # log.info("TestCase:验证部门页格式正确<br/>")
-
-    # data = [("测试新增部门")]
-    # @pytest.mark.parametrize('department',data)
-    # def test_02_add_department(self,department):
-    #     '''
-    #     测试新增部门
-    #     :param department: 需要传入新增部门名称
-    #     '''
-    #     print("TestCase:入参传入department，查看新增部门是否成功" )
-    #     now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
-    #     department = department + now_time
-    #     self.type = Department_Type(self.driver)
-    #     self.type.add_new_department(department)
-    #     log.info("新增部门成功")
-    #     time.sleep(1)
-    #     assert self.type.find_department_name(department) is True
-    #     time.sleep(1)
-    #     self.type.delete_department(department)
-    #     time.sleep(1)
-    #
     # data = [("测试修改新增部门","测试修改部门")]
     # @pytest.mark.parametrize('department,change_depar',data)
     # def test_03_change_department(self,department,change_depar):
