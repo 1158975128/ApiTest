@@ -1,81 +1,52 @@
 <elements>
-<!--  新增患者  -->
     <element>
-        <name>New_patient</name>
+        <name>Table</name>
         <type>css</type>
-        <value>.el-button > span:nth-child(2)</value>
+        <value>[class="el-table__body-wrapper is-scrolling-none"] tbody</value>
     </element>
     <element>
-        <name>Origin_droplist</name>
+        <name>Treatment_Scheduling</name>
         <type>css</type>
-        <value>[placeholder="来源"]</value>
+        <value>.el-button--primary:nth-child(1) > span</value>
     </element>
     <element>
-        <name>Patient_droplist</name>
+        <name>Treatment_Time</name>
         <type>css</type>
-        <value>[placeholder="请选择"]</value>
+        <value>.fr-radio span:nth-child(12)</value>
     </element>
     <element>
-        <name>Patient_name</name>
+        <name>Treatment_Equipment</name>
         <type>css</type>
-        <value>.el-autocomplete .el-input__inner</value>
+        <value>[placeholder="请选择治疗设备"]</value>
     </element>
     <element>
-        <name>Sex_man</name>
+        <name>Choose_Treatment</name>
         <type>css</type>
-        <value>.add-patient form:nth-child(1) span:nth-child(1)</value>
+        <value>[aria-hidden="false"] [class="el-scrollbar__view el-select-dropdown__list"]>li:nth-child(1)</value>
     </element>
     <element>
-        <name>Disease_type_select</name>
+        <name>Save</name>
         <type>css</type>
-        <value>.el-popup-parent--hidden>div:nth-child(8) li:nth-child(1)</value>
+        <value>.colorful>span</value>
     </element>
     <element>
-        <name>Disease_type</name>
+        <name>Start_Work</name>
         <type>css</type>
-        <value>.el-col:nth-child(3) .el-select__input</value>
+        <value>.el-button--info > span</value>
     </element>
     <element>
-        <name>Function_diagnosis</name>
+        <name>Confirm</name>
         <type>css</type>
-        <value>.el-col:nth-child(4) .el-select__input</value>
+        <value>.el-button--default:nth-child(2) > span</value>
     </element>
     <element>
-        <name>Function_diagnosis_select</name>
+        <name>Start_Work_Tips</name>
         <type>css</type>
-        <value>.el-popup-parent--hidden [aria-hidden="false"] li:nth-child(1)</value>
-    </element>
-    <element>
-        <name>Origin</name>
-        <type>css</type>
-        <value>.add-patient form:nth-child(3) span:nth-child(1)</value>
-    </element>
-    <element>
-        <name>Doctor</name>
-        <type>css</type>
-        <value>.add-patient form:nth-child(2)>div>div:nth-child(5) .el-input__inner</value>
-    </element>
-    <element>
-        <name>Doctor_select</name>
-        <type>css</type>
-        <value>.el-popup-parent--hidden>div:nth-child(10)  .el-select-dropdown__list>li:nth-child(1) span</value>
+        <value>.el-message__content</value>
     </element>
 
-    <element>
-        <name>Department</name>
-        <type>css</type>
-        <value>.add-patient form:nth-child(2)>div>div:nth-child(6) .el-input__inner</value>
-    </element>
-    <element>
-        <name>Department_select</name>
-        <type>css</type>
-        <value>.el-popup-parent--hidden>div:nth-child(11)  .el-select-dropdown__list>li:nth-child(3) span</value>
-    </element>
-    <element>
-        <name>Ensure</name>
-        <type>css</type>
-        <value>.colorful span</value>
-    </element>
+
+
 <!--  查找患者  -->
     <element>
         <name>Origin_select</name>

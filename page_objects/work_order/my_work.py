@@ -11,28 +11,66 @@ from page_objects.navigate_bar_all.navigate_version import VersionExpanded
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-patient_map = map_path + "/patient/patient_manage.xml"
+my_work_map = map_path + "/work_order/my_work.xml"
 
 delay_time = DelayTime.short_time.value
 
+j = 0
 
-class Patient_Manage():
+class My_Work():
     def __init__(self, driver):
         self.driver = driver
-        self.version = ObjectMap(patient_map)
-        self.patient = NavigateBar(self.driver)
+        self.version = ObjectMap(my_work_map)
+        self.my_work = NavigateBar(self.driver)
 
-    def check_patient_page(self):
+    def check_my_work_page(self):
         '''
         检查页面元素是否正确
         :return: new_patient,origin_droplist,patient_droplist
         '''
-        self.patient.go_to_patient()
-        time.sleep(1)
-        new_patient = self.version.getLocator(self.driver, "New_patient").text
-        origin_droplist = self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value')
-        patient_droplist = self.version.getLocator(self.driver, "Patient_droplist").get_attribute('value')
-        return new_patient,origin_droplist,patient_droplist
+        self.my_work.go_to_work_order()
+        time.sleep(3)
+        # new_patient = self.version.getLocator(self.driver, "New_patient").text
+        # origin_droplist = self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value')
+        # patient_droplist = self.version.getLocator(self.driver, "Patient_droplist").get_attribute('value')
+        # return new_patient,origin_droplist,patient_droplist
+
+    def start_work(self):
+        self.my_work.go_to_work_order()
+        time.sleep(5)
+        # 测试患者2022_05_21_19_13_16
+        table = self.version.getLocator(self.driver, 'Table')
+        table_trs = table.find_elements(By.TAG_NAME, value='tr')
+        for i in range(len(table_trs)):
+            table_tr_tds = table_trs[i].find_elements(By.TAG_NAME, value='td')
+            for table_tr_td_name in table_tr_tds:
+                print(table_tr_td_name.get_attribute('textContent'))
+                if table_tr_td_name.get_attribute('textContent').strip() == '住院李四':
+                    table_tr_td_name.click()
+                    time.sleep(1)
+                    treatment_scheduling = self.version.getLocator(self.driver, "Treatment_Scheduling")
+                    treatment_scheduling.click()
+                    time.sleep(3)
+                    treatment_time = self.version.getLocator(self.driver, "Treatment_Time")
+                    treatment_time.click()
+                    treatment_equipment = self.version.getLocator(self.driver, "Treatment_Equipment")
+                    treatment_equipment.click()
+                    choose_treatment = self.version.getLocator(self.driver, "Choose_Treatment")
+                    choose_treatment.click()
+                    save = self.version.getLocator(self.driver, "Save")
+                    save.click()
+                    time.sleep(3)
+                    start_work = self.version.getLocator(self.driver, "Start_Work")
+                    start_work.click()
+                    confirm = self.version.getLocator(self.driver, "Confirm")
+                    confirm.click()
+                    time.sleep(1)
+                    start_work_tips = self.version.getLocator(self.driver, "Start_Work_Tips").text
+                    print(start_work_tips)
+                    # 防止删除成功后少行超出范围
+                    break
+            log.info("删除成功")
+
 
     def add_new_patient(self,patient,disease,diagnosis):
         '''
@@ -212,12 +250,3 @@ class Patient_Manage():
             again_ensure.click()
             time.sleep(1)
 
-    def check_treatment_stoped(self):
-        '''
-        确认患者疗程已停止
-        :return: True
-        '''
-        check_treatment = self.version.getLocator(self.driver, "Treatment_Stoped")
-        if check_treatment.text.strip() == '疗程已停止':
-            time.sleep(1)
-        return True

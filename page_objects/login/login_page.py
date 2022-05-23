@@ -6,6 +6,9 @@ from common.logger import MyLogging
 from config.public_data.delay_time import *
 from page_objects.navigate_bar import NavigateBar
 from config import defaultInfo_config
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -77,26 +80,42 @@ class LoginPage(object):
         self.login = ObjectMap(login_map)
 
     def login_fris(self,login_role):
-        # log.info("login_page - login method")
-        email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
-        email_area.send_keys(getUser(login_role))
-        time.sleep(delay_time)
-        # log.info("after email!")
-        pwd_area = self.login.getLocator(self.driver, 'Pwd')
-        # pwd_area.send_keys("123456abc")
-        pwd_area.send_keys(getPwd(login_role))
-        # pwd_area.send_keys(defaultInfo_config.pwd)
-        time.sleep(delay_time)
-        login_button = self.login.getLocator(self.driver, 'LoginButton')
-        login_button.click()
-        time.sleep(delay_time)
-        primary = self.login.getLocator(self.driver, 'LoginPrimary')
-        primary.click()
-        organization = self.login.getLocator(self.driver, 'Organization')
-        organization.click()
-        time.sleep(delay_time)
-        log.info("登录成功")
-        self.driver.implicitly_wait(10)
+        if login_role == 'admin':
+            email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
+            email_area.send_keys(getUser(login_role))
+            time.sleep(delay_time)
+            pwd_area = self.login.getLocator(self.driver, 'Pwd')
+            pwd_area.send_keys(getPwd(login_role))
+            time.sleep(delay_time)
+            log.info("enable")
+            login_button = self.login.getLocator(self.driver, 'LoginButton')
+            login_button.click()
+            time.sleep(delay_time)
+            log.info("dis_enable")
+            primary = self.login.getLocator(self.driver, 'LoginPrimary')
+            primary.click()
+            organization = self.login.getLocator(self.driver, 'Organization')
+            organization.click()
+            time.sleep(delay_time)
+            log.info("登录成功")
+            self.driver.implicitly_wait(10)
+
+        else:
+            email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
+            email_area.send_keys(getUser(login_role))
+            time.sleep(delay_time)
+            pwd_area = self.login.getLocator(self.driver, 'Pwd')
+            pwd_area.send_keys(getPwd(login_role))
+            time.sleep(delay_time)
+            login_button = self.login.getLocator(self.driver, 'LoginButton')
+            login_button.click()
+            time.sleep(delay_time)
+            print("------enabled-------")
+            primary = self.login.getLocator(self.driver, 'LoginPrimary')
+            primary.click()
+            time.sleep(delay_time)
+            log.info("登录成功")
+            self.driver.implicitly_wait(10)
 
     def cancel(self):
         email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')

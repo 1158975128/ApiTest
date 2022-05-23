@@ -29,6 +29,19 @@ class NavigateBar(object):
         registration = self.navigate.getLocator(self.driver, 'Registration')
         registration.click()
 
+    def go_to_work_order(self):
+        work_order = self.navigate.getLocator(self.driver, 'Work_order')
+        # 获取class的值，判断下拉框状态
+        work_order_class = work_order.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            my_work = self.navigate.getLocator(self.driver, 'My_Work')
+            my_work.click()
+        else:
+            work_order.click()
+            my_work = self.navigate.getLocator(self.driver, 'My_Work')
+            my_work.click()
+
+
     def go_to_Position(self):
         position_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
         # 获取class的值，判断下拉框状态

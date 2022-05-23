@@ -6,23 +6,28 @@
     </element>
     <element>
         <name>PhoneOrEmail</name>
-        <type>classname</type>
-        <value>el-input__inner</value>
+        <type>css</type>
+        <value>input[placeholder="手机号/邮箱号"]</value>
     </element>
     <element>
         <name>Pwd</name>
-        <type>xpath</type>
-        <value>//*[@id="content-panel"]/form/div[2]/div/div/input</value>
+        <type>css</type>
+        <value>input[placeholder="密码"]</value>
     </element>
     <element>
         <name>ForgetPwd</name>
-        <type>xpath</type>
-        <value>//*[@id="content-panel"]/form/div[3]/div/p</value>
+        <type>css</type>
+        <value>.ms-forget</value>
     </element>
     <element>
         <name>LoginButton</name>
-        <type>xpath</type>
-        <value>//*[@id="content-panel"]/form/div[4]/button</value>
+        <type>css</type>
+        <value>.colorful</value>
+    </element>
+    <element>
+        <name>Login_Tips</name>
+        <type>css</type>
+        <value>div.el-dialog__body > span[data-v-44acd490]</value>
     </element>
     <element>
         <name>LoginPrimary</name>

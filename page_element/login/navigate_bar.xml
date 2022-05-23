@@ -60,19 +60,19 @@
         <value>.icon-icon_jiuzhenxiangqing</value>
     </element>
     <element>
-        <name>GongDanGuanLi</name>
+        <name>Work_order</name>
         <type>css</type>
-        <value>.icon-icon_gongdanguanli</value>
+        <value>[name="工单管理"]</value>
     </element>
     <element>
-        <name>MyWork</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[1]/div/div[1]/ul/li[5]/ul/li[1]</value>
+        <name>My_Work</name>
+        <type>css</type>
+        <value>[name="我的工单"]</value>
     </element>
     <element>
-        <name>PatientWork</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[1]/div/div[1]/ul/li[5]/ul/li[2]</value>
+        <name>Patient_Work</name>
+        <type>css</type>
+        <value>[name="患者工单查询"]</value>
     </element>
     <element>
         <name>AllWork</name>

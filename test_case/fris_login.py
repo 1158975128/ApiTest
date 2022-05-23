@@ -11,15 +11,18 @@ from page_objects.navigate_bar import NavigateBar
 log = MyLogging(__name__).logger
 
 
-class TestLogin(unittest.TestCase):
-    def setUp(self) -> None:
+class TestLogin():
+    def setup(self) -> None:
         self.driver = Browser.open_browser()
+
+    def teardown(self) -> None:
+        self.driver.quit()
 
     def test_login(self):
         print("确认登录<br/>")
         self.mylogin = LoginPage(self.driver)
         log.info("before login")
-        self.mylogin.login_fris()
+        self.mylogin.login_fris('admin')
         log.info("after login")
         try:
             self.driver.find_element_by_class_name('iconfont.icon-icon_shouye')
@@ -34,5 +37,3 @@ class TestLogin(unittest.TestCase):
         self.cancel_login.cancel()
         log.info("已取消登录，成功")
         
-    def tearDown(self) -> None:
-        self.driver.quit()
