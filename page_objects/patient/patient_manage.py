@@ -40,6 +40,7 @@ class Patient_Manage():
         :param patient: 传入患者姓名姓名
         :param disease: 传入疾病类型
         :param diagnosis: 传入功能诊断
+        :return: 成功返回True ，失败返回False
         '''
         self.patient.go_to_patient()
         self.driver.implicitly_wait(20)
@@ -81,6 +82,12 @@ class Patient_Manage():
         ensure = self.version.getLocator(self.driver, "Ensure")
         ensure.click()
         time.sleep(1)
+        tips = self.version.getLocator(self.driver, "Tips").text.strip()
+        if tips == '登记患者成功！':
+            print("新增患者成功：", tips)
+            return True
+        else:
+            return False
         log.info("新增成功")
 
     def find_patient(self,patient_name):
@@ -100,22 +107,13 @@ class Patient_Manage():
         name_input.send_keys(patient_name)
         time.sleep(1)
 
-    def patient_name(self,patient_name):
-        '''
-        检查传入的患者姓名与实际找到的患者姓名是否一致
-        :param patient_name: 传入查找的患者姓名
-        :return: True
-        '''
-        check_name = self.version.getLocator(self.driver, "Check_name")
-        if patient_name == check_name.text:
-            time.sleep(1)
-        return True
 
     def add_treatment_item(self,patient_name,item):
         '''
         新增一个治疗项目
         :param patient_name: 传入患者姓名
         :param item: 治疗项目名称
+        :return: 成功返回True ，失败返回False
         '''
         check_name = self.version.getLocator(self.driver, "Check_name")
         print(check_name.text,patient_name)
@@ -147,11 +145,20 @@ class Patient_Manage():
             item_ensure = self.version.getLocator(self.driver, "Item_Ensure")
             item_ensure.click()
             time.sleep(1)
+            tips = self.version.getLocator(self.driver, "Tips").text
+            if tips == "新增项目成功":
+                print("新增治疗项目成功：",tips)
+                return True
+            else:
+                return False
+
 
     def add_judge_item(self,patient_name,item):
         '''
         新增一个评定项目
         :param patient_name: 传入患者姓名
+        :param item: 传入评定项目
+        :return: 成功返回True ，失败返回False
         '''
         check_name = self.version.getLocator(self.driver, "Check_name")
         print(check_name.text,patient_name)
@@ -185,11 +192,18 @@ class Patient_Manage():
             item_ensure = self.version.getLocator(self.driver, "Item_Ensure")
             item_ensure.click()
             time.sleep(1)
+            tips = self.version.getLocator(self.driver, "Tips").text
+            if tips == "新增项目成功":
+                print("新增治疗项目成功：",tips)
+                return True
+            else:
+                return False
 
     def leave_hospital(self,patient_name):
         '''
         测试住院患者结束疗程出院
         :param patient_name: 出院患者的姓名
+        :return: 成功返回True ，失败返回False
         '''
         check_name = self.version.getLocator(self.driver, "Check_name")
         if patient_name == check_name.text:
@@ -211,13 +225,39 @@ class Patient_Manage():
             again_ensure = self.version.getLocator(self.driver, "Again_Ensure")
             again_ensure.click()
             time.sleep(1)
+            tips = self.version.getLocator(self.driver, "Tips").text
+            if tips == "结束疗程成功":
+                print("结束疗程成功：",tips)
+                return True
+            else:
+                return False
 
-    def check_treatment_stoped(self):
+
+
+    def click_patientInfo(self):
         '''
-        确认患者疗程已停止
-        :return: True
+        在患者管理详情页点击患者信息办理出院
+        :return: 成功返回True ，失败返回False
         '''
-        check_treatment = self.version.getLocator(self.driver, "Treatment_Stoped")
-        if check_treatment.text.strip() == '疗程已停止':
-            time.sleep(1)
-        return True
+        patientInfo = self.version.getLocator(self.driver, "PatientInfo")
+        patientInfo.click()
+        end_treatment = self.version.getLocator(self.driver, "End_Treatment")
+        end_treatment.click()
+        leave_time = self.version.getLocator(self.driver, "Time")
+        leave_time.click()
+        time.sleep(1)
+        choose_time = self.version.getLocator(self.driver, "Choose_Time")
+        choose_time.click()
+        time.sleep(1)
+        leave_ensure = self.version.getLocator(self.driver, "Leave_Ensure")
+        leave_ensure.click()
+        time.sleep(1)
+        again_ensure = self.version.getLocator(self.driver, "Again_Ensure")
+        again_ensure.click()
+        time.sleep(1)
+        tips = self.version.getLocator(self.driver, "Tips").text
+        if tips == "结束疗程成功":
+            print("结束疗程成功：", tips)
+            return True
+        else:
+            return False

@@ -1,4 +1,5 @@
 <elements>
+<!--  治疗排班  -->
     <element>
         <name>Table</name>
         <type>css</type>
@@ -29,6 +30,7 @@
         <type>css</type>
         <value>.colorful>span</value>
     </element>
+<!--  开始工单  -->
     <element>
         <name>Start_Work</name>
         <type>css</type>
@@ -44,117 +46,45 @@
         <type>css</type>
         <value>.el-message__content</value>
     </element>
+<!--  撤回  -->
+    <element>
+        <name>Reroll_Work</name>
+        <type>css</type>
+        <value>.el-button--primary:nth-child(1) > span</value>
+    </element>
+<!--  结束工单  -->
+    <element>
+        <name>End_Work</name>
+        <type>css</type>
+        <value>.el-button--danger</value>
+    </element>
+<!--  标题栏  -->
+    <element>
+        <name>Unfinish</name>
+        <type>css</type>
+        <value>[id="tab-unfinish"]</value>
+    </element>
+    <element>
+        <name>My_Order_Controller</name>
+        <type>css</type>
+        <value>[class="my-order-table-controller"]</value>
+    </element>
+    <element>
+        <name>Gutter</name>
+        <type>css</type>
+        <value>.has-gutter</value>
+    </element>
+    <element>
+        <name>Finished</name>
+        <type>css</type>
+        <value>[id="tab-finished"]</value>
+    </element>
+    <element>
+        <name>Overdue</name>
+        <type>css</type>
+        <value>[id="tab-overdue"]</value>
+    </element>
 
 
-
-<!--  查找患者  -->
-    <element>
-        <name>Origin_select</name>
-        <type>css</type>
-        <value>.head>.params-filter-multiple</value>
-    </element>
-    <element>
-        <name>Hospital_select</name>
-        <type>css</type>
-        <value>[aria-hidden="false"] ul li:nth-child(2)</value>
-    </element>
-    <element>
-        <name>Name_input</name>
-        <type>css</type>
-        <value>.head .patient-name-input .el-input__inner</value>
-    </element>
-    <element>
-        <name>Check_name</name>
-        <type>css</type>
-        <value>.el-row>div .card-head .title</value>
-    </element>
-<!--  新增治疗项目  -->
-    <element>
-        <name>Add_Treatment</name>
-        <type>css</type>
-        <value>.small span</value>
-    </element>
-    <element>
-        <name>Item_name</name>
-        <type>css</type>
-        <value>.el-row .el-autocomplete .el-input__inner</value>
-    </element>
-    <element>
-        <name>Item_name_select</name>
-        <type>css</type>
-        <value>.el-autocomplete-suggestion__wrap.el-scrollbar__wrap li:nth-child(1)</value>
-    </element>
-    <element>
-        <name>Region_name</name>
-        <type>css</type>
-        <value>.el-row [placeholder="请选择部位"]</value>
-    </element>
-    <element>
-        <name>Region_name_select</name>
-        <type>css</type>
-        <value>.el-popup-parent--hidden>[aria-hidden="false"] ul>li:nth-child(1)</value>
-    </element>
-    <element>
-        <name>Department_name</name>
-        <type>css</type>
-        <value>.el-row [placeholder="请选择治疗科室"]</value>
-    </element>
-    <element>
-        <name>Department_name_select</name>
-        <type>css</type>
-        <value>.el-popup-parent--hidden>[aria-hidden="false"] li:nth-child(3)</value>
-    </element>
-    <element>
-        <name>Item_Ensure</name>
-        <type>css</type>
-        <value>.colorful:nth-child(2)</value>
-    </element>
-    <!--  新增评定项目  -->
-    <element>
-        <name>Judge_Item</name>
-        <type>css</type>
-        <value>#tab-PatientProjectPd</value>
-    </element>
-    <element>
-        <name>Hospital_Department_name</name>
-        <type>css</type>
-        <value>.el-row [placeholder="请选择住院科室"]</value>
-    </element>
-    <!--  患者信息_结束疗程  -->
-    <element>
-        <name>PatientInfo</name>
-        <type>css</type>
-        <value>#tab-PatientInfo</value>
-    </element>
-    <element>
-        <name>End_Treatment</name>
-        <type>css</type>
-        <value>.el-button.el-button--danger.el-button--medium.colorful</value>
-    </element>
-    <element>
-        <name>Time</name>
-        <type>css</type>
-        <value>[placeholder="请选择出院时间"]</value>
-    </element>
-    <element>
-        <name>Choose_Time</name>
-        <type>css</type>
-        <value>[class="el-button el-button--text el-button--mini el-picker-panel__link-btn"]</value>
-    </element>
-    <element>
-        <name>Leave_Ensure</name>
-        <type>css</type>
-        <value>.confirm-btn</value>
-    </element>
-    <element>
-        <name>Again_Ensure</name>
-        <type>css</type>
-        <value>[class="el-button el-button--default el-button--small el-button--primary"]</value>
-    </element>
-    <element>
-        <name>Treatment_Stoped</name>
-        <type>css</type>
-        <value>.el-row>div .treatment-stoped</value>
-    </element>
 
 </elements>

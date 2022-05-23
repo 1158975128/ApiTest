@@ -76,6 +76,11 @@
         <type>css</type>
         <value>.colorful span</value>
     </element>
+    <element>
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
 <!--  查找患者  -->
     <element>
         <name>Origin_select</name>

@@ -7,7 +7,6 @@ from config.public_data.delay_time import *
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
-from page_objects.navigate_bar_all.navigate_version import VersionExpanded
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))

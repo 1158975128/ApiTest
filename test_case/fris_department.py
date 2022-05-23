@@ -7,8 +7,7 @@ from utils.browser_tool import Browser
 from common.logger import MyLogging
 from parameterized import parameterized
 from page_objects.department_preserve.department import Department_Type
-from datetime import datetime
-
+import pytest_check as check
 
 log = MyLogging(__name__).logger
 
@@ -36,7 +35,9 @@ class TestDepartment():
         print("TestCase:验证部门页格式正确<br/>")
         self.type = Department_Type(self.driver)
         additional, department_name,operation_name = self.type.check_department_page()
-        assert additional==new_additional and department_name==check_department_name and operation_name==check_operation_name
+        check.equal(additional,new_additional,"检查新增部门按钮")
+        check.equal(department_name,check_department_name,"检查部门名称")
+        check.equal(operation_name,check_operation_name,"检查操作")
         log.info("TestCase:验证部门页格式正确<br/>")
 
     data = [("测试新增部门")]
@@ -53,7 +54,7 @@ class TestDepartment():
         self.type.add_new_department(department)
         log.info("新增部门成功")
         time.sleep(1)
-        assert self.type.find_department_name(department) is True
+        check.is_true(self.type.find_department_name(department),"判断部门是否成功新增，返回true为成功")
         time.sleep(1)
         self.type.delete_department(department)
         time.sleep(1)
@@ -74,7 +75,7 @@ class TestDepartment():
         log.info("新增部门成功")
         self.driver.implicitly_wait(10)
         self.type.change_department(department,change_depar)
-        assert self.type.find_department_name(change_depar)  is True
+        check.is_true(self.type.find_department_name(change_depar),"判断部门是否成功修改，返回true为成功")
         time.sleep(1)
         self.type.delete_department(change_depar)
 
@@ -85,7 +86,6 @@ class TestDepartment():
         测试删除部门
         :param delete_depar: 传入删除的部门名称
         '''
-        print("TestCase:入参传入delete_depar，查看删除部门是否成功")
         now_time = time.strftime("%Y_%m_%d_%H_%M_%S")
         delete_depar = delete_depar + now_time
         self.type = Department_Type(self.driver)
@@ -94,4 +94,4 @@ class TestDepartment():
         time.sleep(1)
         self.type.delete_department(delete_depar)
         time.sleep(1)
-        assert self.type.find_department_name(delete_depar) is False
+        check.is_false(self.type.find_department_name(delete_depar),"判断部门是否成功删除，false为成功")
