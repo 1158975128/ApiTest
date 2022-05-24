@@ -6,8 +6,6 @@ from common.logger import MyLogging
 from config.public_data.delay_time import *
 from page_objects.navigate_bar import NavigateBar
 from config import defaultInfo_config
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
 
 
 log = MyLogging(__name__).logger
@@ -80,6 +78,10 @@ class LoginPage(object):
         self.login = ObjectMap(login_map)
 
     def login_fris(self,login_role):
+        '''
+        fris登录方法，根据传入的登录角色进行身份判断，然后执行对应身份的登录操作
+        :param login_role: 传入的登录角色
+        '''
         if login_role == 'admin':
             email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
             email_area.send_keys(getUser(login_role))
@@ -92,13 +94,21 @@ class LoginPage(object):
             login_button.click()
             time.sleep(delay_time)
             log.info("dis_enable")
-            primary = self.login.getLocator(self.driver, 'LoginPrimary')
-            primary.click()
-            organization = self.login.getLocator(self.driver, 'Organization')
-            organization.click()
-            time.sleep(delay_time)
-            log.info("登录成功")
-            self.driver.implicitly_wait(10)
+            login_tips  = self.login.getLocator(self.driver, 'LoginPrimary')
+            if login_tips.is_displayed():
+                primary = self.login.getLocator(self.driver, 'LoginPrimary')
+                primary.click()
+                organization = self.login.getLocator(self.driver, 'Organization')
+                organization.click()
+                time.sleep(delay_time)
+                log.info("登录成功")
+                self.driver.implicitly_wait(10)
+            else:
+                organization = self.login.getLocator(self.driver, 'Organization')
+                organization.click()
+                time.sleep(delay_time)
+                log.info("登录成功")
+                self.driver.implicitly_wait(10)
 
         else:
             email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
@@ -110,10 +120,11 @@ class LoginPage(object):
             login_button = self.login.getLocator(self.driver, 'LoginButton')
             login_button.click()
             time.sleep(delay_time)
-            print("------enabled-------")
-            primary = self.login.getLocator(self.driver, 'LoginPrimary')
-            primary.click()
-            time.sleep(delay_time)
+            login_tips  = self.login.getLocator(self.driver, 'LoginPrimary')
+            if login_tips.is_displayed():
+                primary = self.login.getLocator(self.driver, 'LoginPrimary')
+                primary.click()
+                time.sleep(delay_time)
             log.info("登录成功")
             self.driver.implicitly_wait(10)
 
