@@ -26,6 +26,11 @@
         <value>.add-patient form:nth-child(1) span:nth-child(1)</value>
     </element>
     <element>
+        <name>Sex_Woman</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(1) .fr-radio>span:nth-child(2)</value>
+    </element>
+    <element>
         <name>Disease_type_select</name>
         <type>css</type>
         <value>.el-popup-parent--hidden>div:nth-child(8) li:nth-child(1)</value>
@@ -46,9 +51,14 @@
         <value>.el-popup-parent--hidden [aria-hidden="false"] li:nth-child(1)</value>
     </element>
     <element>
-        <name>Origin</name>
+        <name>Origin_hospital</name>
         <type>css</type>
         <value>.add-patient form:nth-child(3) span:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Origin_Other</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(3) .fr-radio span:nth-child(2)</value>
     </element>
     <element>
         <name>Doctor</name>
@@ -83,14 +93,44 @@
     </element>
 <!--  查找患者  -->
     <element>
+        <name>Patient_All</name>
+        <type>css</type>
+        <value>.head>.patient-select</value>
+    </element>
+    <element>
+        <name>My_Patient</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Sel_All_Patient</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] .selected.hover</value>
+    </element>
+    <element>
         <name>Origin_select</name>
         <type>css</type>
-        <value>.head>.params-filter-multiple</value>
+        <value>.head>.params-filter-multiple .el-input__inner</value>
+    </element>
+    <element>
+        <name>Outpatient_select</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] ul li:nth-child(1)</value>
     </element>
     <element>
         <name>Hospital_select</name>
         <type>css</type>
         <value>[aria-hidden="false"] ul li:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Other_select</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] ul li:nth-child(3)>span</value>
+    </element>
+    <element>
+        <name>Select_All</name>
+        <type>css</type>
+        <value>.el-select:nth-child(2) .el-select__caret</value>
     </element>
     <element>
         <name>Name_input</name>
@@ -102,6 +142,122 @@
         <type>css</type>
         <value>.el-row>div .card-head .title</value>
     </element>
+<!--  检查患者卡片  -->
+    <element>
+        <name>Source</name>
+        <type>css</type>
+        <value>.el-row>div .card-source</value>
+    </element>
+    <element>
+        <name>Sex_logo</name>
+        <type>css</type>
+        <value>.el-row>div .icon</value>
+    </element>
+    <element>
+        <name>Patient_Department</name>
+        <type>css</type>
+        <value>.el-row>div [class="tag out"]</value>
+    </element>
+    <element>
+        <name>Sex_Value</name>
+        <type>css</type>
+        <value>.el-row>div [class="patient-info patient-base-info"]</value>
+    </element>
+    <element>
+        <name>Attending_Doctor</name>
+        <type>css</type>
+        <value>.el-row>div [class="patient-info patient-register"]>p:nth-child(1)>span</value>
+    </element>
+    <element>
+        <name>Cost</name>
+        <type>css</type>
+        <value>.el-row>div [class="patient-info patient-register"]>p:nth-child(2)>span</value>
+    </element>
+    <element>
+        <name>Registration_Time</name>
+        <type>css</type>
+        <value>.el-row>div [class="patient-info patient-register"]>p:nth-child(3)>span</value>
+    </element>
+    <element>
+        <name>Disease_Name</name>
+        <type>css</type>
+        <value>.el-row>div .disease-type>p:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Therapeutist</name>
+        <type>css</type>
+        <value>.el-row .card-bottom .card-bottom-doctors</value>
+    </element>
+    <element>
+        <name>Appoint_Therapeutist</name>
+        <type>css</type>
+        <value>.el-row .card-bottom .mr-12</value>
+    </element>
+    <element>
+        <name>See_Report</name>
+        <type>css</type>
+        <value>.el-row .card-bottom .look-report-btn</value>
+    </element>
+<!--  指定治疗师  -->
+    <element>
+        <name>Choose_Therapeutist</name>
+        <type>css</type>
+        <value>[class="el-form save dialog-form"] .el-input__inner</value>
+    </element>
+    <element>
+        <name>Select_Therapeutist</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] li:nth-child(1)</value>
+    </element>
+<!--  验证分页  -->
+    <element>
+        <name>Next_Page</name>
+        <type>css</type>
+        <value>.el-icon-arrow-right:nth-child(1)</value>
+    </element>
+<!--  验证日期筛选  -->
+    <element>
+        <name>Date</name>
+        <type>css</type>
+        <value>[placeholder="开始日期"]</value>
+    </element>
+    <element>
+        <name>Month</name>
+        <type>css</type>
+        <value>[class="el-picker-panel__content el-date-range-picker__content is-left"] [class="el-date-range-picker__header"]</value>
+    </element>
+    <element>
+        <name>Last_Month</name>
+        <type>css</type>
+        <value>[class="el-picker-panel__content el-date-range-picker__content is-left"] [class="el-picker-panel__icon-btn el-icon-arrow-left"]</value>
+    </element>
+    <element>
+        <name>Oneday</name>
+        <type>css</type>
+        <value>.is-left .el-date-table__row:nth-child(3) > .available:nth-child(1) span</value>
+    </element>
+    <element>
+        <name>Lastday</name>
+        <type>css</type>
+        <value>[class="available today"]</value>
+    </element>
+    <element>
+        <name>Lastmonth_day</name>
+        <type>css</type>
+        <value>.is-left .el-date-table__row:nth-child(6) > .available:nth-child(2) span</value>
+    </element>
+    <element>
+        <name>Check_End_Date</name>
+        <type>css</type>
+        <value>[placeholder="结束日期"]</value>
+    </element>
+    <element>
+        <name>Date_Frame</name>
+        <type>css</type>
+        <value>[class="el-date-editor el-range-editor el-input__inner el-date-editor--daterange el-range-editor--medium patient-time-pick"]</value>
+    </element>
+
+
 <!--  新增治疗项目  -->
     <element>
         <name>Add_Treatment</name>
