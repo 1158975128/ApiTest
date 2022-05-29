@@ -20,5 +20,5 @@ class Browser:
         driver = webdriver.Chrome(executable_path=driver_path)
         driver.implicitly_wait(30)
         driver.maximize_window()
-        driver.get('http://47.103.97.21:8088/fris2/#/login')
+        driver.get('https://qafris.fftai.com/fris2/#/login')
         return driver

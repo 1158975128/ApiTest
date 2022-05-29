@@ -1,0 +1,47 @@
+<elements>
+    <element>
+        <name>LoginTitle</name>
+        <type>xpath</type>
+        <value>//*[@id="content-panel"]/p</value>
+    </element>
+    <element>
+        <name>PhoneOrEmail</name>
+        <type>css</type>
+        <value>input[placeholder="手机号/邮箱号"]</value>
+    </element>
+    <element>
+        <name>Pwd</name>
+        <type>css</type>
+        <value>input[placeholder="密码"]</value>
+    </element>
+    <element>
+        <name>ForgetPwd</name>
+        <type>css</type>
+        <value>.ms-forget</value>
+    </element>
+    <element>
+        <name>LoginButton</name>
+        <type>css</type>
+        <value>.colorful</value>
+    </element>
+    <element>
+        <name>Login_Tips</name>
+        <type>css</type>
+        <value>div.el-dialog__body > span[data-v-44acd490]</value>
+    </element>
+    <element>
+        <name>LoginPrimary</name>
+        <type>css</type>
+        <value>.dialog-footer .el-button.el-button--primary</value>
+    </element>
+    <element>
+        <name>Cancel</name>
+        <type>css</type>
+        <value>.dialog-footer .el-button--default</value>
+    </element>
+    <element>
+        <name>Organization</name>
+        <type>css</type>
+        <value>.content ul>li:nth-child(10)</value>
+    </element>
+</elements>
