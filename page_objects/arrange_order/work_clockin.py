@@ -14,17 +14,17 @@ import pytest_check as check
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-my_work_map = map_path + "/work_order/my_work.xml"
+work_clock_in = map_path + "/arrange_order/work_clock in.xml"
 
 delay_time = DelayTime.short_time.value
 
-class My_Work():
+class Work_Clock_In():
     def __init__(self, driver):
         self.driver = driver
-        self.version = ObjectMap(my_work_map)
+        self.version = ObjectMap(work_clock_in)
         self.my_work = NavigateBar(self.driver)
 
-    def check_my_work_page(self):
+    def work_clock(self):
         check.equal(1,2,"判断是否相等")
         # self.my_work.go_to_work_order()
         # my_order_controller = self.version.getLocator(self.driver, "My_Order_Controller").get_attribute('textContent').strip()

@@ -18,8 +18,6 @@ my_work_map = map_path + "/work_order/my_work.xml"
 
 delay_time = DelayTime.short_time.value
 
-j = 0
-
 class My_Work():
     def __init__(self, driver):
         self.driver = driver
