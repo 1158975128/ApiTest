@@ -105,7 +105,7 @@
     <element>
         <name>Sel_All_Patient</name>
         <type>css</type>
-        <value>[aria-hidden="false"] .selected.hover</value>
+        <value>[aria-hidden="false"] ul>li:nth-child(2)</value>
     </element>
     <element>
         <name>Origin_select</name>
@@ -208,6 +208,11 @@
         <name>Select_Therapeutist</name>
         <type>css</type>
         <value>[aria-hidden="false"] li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Check_appoint_result</name>
+        <type>css</type>
+        <value>[class="el-table__body"] tr:nth-child(1) td:nth-child(6) p</value>
     </element>
 <!--  验证分页  -->
     <element>
