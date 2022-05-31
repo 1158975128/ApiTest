@@ -8,6 +8,9 @@ from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
 import pytest_check as check
+from selenium.webdriver.remote.errorhandler import ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException
+
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -24,7 +27,7 @@ class Patient_List():
 
     def check_doctor_patient_page(self,data):
         '''
-        检查页面元素是否正确
+        检查页面固定元素是否正确
         '''
         self.patient.go_to_patient()
         time.sleep(1)
@@ -40,37 +43,70 @@ class Patient_List():
             check.equal(page_list[i],data[i],"检查页面按钮名称和默认设置是否正确")
         log.info("页面按钮名称和默认设置正确")
 
-    def check_patient_card(self):
+    def check_therapist_patient_page(self,data):
+        '''
+        检查页面固定元素是否正确
+        '''
+        self.patient.go_to_patient()
+        time.sleep(1)
+        page_list = []
+        page_list.append(self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value'))
+        page_list.append(self.version.getLocator(self.driver, "Patient_droplist").get_attribute('value'))
+        page_list.append(self.version.getLocator(self.driver, "Name_input").get_attribute('placeholder'))
+        page_list.append(self.version.getLocator(self.driver, "Date").get_attribute('placeholder'))
+        page_list.append(self.version.getLocator(self.driver, "Date_Frame").text)
+        page_list.append(self.version.getLocator(self.driver, "Check_End_Date").get_attribute('placeholder'))
+        print(page_list)
+        for i in range(len(page_list)):
+            check.equal(page_list[i],data[i],"检查页面按钮名称和默认设置是否正确")
+        log.info("页面按钮名称和默认设置正确")
+
+    def check_patient_card(self,data):
         '''
         检查患者卡片页面元素是否正确
         :return: new_patient,origin_droplist,patient_droplist
         '''
         self.patient.go_to_patient()
         time.sleep(1)
-        source = self.version.getLocator(self.driver, "Source").get_attribute('textContent').strip()
-        sex_logo = self.version.getLocator(self.driver, "Sex_logo").get_attribute('class').strip()
-        check_name = self.version.getLocator(self.driver, "Check_name").get_attribute('textContent').strip()
-        patient_department = self.version.getLocator(self.driver, "Patient_Department").get_attribute('textContent').strip()
-        sex_value = self.version.getLocator(self.driver, "Sex_Value").get_attribute('textContent').strip()
-        attending_doctor = self.version.getLocator(self.driver, "Attending_Doctor").get_attribute('textContent').strip()
-        cost = self.version.getLocator(self.driver, "Cost").get_attribute('textContent').strip()
-        registration_time = self.version.getLocator(self.driver, "Registration_Time").get_attribute('textContent').strip()
-        disease_name = self.version.getLocator(self.driver, "Disease_Name").get_attribute('textContent').strip()
-        therapeutist = self.version.getLocator(self.driver, "Therapeutist").get_attribute('textContent').strip()
-        appoint_therapeutist = self.version.getLocator(self.driver, "Appoint_Therapeutist").get_attribute('textContent').strip()
-        see_report = self.version.getLocator(self.driver, "See_Report").get_attribute('textContent').strip()
+        card_list = []
+        card_list.append(self.version.getLocator(self.driver, "Check_name").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Disease_Name").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Sex_Value").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Source").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Sex_logo").get_attribute('class').strip())
+        card_list.append(self.version.getLocator(self.driver, "Attending_Doctor").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Patient_Department").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Cost").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Registration_Time").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Therapeutist").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "Appoint_Therapeutist").get_attribute('textContent').strip())
+        card_list.append(self.version.getLocator(self.driver, "See_Report").get_attribute('textContent').strip())
+        for i in range(len(data)-2):
+            check.equal(card_list[i],data[i],"检查姓名、疾病、性别、来源")
+        if data[2] == "女":
+            check.equal(card_list[4],'icon woman',"检查性别图标是否正确")
+        elif data[2] == "男":
+            check.equal(card_list[4],'icon man',"检查性别图标是否正确")
 
+        check.equal(card_list[5], 'aaa赵医生', "检查医生")
+        check.equal(card_list[6], '康复科', "检查科室")
+        check.equal(card_list[7], '0.00元', "检查费用")
+        check.equal(card_list[8], data[5], "检查登记时间")
+        check.equal(card_list[9], '治疗师：-', "检查治疗师")
+        check.equal(card_list[10], '指定治疗师', "检查指定治疗师按钮")
+        check.equal(card_list[11], '查看报告', "检查查看报告按钮")
 
-        print(source,sex_logo,check_name,patient_department,sex_value,attending_doctor,cost,registration_time,disease_name,therapeutist,appoint_therapeutist,see_report)
-
-    def appoint_therapeutist(self):
+    def appoint_therapeutist(self,therapeutist_name):
+        '''
+        给某个小类指定治疗师
+        '''
         self.patient.go_to_patient()
         self.driver.implicitly_wait(20)
         appoint = self.version.getLocator(self.driver, "Appoint_Therapeutist")
         appoint.click()
         choose = self.version.getLocator(self.driver, "Choose_Therapeutist")
         choose.click()
-        choose.send_keys("周治疗师全")
+        choose.send_keys(therapeutist_name)
         select = self.version.getLocator(self.driver, "Select_Therapeutist")
         select.click()
         ensure = self.version.getLocator(self.driver, "Ensure")
@@ -91,6 +127,12 @@ class Patient_List():
         time.sleep(3)
         select_all = self.version.getLocator(self.driver, "Select_All")
         select_all.click()
+        patient_all = self.version.getLocator(self.driver, "Patient_droplist")
+        patient_all.click()
+        self.driver.implicitly_wait(1000)
+        sel_all_patient = self.version.getLocator(self.driver, "Sel_All_Patient")
+        sel_all_patient.click()
+        time.sleep(1)
         cards = self.driver.find_elements(By.CSS_SELECTOR,value=".el-row>div")
         next_page = self.version.getLocator(self.driver, "Next_Page")
         if len(cards) == 12 and next_page.is_displayed():
@@ -101,18 +143,22 @@ class Patient_List():
 
 
     def verify_screen(self,patient_type):
-        sources = self.driver.find_elements(By.CSS_SELECTOR,value=".el-row>div .card-source")
-        print("当前页面有",len(sources),patient_type)
-        if len(sources) >1:
-            for source in sources:
-                print(source.get_attribute('textContent').strip(),"len!=1")
-                check.equal(source.get_attribute('textContent').strip(),patient_type,"检查传入的患者类型与页面显示的患者类型是否一致")
-        elif len(sources) == 1:
-            check.equal(sources.get_attribute('textContent').strip(), patient_type,"检查传入的患者类型与页面显示的患者类型是否一致")
-            print(sources.get_attribute('textContent').strip(),"len==1")
-        elif len(sources) == 0:
-            log.info("当前%s没有患者"%patient_type)
+        try:
+            sources = self.driver.find_elements(By.CSS_SELECTOR, value=".el-row>div .card-source")
+            origin_droplist = self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value')
+            check.equal(origin_droplist, patient_type, "检查患者来源下拉框选中的与传入的患者来源是否一致")
+            if len(sources) > 1:
+                for source in sources:
+                    check.equal(source.get_attribute('textContent').strip(), patient_type, "检查传入的患者类型与页面显示的患者类型是否一致")
+            elif len(sources) == 1:
+                check.equal(sources.get_attribute('textContent').strip(), patient_type, "检查传入的患者类型与页面显示的患者类型是否一致")
+            elif len(sources) == 0:
+                log.info("当前%s没有患者" % patient_type)
+        except ElementNotInteractableException:
+            pass
 
+        except NoSuchElementException:
+            pass
 
     def add_new_patient(self,patient,disease,diagnosis,patient_sex,patient_origin):
         '''
@@ -123,7 +169,7 @@ class Patient_List():
         :return: 成功返回True ，失败返回False
         '''
         self.patient.go_to_patient()
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(100)
         new_patient = self.version.getLocator(self.driver, "New_patient")
         new_patient.click()
         patient_name = self.version.getLocator(self.driver, "Patient_name")
@@ -134,10 +180,12 @@ class Patient_List():
         elif patient_sex == "女":
             sex_woman = self.version.getLocator(self.driver, "Sex_Woman")
             sex_woman.click()
+        self.driver.implicitly_wait(100)
         disease_type = self.version.getLocator(self.driver, "Disease_type")
         disease_type.click()
         time.sleep(1)
         disease_type.send_keys(disease)
+        time.sleep(1)
         disease_type_select = self.version.getLocator(self.driver, "Disease_type_select")
         disease_type_select.click()
         time.sleep(2)
@@ -197,20 +245,27 @@ class Patient_List():
         elif patient_origin == "住院":
             origin_select = self.version.getLocator(self.driver, "Origin_select")
             origin_select.click()
+            time.sleep(1)
             hospital_select = self.version.getLocator(self.driver, "Hospital_select")
             hospital_select.click()
         elif patient_origin == "其他":
             origin_select = self.version.getLocator(self.driver, "Origin_select")
             origin_select.click()
+            time.sleep(1)
             other_select = self.version.getLocator(self.driver, "Other_select")
             other_select.click()
-
+        time.sleep(1)
         if patient_type == "全部患者":
-            pass
+            patient_all = self.version.getLocator(self.driver, "Patient_All")
+            patient_all.click()
+            sel_all_patient = self.version.getLocator(self.driver, "Sel_All_Patient")
+            self.driver.implicitly_wait(100)
+            sel_all_patient.click()
         elif patient_type == "我的患者":
             patient_all = self.version.getLocator(self.driver, "Patient_All")
             patient_all.click()
             my_patient = self.version.getLocator(self.driver, "My_Patient")
+            self.driver.implicitly_wait(100)
             my_patient.click()
         time.sleep(1)
 
@@ -249,12 +304,14 @@ class Patient_List():
             self.driver.implicitly_wait(30)
             beginday = self.version.getLocator(self.driver, "Oneday")
             beginday.click()
+            self.driver.implicitly_wait(100)
             lastday = self.version.getLocator(self.driver, "Lastmonth_day")
             lastday.click()
             time.sleep(1)
         else:
             beginday = self.version.getLocator(self.driver, "Oneday")
             beginday.click()
+            self.driver.implicitly_wait(100)
             lastday = self.version.getLocator(self.driver, "Lastday")
             lastday.click()
             time.sleep(1)
@@ -268,10 +325,6 @@ class Patient_List():
 
         else:
             log.info('当前日期无患者')
-
-
-
-
 
 
     def add_treatment_item(self,patient_name,item):
@@ -316,6 +369,9 @@ class Patient_List():
             else:
                 return False
 
+    def check_treatment_name(self,therapeutist_name):
+        name = self.version.getLocator(self.driver, "Check_appoint_result").get_attribute('textContent').strip()
+        check.equal(therapeutist_name,name,"检查新建的项目是否指定默认治疗师")
 
     def add_judge_item(self,patient_name,item):
         '''
@@ -394,33 +450,3 @@ class Patient_List():
                 return True
             else:
                 return False
-
-
-
-    def click_patientInfo(self):
-        '''
-        在患者管理详情页点击患者信息办理出院
-        :return: 成功返回True ，失败返回False
-        '''
-        patientInfo = self.version.getLocator(self.driver, "PatientInfo")
-        patientInfo.click()
-        end_treatment = self.version.getLocator(self.driver, "End_Treatment")
-        end_treatment.click()
-        leave_time = self.version.getLocator(self.driver, "Time")
-        leave_time.click()
-        time.sleep(1)
-        choose_time = self.version.getLocator(self.driver, "Choose_Time")
-        choose_time.click()
-        time.sleep(1)
-        leave_ensure = self.version.getLocator(self.driver, "Leave_Ensure")
-        leave_ensure.click()
-        time.sleep(1)
-        again_ensure = self.version.getLocator(self.driver, "Again_Ensure")
-        again_ensure.click()
-        time.sleep(1)
-        tips = self.version.getLocator(self.driver, "Tips").text
-        if tips == "结束疗程成功":
-            print("结束疗程成功：", tips)
-            return True
-        else:
-            return False

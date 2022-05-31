@@ -16,12 +16,31 @@ class ObjectMap:
                 try:
                     self.locatorType = locator.getElementsByTagName("type")[0].childNodes[0].data
                     self.locatorValue = locator.getElementsByTagName("value")[0].childNodes[0].data
-                    target_element = self.getLocatorByType(driver)
+                    # target_element = self.getLocatorByType(driver)
                     return self.getLocatorByType(driver)
                 except NoSuchElementException:
                     raise NoSuchElementException("Failed to generate locator for '" + logicalElementName + "'")
 
     def getLocatorByType(self, driver):
+        # if self.locatorType.lower() == "id":
+        #     return driver.find_element(By.ID,value=self.locatorValue)
+        # elif self.locatorType.lower() == "name":
+        #     return driver.find_element(By.NAME,value=self.locatorValue)
+        # elif self.locatorType.lower() == "classname":
+        #     return driver.find_element(By.CLASS_NAME,value=self.locatorValue)
+        # elif self.locatorType.lower() == "linktext":
+        #     return driver.find_element(By.LINK_TEXT,value=self.locatorValue)
+        # elif self.locatorType.lower() == "partiallinktext":
+        #     return driver.find_element(By.PARTIAL_LINK_TEXT,value=self.locatorValue)
+        # elif self.locatorType.lower() == "css":
+        #     return driver.find_element(By.CSS_SELECTOR,value=self.locatorValue)
+        # elif self.locatorType.lower() == "xpath":
+        #     return driver.find_element(By.XPATH,value=self.locatorValue)
+        # elif self.locatorType.lower() == "tagname":
+        #     return driver.find_element(By.TAG_NAME,value=self.locatorValue)
+        # else:
+        #     raise Exception("Locator Type '" + self.locatorType + "' not supported!")
+
         if self.locatorType.lower() == "id":
             return driver.find_element_by_id(self.locatorValue)
         elif self.locatorType.lower() == "name":

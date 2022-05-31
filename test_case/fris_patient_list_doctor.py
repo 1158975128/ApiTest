@@ -32,20 +32,20 @@ class Test_Patient_List():
         self.patient.check_doctor_patient_page(data)
 
 
-    @pytest.mark.parametrize('data',[("测试其他女","关节炎","关","女","其他"),("测试住院男","关节炎","关","男","住院")])
+    @pytest.mark.parametrize('data',[("检查女其他1","关节炎","女","其他","关","2022年05月30日"),("检查男住院1","关节炎","男","住院","关","2022年05月30日")])
     def test_02_check_patient_card(self, data):
         '''
-        测试患者卡片显示是否正确
+        测试患者卡片显示是否正确，传入的日期为当日
         :param data: 传入新增患者信息
         '''
         self.patient = Patient_List(self.driver)
-        print(data)
-        self.patient.add_new_patient(data[0],data[1],data[2],data[3],data[4])
-        self.patient.find_patient(data[0],data[4])
-        self.patient.check_patient_card()
+        self.driver.implicitly_wait(1000)
+        self.patient.add_new_patient(data[0],data[1],data[4],data[2],data[3])
+        self.patient.find_patient(data[0])
+        self.patient.check_patient_card(data)
         self.patient.leave_hospital(data[0])
 
-    @pytest.mark.parametrize('data',[("测试治疗师","关节炎","关","女","其他","ui_test"),("测试治疗师","关节炎","关","男","住院","ui_test")])
+    @pytest.mark.parametrize('data',[("测试治疗师","关节炎","关","女","其他","ui_test","st_test","周治疗师全"),("测试治疗师","关节炎","关","男","住院","ui_test","st_test","周治疗师全")])
     def test_03_appoint_therapeutist(self, data):
         '''
         测试指定治疗师
@@ -58,8 +58,11 @@ class Test_Patient_List():
         self.patient.find_patient(patient)
         self.patient.add_treatment_item(patient,data[5])
         self.patient.find_patient(patient)
-        self.patient.appoint_therapeutist()
+        self.patient.appoint_therapeutist(data[7])
         time.sleep(1)
+        self.patient.add_treatment_item(patient,data[6])
+        self.patient.check_treatment_name(data[7])
+        self.patient.find_patient(patient)
         self.patient.leave_hospital(patient)
 
     def test_04_verify_paging(self):
@@ -69,7 +72,7 @@ class Test_Patient_List():
         self.patient = Patient_List(self.driver)
         self.patient.verify_paging()
 
-    @pytest.mark.parametrize('data',[("门诊","我的患者","current"),("住院","我的患者","last"),("其他","我的患者","current"),("门诊","全部患者","last"),("住院","全部患者","last"),("其他","全部患者","current")])
+    @pytest.mark.parametrize('data',[("其他","全部患者","current"),("其他","我的患者","current"),("门诊","我的患者","current"),("门诊","全部患者","current"),("住院","我的患者","current"),("住院","全部患者","current")])
     def test_05_verify_screen(self,data):
         '''
         测试登记时间、患者来源和患者类型筛选功能
@@ -80,7 +83,6 @@ class Test_Patient_List():
         self.patient.choose_date(data[2])
         self.driver.implicitly_wait(30)
         self.patient.verify_screen(data[0])
-        self.driver.implicitly_wait(100)
 
 
 
@@ -98,8 +100,10 @@ class Test_Patient_List():
         self.patient.choose_date()
         time.sleep(1)
         result = self.patient.check_patient_name(patient)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(1000)
         if result:
-            self.driver.implicitly_wait(100)
+            self.driver.implicitly_wait(1000)
             self.patient.leave_hospital(patient)
-            self.driver.implicitly_wait(30)
+            self.driver.implicitly_wait(1000)
+
+
