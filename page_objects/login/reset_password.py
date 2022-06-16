@@ -1,149 +1,65 @@
 import os
 import time
-from common.logger import MyLogging
+import random
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from config.public_data.delay_time import *
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
-from config.public_data.delay_time import *
 from page_objects.navigate_bar import NavigateBar
-from config import defaultInfo_config
+import pytest_check as check
 
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-login_map = map_path + "/login/login.xml"
+reset_pwd_map = map_path + "/login/reset_password.xml"
 
 delay_time = DelayTime.short_time.value
 
 
-def getUser(user):
-    # 管理员
-    if user.lower() == "admin":
-        return defaultInfo_config.adminEmail
-    # 康复医师
-    elif user.lower() == "doctor":
-        return defaultInfo_config.doctorEmail
-    # 治疗师长，治疗师（OT, PT, ST, 物理，心理，传统，西医，常规，推拿，器械）
-    elif user.lower() == "master":
-        return defaultInfo_config.masterEmail
-    # 治疗师all，治疗师（OT,PT,ST,物理，心理，传统，西医，常规，推拿，器械）
-    elif user.lower() == "therapistall":
-        return defaultInfo_config.therapistAllEmail
-    # 治疗师1（OT,PT,ST）
-    elif user.lower() == "therapist1":
-        return defaultInfo_config.therapist1Email
-    # 治疗师2（物理，心理，传统，西医，常规，推拿，器械）
-    elif user.lower() == "therapist2":
-        return defaultInfo_config.therapist2Email
-    # 治疗师3（OT)
-    elif user.lower() == "therapist3":
-        return defaultInfo_config.therapist3Email
-    # 护士
-    elif user.lower() == "nurse":
-        return defaultInfo_config.nurseEmail
-    else:
-        raise Exception("传入的user："  + user)
-
-def getPwd(pwd):
-    # 管理员
-    if pwd.lower() == "admin":
-        return defaultInfo_config.pwd
-    # 康复医师
-    elif pwd.lower() == "doctor":
-        return defaultInfo_config.doctorPwd
-    # 治疗师长，治疗师（OT, PT, ST, 物理，心理，传统，西医，常规，推拿，器械）
-    elif pwd.lower() == "master":
-        return defaultInfo_config.masterPwd
-    # 治疗师all，治疗师（OT,PT,ST,物理，心理，传统，西医，常规，推拿，器械）
-    elif pwd.lower() == "therapistall":
-        return defaultInfo_config.therapistAllPwd
-    # 治疗师1（OT,PT,ST）
-    elif pwd.lower() == "therapist1":
-        return defaultInfo_config.therapist1Pwd
-    # 治疗师2（物理，心理，传统，西医，常规，推拿，器械）
-    elif pwd.lower() == "therapist2":
-        return defaultInfo_config.therapist2Pwd
-    # 治疗师3（OT)
-    elif pwd.lower() == "therapist3":
-        return defaultInfo_config.therapist3Pwd
-    # 护士
-    elif pwd.lower() == "nurse":
-        return defaultInfo_config.nursePwd
-    else:
-        raise Exception("传入的user："  + pwd)
-
-
-class LoginPage(object):
+class Reset_pwd():
     def __init__(self, driver):
         self.driver = driver
-        self.login = ObjectMap(login_map)
+        self.version = ObjectMap(reset_pwd_map)
+        self.reset = NavigateBar(self.driver)
 
-    def login_fris(self,login_role):
-        '''
-        fris登录方法，根据传入的登录角色进行身份判断，然后执行对应身份的登录操作
-        :param login_role: 传入的登录角色
-        '''
-        if login_role == 'admin':
-            email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
-            email_area.send_keys(getUser(login_role))
-            time.sleep(delay_time)
-            pwd_area = self.login.getLocator(self.driver, 'Pwd')
-            pwd_area.send_keys(getPwd(login_role))
-            time.sleep(delay_time)
-            log.info("enable")
-            login_button = self.login.getLocator(self.driver, 'LoginButton')
-            login_button.click()
-            time.sleep(delay_time)
-            log.info("dis_enable")
-            login_tips  = self.login.getLocator(self.driver, 'LoginPrimary')
-            if login_tips.is_displayed():
-                primary = self.login.getLocator(self.driver, 'LoginPrimary')
-                primary.click()
-                organization = self.login.getLocator(self.driver, 'Organization')
-                organization.click()
-                time.sleep(delay_time)
-                log.info("登录成功")
-                self.driver.implicitly_wait(10)
-            else:
-                organization = self.login.getLocator(self.driver, 'Organization')
-                organization.click()
-                time.sleep(delay_time)
-                log.info("登录成功")
-                self.driver.implicitly_wait(10)
 
-        else:
-            email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
-            email_area.send_keys(getUser(login_role))
-            time.sleep(delay_time)
-            pwd_area = self.login.getLocator(self.driver, 'Pwd')
-            pwd_area.send_keys(getPwd(login_role))
-            time.sleep(delay_time)
-            login_button = self.login.getLocator(self.driver, 'LoginButton')
-            login_button.click()
-            time.sleep(delay_time)
-            login_tips  = self.login.getLocator(self.driver, 'LoginPrimary')
-            if login_tips.is_displayed():
-                primary = self.login.getLocator(self.driver, 'LoginPrimary')
-                primary.click()
-                time.sleep(delay_time)
-            log.info("登录成功")
-            self.driver.implicitly_wait(10)
+    def check_persion_list_page(self):
+        self.reset.go_to_system_maintain()
+        time.sleep(5)
+        new_additional = self.version.getLocator(self.driver, "New_Additional").text
+        inpu_name = self.version.getLocator(self.driver, 'Input').get_attribute('placeholder')
+        search = self.version.getLocator(self.driver, 'Search').text
+        navigate = self.version.getLocator(self.driver, 'Navigate').get_attribute('textContent')
+        check.equal(new_additional,'新增账号','检查新增账号按钮')
+        check.equal(inpu_name,'输入搜索内容','检查输入框默认内容')
+        check.equal(search,'查询','检查查询按钮')
+        check.equal(navigate,'id用户名邮箱手机号创建时间操作','检查菜单栏')
+        log.info("页面元素正确")
 
-    def cancel(self):
-        email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
-        email_area.send_keys("17602173306")
+    def reset_pwd(self,user_name):
+        self.reset.go_to_system_maintain()
         time.sleep(1)
-        pwd_area = self.login.getLocator(self.driver, 'Pwd')
-        pwd_area.send_keys("123456")
+        print(123)
+        inpu_name = self.version.getLocator(self.driver, 'Input')
+        inpu_name.click()
         time.sleep(1)
-        login_button = self.login.getLocator(self.driver, 'LoginButton')
-        login_button.click()
+        inpu_name.send_keys(user_name)
+        search = self.version.getLocator(self.driver, 'Search')
+        search.click()
         time.sleep(1)
-        cancel = self.login.getLocator(self.driver, 'Cancel')
-        cancel.click()
+        update = self.version.getLocator(self.driver, 'Update')
+        update.click()
+        time.sleep(1)
+        reset_btn = self.version.getLocator(self.driver, 'Reset_Btn')
+        reset_btn.click()
+        time.sleep(1)
+        tips = self.version.getLocator(self.driver, 'Tips').text
+        check.equal(tips,'重置密码成功','检查重置密码成功弹窗提示')
+        time.sleep(1)
+        close = self.version.getLocator(self.driver, 'Close')
+        close.click()
 
-    '''
-    def confirm_login(self):
-        try:
-            login_reminder = Alert()
-    '''
+        log.info("重置密码成功")
+
 

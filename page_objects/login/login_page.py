@@ -40,6 +40,9 @@ def getUser(user):
     # 护士
     elif user.lower() == "nurse":
         return defaultInfo_config.nurseEmail
+    # 其它
+    elif user.lower() == "other":
+        return defaultInfo_config.otherEmail
     else:
         raise Exception("传入的user："  + user)
 
@@ -68,6 +71,9 @@ def getPwd(pwd):
     # 护士
     elif pwd.lower() == "nurse":
         return defaultInfo_config.nursePwd
+    # 其它
+    elif pwd.lower() == "other":
+        return defaultInfo_config.otherPwd
     else:
         raise Exception("传入的user："  + pwd)
 
@@ -84,6 +90,9 @@ class LoginPage(object):
         '''
         if login_role == 'admin':
             email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
+            email_area.click()
+            email_area.clear()
+            time.sleep(1)
             email_area.send_keys(getUser(login_role))
             time.sleep(delay_time)
             pwd_area = self.login.getLocator(self.driver, 'Pwd')
@@ -112,9 +121,11 @@ class LoginPage(object):
 
         else:
             email_area = self.login.getLocator(self.driver, 'PhoneOrEmail')
+            email_area.clear()
             email_area.send_keys(getUser(login_role))
             time.sleep(delay_time)
             pwd_area = self.login.getLocator(self.driver, 'Pwd')
+            pwd_area.clear()
             pwd_area.send_keys(getPwd(login_role))
             time.sleep(delay_time)
             login_button = self.login.getLocator(self.driver, 'LoginButton')

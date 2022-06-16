@@ -12,16 +12,16 @@ import pytest_check as check
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-reset_pwd_map = map_path + "/login/reset_password.xml"
+logout_map = map_path + "/login/logout.xml"
 
 delay_time = DelayTime.short_time.value
 
 
-class Reset_pwd():
+class Logout():
     def __init__(self, driver):
         self.driver = driver
-        self.version = ObjectMap(reset_pwd_map)
-        self.reset = NavigateBar(self.driver)
+        self.version = ObjectMap(logout_map)
+        # self.logout = NavigateBar(self.driver)
 
 
     def check_persion_list_page(self):
@@ -37,25 +37,21 @@ class Reset_pwd():
         check.equal(navigate,'id用户名邮箱手机号创建时间操作','检查菜单栏')
         log.info("页面元素正确")
 
-    def reset_pwd(self,user_name):
-        self.reset.go_to_system_maintain()
+    def logout(self):
+        # self.reset.go_to_system_maintain()
+        # time.sleep(1)
+        # print(123)
+        my_photo = self.version.getLocator(self.driver, 'My_Photo')
+        my_photo.click()
         time.sleep(1)
-        print(123)
-        inpu_name = self.version.getLocator(self.driver, 'Input')
-        inpu_name.click()
+        logout = self.version.getLocator(self.driver, 'Logout')
+        logout.click()
         time.sleep(1)
-        inpu_name.send_keys(user_name)
-        search = self.version.getLocator(self.driver, 'Search')
-        search.click()
+        ensure = self.version.getLocator(self.driver, 'Ensure')
+        ensure.click()
         time.sleep(1)
-        update = self.version.getLocator(self.driver, 'Update')
-        update.click()
-        time.sleep(1)
-        reset_btn = self.version.getLocator(self.driver, 'Reset_Btn')
-        reset_btn.click()
-        time.sleep(1)
-        tips = self.version.getLocator(self.driver, 'Tips').text
-        check.equal(tips,'重置密码成功','检查重置密码成功弹窗提示')
+        title = self.version.getLocator(self.driver, 'Title').get_attribute('textContent')
+        print(title)
 
         log.info("重置密码成功")
 
