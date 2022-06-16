@@ -1,15 +1,5 @@
 <elements>
     <element>
-        <name>Treatment_Preserve</name>
-        <type>name</type>
-        <value>治疗维护</value>
-    </element>
-    <element>
-        <name>Disease_Type</name>
-        <type>name</type>
-        <value>疾病类型</value>
-    </element>
-    <element>
         <name>New_Additional</name>
         <type>classname</type>
         <value>head-btn-text</value>
@@ -17,12 +7,8 @@
     <element>
         <name>Import_Words</name>
         <type>classname</type>
-        <value>el-input__inner</value>
-    </element>
-    <element>
-        <name>Confirm</name>
-        <type>css</type>
-        <value>.el-button.el-button--primary.el-button--medium.confirm-btn</value>
+        <value>el-input__inner
+        </value>
     </element>
     <element>
         <name>Cancel</name>
@@ -41,18 +27,42 @@
     </element>
     <element>
         <name>Change</name>
-        <type>css</type>
-        <value>#app > div > div.content-box > div.content.records-content > div > div > div.el-table--fit.el-table--enable-row-transition.el-table--medium.el-table.common.table-list > div.el-table__fixed-right > div.el-table__fixed-body-wrapper > table > tbody > tr:last-child > td.el-table_1_column_4.el-table__cell > div > button.el-button.el-button--text.el-button--small.updateBtn</value>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[2]/table/tbody/tr[1]/td[2]/div/button[1]</value>
     </element>
     <element>
         <name>Delete</name>
         <type>css</type>
-        <value>#app > div > div.content-box > div.content.records-content > div > div > div.el-table--fit.el-table--enable-row-transition.el-table--medium.el-table.common.table-list > div.el-table__fixed-right > div.el-table__fixed-body-wrapper > table > tbody > tr:last-child > td.el-table_1_column_4.el-table__cell > div > button.el-button.el-button--text.el-button--small.deleteBtn</value>
+        <value>.el-table__fixed-body-wrapper tr:nth-child(1) td:nth-child(2) button.deleteBtn</value>
     </element>
     <element>
-        <name>Disease_Name</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[2]/td[1]/div</value>
+        <name>Delete_Ensure</name>
+        <type>css</type>
+        <value>.el-button.el-button--primary.el-button--small.el-button--primary</value>
     </element>
-
+    <element>
+        <name>Position_Name</name>
+        <type>css</type>
+        <value>.is-scrolling-none tr td:nth-child(1) div</value>
+    </element>
+    <element>
+        <name>Check_Position_Name</name>
+        <type>css</type>
+        <value>.el-table__header-wrapper th div</value>
+    </element>
+    <element>
+        <name>Check_Operation_Name</name>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[1]/table/thead/tr/th[4]/div</value>
+    </element>
+    <element>
+        <name>Table</name>
+        <type>xpath</type>
+        <value>//*[@class="el-table__fixed-body-wrapper"]//tbody</value>
+    </element>
+    <element>
+        <name>Next_Page</name>
+        <type>css</type>
+        <value>.el-icon-arrow-right:nth-child(1)</value>
+    </element>
 </elements>
