@@ -14,19 +14,17 @@ class Test_Work_Clock_In():
     def setup(self):
         self.driver = Browser.open_browser()
         self.mylogin = LoginPage(self.driver)
-        self.mylogin.login_fris('therapistall')
+        self.mylogin.login_fris('therapist1')
 
     def teardown(self):
         self.Work_Clock = Work_Clock_In(self.driver)
         self.driver.quit()
 
-    data = [("住院李四")]
-    @pytest.mark.parametrize('patient_name', data)
-    def test_01_check_work_order_page(self,patient_name):
+    data = [("OT")]
+    @pytest.mark.parametrize('work_name', data)
+    def test_01_check_work_order_page(self,work_name):
         self.clock_in = Work_Clock_In(self.driver)
-        self.clock_in.work_clock()
-        # result = self.my_work.check_my_work_page()
-        # print(result)
+        self.clock_in.start_work(work_name)
 
 
 

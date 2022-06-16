@@ -19,4 +19,14 @@
         <type>css</type>
         <value>[class="el-scrollbar__view el-select-dropdown__list"]>li:nth-child(1)</value>
     </element>
+    <element>
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+    <element>
+        <name>Title</name>
+        <type>css</type>
+        <value>.submit-box-title</value>
+    </element>
 </elements>
