@@ -100,7 +100,7 @@ class Department_Type():
 
                         # 防止删除成功后少行超出范围
                         break
-                log.info("删除成功")
+            log.info("删除成功")
         except:
             pass
 

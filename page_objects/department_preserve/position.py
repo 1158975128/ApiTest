@@ -108,29 +108,6 @@ class Position():
                 log.info("删除成功")
         except:
             pass
-        # self.positon_page.go_to_Position()
-        # time.sleep(5)
-        # table = self.version.getLocator(self.driver, 'Table')
-        # table_trs = table.find_elements(By.TAG_NAME,value='tr')
-        # for i in range(len(table_trs)):
-        #     table_tr_td1s = table_trs[i].find_elements(By.TAG_NAME,value='td')
-        #     for table_tr_td1 in table_tr_td1s:
-        #     #     # 根据部门名称定位要删除的行
-        #         if table_tr_td1.get_attribute('textContent').strip() == position_name:
-        #             table_tr_td2s = table_trs[i].find_elements(By.TAG_NAME,value='td')
-        #     #         # 获取tr里第二个td的所有button
-        #             table_buttons = table_tr_td2s[3].find_elements(By.TAG_NAME,value='button')
-        #             for table_button in table_buttons:
-        #                 if table_button.text == "删除":
-        #                     table_button.click()
-        #                     time.sleep(3)
-        #                     self.driver.implicitly_wait(10)
-        #                     ensure = self.version.getLocator(self.driver, "Delete_Ensure")
-        #                     ensure.click()
-        #                     time.sleep(2)
-        #             # 防止删除成功后少行超出范围
-        #             break
-        #     log.info("删除成功")
 
     def modify_position(self,position_name,change_position):
         '''

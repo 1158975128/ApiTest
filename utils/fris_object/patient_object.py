@@ -2,178 +2,176 @@ from datetime import datetime
 
 
 class PatientObject:
-    def __init__(self, id):
-        self.id = id
-        self._name = None
-        self._email = None
-        self._phone = None
-        self._identity_number = None
-        self._profession = None
-        self._sex = None
-        self._social_security_number = None
-        self._birthday = None
-        self._birthday_str = None
-        self._age = None
-        self._marriage = None
-        self._address = None
-        self._linkman = None
-        self._linkman_phone = None
-        self._relation = None
-        self._nationality = None
-        self._identity_type = None
-        self._weight = None
-        self._height = None
+    def __init__(self):
+        self._new_patient = None
+        self._origin_droplist = None
+        self._patient_droplist = None
+        self._name_input = None
+        self._date = None
+        self._date_frame = None
+        self._check_end_date = None
+
+        self._check_name = None
+        self._disease_name = None
+        self._sex_value = None
+        self._source = None
+        self._sex_logo = None
+        self._attending_doctor = None
+        self._patient_department = None
+        self._cost = None
+        self._registation_time = None
+        self._therapeutist = None
+        self._appoint_therapeutist = None
+        self._see_report = None
 
     @property
-    def name(self):
-        return self._name
+    def new_patient(self):
+        return self._new_patient
 
-    @name.setter
-    def name(self, name):
-        self._name = name
-
-    @property
-    def email(self):
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        self._email = email
+    @new_patient.setter
+    def new_patient(self, new_patient):
+        self._new_patient = new_patient
 
     @property
-    def phone(self):
-        return self._phone
+    def origin_droplist(self):
+        return self._origin_droplist
 
-    @phone.setter
-    def phone(self, phone):
-        self._phone = phone
-
-    @property
-    def identity_number(self):
-        return self._identity_number
-
-    @identity_number.setter
-    def identity_number(self, identity_number):
-        self._identity_number = identity_number
+    @origin_droplist.setter
+    def origin_droplist(self, origin_droplist):
+        self._origin_droplist = origin_droplist
 
     @property
-    def profession(self):
-        return self._profession
+    def patient_droplist(self):
+        return self._patient_droplist
 
-    @profession.setter
-    def profession(self, profession):
-        self._profession = profession
-
-    @property
-    def sex(self):
-        return self._sex
-
-    @sex.setter
-    def sex(self, sex):
-        self._sex = sex
+    @patient_droplist.setter
+    def patient_droplist(self, patient_droplist):
+        self._patient_droplist = patient_droplist
 
     @property
-    def social_security_number(self):
-        return self._social_security_number
+    def name_input(self):
+        return self._name_input
 
-    @social_security_number.setter
-    def social_security_number(self, social_security_number):
-        self._social_security_number = social_security_number
-
-    @property
-    def birthday(self):
-        return self._birthday
-
-    @birthday.setter
-    def birthday(self, birthday):
-        self._birthday = birthday
+    @name_input.setter
+    def name_input(self, name_input):
+        self._name_input = name_input
 
     @property
-    def birthday_str(self):
-        try:
-            self._birthday_str = datetime.strftime(self._birthday, "%Y-%m-%d %H:%M:%S")
-        except TypeError:
-            self._birthday_str = None
-        finally:
-            return self._birthday_str
+    def date(self):
+        return self._date
+
+    @date.setter
+    def date(self, date):
+        self._date = date
 
     @property
-    def age(self):
-        return self._age
+    def date_frame(self):
+        return self._date_frame
 
-    @age.setter
-    def age(self, age):
-        self._age = age
-
-    @property
-    def marriage(self):
-        return self._marriage
-
-    @marriage.setter
-    def marriage(self, marriage):
-        self._marriage = marriage
+    @date_frame.setter
+    def date_frame(self, date_frame):
+        self._date_frame = date_frame
 
     @property
-    def address(self):
-        return self._address
+    def check_end_date(self):
+        return self._check_end_date
 
-    @address.setter
-    def address(self, address):
-        self._address = address
-
-    @property
-    def linkman(self):
-        return self._linkman
-
-    @linkman.setter
-    def linkman(self, linkman):
-        self._linkman = linkman
+    @check_end_date.setter
+    def check_end_date(self, check_end_date):
+        self._check_end_date = check_end_date
 
     @property
-    def linkman_phone(self):
-        return self._linkman_phone
+    def check_name(self):
+        return self._check_name
 
-    @linkman_phone.setter
-    def linkman_phone(self, linkman_phone):
-        self._linkman_phone = linkman_phone
-
-    @property
-    def relation(self):
-        return self._relation
-
-    @relation.setter
-    def relation(self, relation):
-        self._relation = relation
+    @check_name.setter
+    def check_name(self, check_name):
+        self._check_name = check_name
 
     @property
-    def nationality(self):
-        return self._nationality
+    def disease_name(self):
+        return self._disease_name
 
-    @nationality.setter
-    def nationality(self, nationality):
-        self._nationality = nationality
-
-    @property
-    def identity_type(self):
-        return self._identity_type
-
-    @identity_type.setter
-    def identity_type(self, identity_type):
-        self._identity_type = identity_type
+    @disease_name.setter
+    def disease_name(self, disease_name):
+        self._disease_name = disease_name
 
     @property
-    def weight(self):
-        return self._weight
+    def sex_value(self):
+        return self._sex_value
 
-    @weight.setter
-    def weight(self, weight):
-        self._weight = weight
+    @sex_value.setter
+    def sex_value(self, sex_value):
+        self._sex_value = sex_value
 
     @property
-    def height(self):
-        return self._height
+    def source(self):
+        return self._source
 
-    @height.setter
-    def height(self, height):
-        self._height = height
+    @source.setter
+    def source(self, source):
+        self._source = source
 
+    @property
+    def sex_logo(self):
+        return self._sex_logo
+
+    @sex_logo.setter
+    def sex_logo(self, sex_logo):
+        self._sex_logo = sex_logo
+
+    @property
+    def attending_doctor(self):
+        return self._attending_doctor
+
+    @attending_doctor.setter
+    def attending_doctor(self, attending_doctor):
+        self._attending_doctor = attending_doctor
+
+    @property
+    def patient_department(self):
+        return self._patient_department
+
+    @patient_department.setter
+    def patient_department(self, patient_department):
+        self._patient_department = patient_department
+
+    @property
+    def cost(self):
+        return self._cost
+
+    @cost.setter
+    def cost(self, cost):
+        self._cost = cost
+
+    @property
+    def registation_time(self):
+        return self._registation_time
+
+    @registation_time.setter
+    def registation_time(self, registation_time):
+        self._registation_time = registation_time
+
+    @property
+    def therapeutist(self):
+        return self._therapeutist
+
+    @therapeutist.setter
+    def therapeutist(self, therapeutist):
+        self._therapeutist = therapeutist
+
+    @property
+    def appoint_therapeutist(self):
+        return self._appoint_therapeutist
+
+    @appoint_therapeutist.setter
+    def appoint_therapeutist(self, appoint_therapeutist):
+        self._appoint_therapeutist = appoint_therapeutist
+
+    @property
+    def see_report(self):
+        return self._see_report
+
+    @see_report.setter
+    def see_report(self, see_report):
+        self._see_report = see_report
