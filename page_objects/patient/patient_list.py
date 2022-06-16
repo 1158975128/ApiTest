@@ -10,6 +10,8 @@ from page_objects.navigate_bar import NavigateBar
 import pytest_check as check
 from selenium.webdriver.remote.errorhandler import ElementNotInteractableException
 from selenium.common.exceptions import NoSuchElementException
+from utils.exist_tool import Element
+
 
 
 log = MyLogging(__name__).logger
@@ -30,7 +32,7 @@ class Patient_List():
         检查页面固定元素是否正确
         '''
         self.patient.go_to_patient()
-        time.sleep(1)
+        time.sleep(3)
         page_list = []
         page_list.append(self.version.getLocator(self.driver, "New_patient").text)
         page_list.append(self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value'))
@@ -40,7 +42,7 @@ class Patient_List():
         page_list.append(self.version.getLocator(self.driver, "Date_Frame").text)
         page_list.append(self.version.getLocator(self.driver, "Check_End_Date").get_attribute('placeholder'))
         for i in range(len(page_list)):
-            check.equal(page_list[i],data[i],"检查页面按钮名称和默认设置是否正确")
+            check.equal(page_list[i],data[i],"检查页面按钮名称和默认设置是否正确%s---%s"%(page_list[i],data[i]))
         log.info("页面按钮名称和默认设置正确")
 
     def check_therapist_patient_page(self,data):
@@ -88,8 +90,8 @@ class Patient_List():
         elif data[2] == "男":
             check.equal(card_list[4],'icon man',"检查性别图标是否正确")
 
-        check.equal(card_list[5], 'aaa赵医生', "检查医生")
-        check.equal(card_list[6], '康复科', "检查科室")
+        check.equal(card_list[5], 'larry3', "检查医生")
+        check.equal(card_list[6], '310-1', "检查科室")
         check.equal(card_list[7], '0.00元', "检查费用")
         check.equal(card_list[8], data[5], "检查登记时间")
         check.equal(card_list[9], '治疗师：-', "检查治疗师")
@@ -154,6 +156,7 @@ class Patient_List():
                 check.equal(sources.get_attribute('textContent').strip(), patient_type, "检查传入的患者类型与页面显示的患者类型是否一致")
             elif len(sources) == 0:
                 log.info("当前%s没有患者" % patient_type)
+
         except ElementNotInteractableException:
             pass
 
@@ -174,6 +177,7 @@ class Patient_List():
         new_patient.click()
         patient_name = self.version.getLocator(self.driver, "Patient_name")
         patient_name.send_keys(patient)
+        time.sleep(1)
         if patient_sex == "男":
             sex_man = self.version.getLocator(self.driver, "Sex_man")
             sex_man.click()
@@ -273,7 +277,10 @@ class Patient_List():
             pass
         else:
             name_input = self.version.getLocator(self.driver, "Name_input")
+            name_input.click()
+            time.sleep(1)
             name_input.clear()
+            time.sleep(1)
             name_input.send_keys(patient_name)
             time.sleep(1)
 

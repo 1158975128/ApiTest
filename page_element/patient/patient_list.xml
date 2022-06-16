@@ -13,7 +13,7 @@
     <element>
         <name>Patient_droplist</name>
         <type>css</type>
-        <value>[placeholder="请选择"]</value>
+        <value>[class="head"] [placeholder="请选择"]</value>
     </element>
     <element>
         <name>Patient_name</name>

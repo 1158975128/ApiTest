@@ -4,6 +4,8 @@ from page_objects.login.login_page import LoginPage
 from utils.browser_tool import Browser
 from common.logger import MyLogging
 from page_objects.patient.patient_list import Patient_List
+from page_objects.arrange_order.work_clockin import Work_Clock_In
+
 import pytest_check as check
 
 
@@ -15,7 +17,10 @@ class Test_Patient_List():
     def setup(self):
         self.driver = Browser.open_browser()
         self.mylogin = LoginPage(self.driver)
-        self.mylogin.login_fris('therapistall')
+        self.mylogin.login_fris('therapist1')
+        time.sleep(1)
+        self.work_in = Work_Clock_In(self.driver)
+        self.work_in.start_work("OT")
 
     def teardown(self):
         self.Patient = Patient_List(self.driver)

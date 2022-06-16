@@ -4,6 +4,7 @@ from page_objects.login.login_page import LoginPage
 from utils.browser_tool import Browser
 from common.logger import MyLogging
 from page_objects.patient.patient_list import Patient_List
+from page_objects.arrange_order.work_clockin import Work_Clock_In
 import pytest_check as check
 
 
@@ -16,6 +17,10 @@ class Test_Patient_List():
         self.driver = Browser.open_browser()
         self.mylogin = LoginPage(self.driver)
         self.mylogin.login_fris('doctor')
+        time.sleep(1)
+        self.work_in = Work_Clock_In(self.driver)
+        self.work_in.start_work("OT")
+        time.sleep(1)
 
     def teardown(self):
         self.Patient = Patient_List(self.driver)
@@ -32,14 +37,14 @@ class Test_Patient_List():
         self.patient.check_doctor_patient_page(data)
 
 
-    @pytest.mark.parametrize('data',[("检查女其他1","关节炎","女","其他","关","2022年05月30日"),("检查男住院1","关节炎","男","住院","关","2022年05月30日")])
+    @pytest.mark.parametrize('data',[("75ceshijj","关节炎","女","其他","关","2022年06月13日"),("yrv检查男住院1","关节炎","男","住院","关","2022年06月09日")])
     def test_02_check_patient_card(self, data):
         '''
         测试患者卡片显示是否正确，传入的日期为当日
         :param data: 传入新增患者信息
         '''
         self.patient = Patient_List(self.driver)
-        self.driver.implicitly_wait(1000)
+        time.sleep(1)
         self.patient.add_new_patient(data[0],data[1],data[4],data[2],data[3])
         self.patient.find_patient(data[0])
         self.patient.check_patient_card(data)
@@ -72,7 +77,8 @@ class Test_Patient_List():
         self.patient = Patient_List(self.driver)
         self.patient.verify_paging()
 
-    @pytest.mark.parametrize('data',[("其他","全部患者","current"),("其他","我的患者","current"),("门诊","我的患者","current"),("门诊","全部患者","current"),("住院","我的患者","current"),("住院","全部患者","current")])
+    # @pytest.mark.parametrize('data',[("其他","全部患者","current"),("其他","我的患者","current"),("门诊","我的患者","current"),("门诊","全部患者","current"),("住院","我的患者","current"),("住院","全部患者","current")])
+    @pytest.mark.parametrize('data',[("其他","我的患者","current")])
     def test_05_verify_screen(self,data):
         '''
         测试登记时间、患者来源和患者类型筛选功能
