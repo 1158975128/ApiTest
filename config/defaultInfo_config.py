@@ -27,6 +27,8 @@ therapist3Email = conf.get("defaultUser", "therapist3Email")
 therapist3Pwd = conf.get("defaultUser", "therapist3Pwd")
 nurseEmail = conf.get("defaultUser", "nurseEmail")
 nursePwd = conf.get("defaultUser", "nursePwd")
+otherEmail = conf.get("defaultUser", "other")
+otherPwd = conf.get("defaultUser", "otherpwd")
 # 机构
 organizationId = conf.get("defaultUser", "organizationId")
 # login 路径

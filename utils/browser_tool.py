@@ -5,10 +5,10 @@ from selenium.webdriver.chrome.options import Options
 
 lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../drivers"))
 # windows driver
-# driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址x
+driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址x
 
 # mac driver
-driver_path = lib_path + "/" + "chromedriver"
+# driver_path = lib_path + "/" + "chromedriver"
 
 class Browser:
     @staticmethod
@@ -21,4 +21,7 @@ class Browser:
         driver.implicitly_wait(30)
         driver.maximize_window()
         driver.get('https://qafris.fftai.com/fris2/#/login')
+        # driver.get('https://uatfris.fftai.com/fris2/#/login')
+
+
         return driver

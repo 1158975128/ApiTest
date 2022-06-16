@@ -1,0 +1,22 @@
+<elements>
+    <element>
+        <name>Confirm</name>
+        <type>css</type>
+        <value>.confirm-btn</value>
+    </element>
+    <element>
+        <name>Cancel</name>
+        <type>css</type>
+        <value>.cancel-btn</value>
+    </element>
+    <element>
+        <name>Input</name>
+        <type>css</type>
+        <value>[placeholder="请选择"]</value>
+    </element>
+    <element>
+        <name>Select_work</name>
+        <type>css</type>
+        <value>[class="el-scrollbar__view el-select-dropdown__list"]>li:nth-child(1)</value>
+    </element>
+</elements>

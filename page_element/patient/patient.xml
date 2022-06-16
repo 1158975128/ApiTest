@@ -1,0 +1,194 @@
+<elements>
+<!--  新增患者  -->
+    <element>
+        <name>New_patient</name>
+        <type>css</type>
+        <value>.el-button > span:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Origin_droplist</name>
+        <type>css</type>
+        <value>[placeholder="来源"]</value>
+    </element>
+    <element>
+        <name>Patient_droplist</name>
+        <type>css</type>
+        <value>[placeholder="请选择"]</value>
+    </element>
+    <element>
+        <name>Patient_name</name>
+        <type>css</type>
+        <value>.el-autocomplete .el-input__inner</value>
+    </element>
+    <element>
+        <name>Sex_man</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(1) span:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Disease_type_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>div:nth-child(8) li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Disease_type</name>
+        <type>css</type>
+        <value>.el-col:nth-child(3) .el-select__input</value>
+    </element>
+    <element>
+        <name>Function_diagnosis</name>
+        <type>css</type>
+        <value>.el-col:nth-child(4) .el-select__input</value>
+    </element>
+    <element>
+        <name>Function_diagnosis_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden [aria-hidden="false"] li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Origin</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(3) span:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Doctor</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(2)>div>div:nth-child(5) .el-input__inner</value>
+    </element>
+    <element>
+        <name>Doctor_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>div:nth-child(10)  .el-select-dropdown__list>li:nth-child(1) span</value>
+    </element>
+
+    <element>
+        <name>Department</name>
+        <type>css</type>
+        <value>.add-patient form:nth-child(2)>div>div:nth-child(6) .el-input__inner</value>
+    </element>
+    <element>
+        <name>Department_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>div:nth-child(11)  .el-select-dropdown__list>li:nth-child(3) span</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.colorful span</value>
+    </element>
+    <element>
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+<!--  查找患者  -->
+    <element>
+        <name>Origin_select</name>
+        <type>css</type>
+        <value>.head>.params-filter-multiple</value>
+    </element>
+    <element>
+        <name>Hospital_select</name>
+        <type>css</type>
+        <value>[aria-hidden="false"] ul li:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Name_input</name>
+        <type>css</type>
+        <value>.head .patient-name-input .el-input__inner</value>
+    </element>
+    <element>
+        <name>Check_name</name>
+        <type>css</type>
+        <value>.el-row>div .card-head .title</value>
+    </element>
+<!--  新增治疗项目  -->
+    <element>
+        <name>Add_Treatment</name>
+        <type>css</type>
+        <value>.small span</value>
+    </element>
+    <element>
+        <name>Item_name</name>
+        <type>css</type>
+        <value>.el-row .el-autocomplete .el-input__inner</value>
+    </element>
+    <element>
+        <name>Item_name_select</name>
+        <type>css</type>
+        <value>.el-autocomplete-suggestion__wrap.el-scrollbar__wrap li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Region_name</name>
+        <type>css</type>
+        <value>.el-row [placeholder="请选择部位"]</value>
+    </element>
+    <element>
+        <name>Region_name_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>[aria-hidden="false"] ul>li:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Department_name</name>
+        <type>css</type>
+        <value>.el-row [placeholder="请选择治疗科室"]</value>
+    </element>
+    <element>
+        <name>Department_name_select</name>
+        <type>css</type>
+        <value>.el-popup-parent--hidden>[aria-hidden="false"] li:nth-child(3)</value>
+    </element>
+    <element>
+        <name>Item_Ensure</name>
+        <type>css</type>
+        <value>.colorful:nth-child(2)</value>
+    </element>
+    <!--  新增评定项目  -->
+    <element>
+        <name>Judge_Item</name>
+        <type>css</type>
+        <value>#tab-PatientProjectPd</value>
+    </element>
+    <element>
+        <name>Hospital_Department_name</name>
+        <type>css</type>
+        <value>.el-row [placeholder="请选择住院科室"]</value>
+    </element>
+    <!--  患者信息_结束疗程  -->
+    <element>
+        <name>PatientInfo</name>
+        <type>css</type>
+        <value>#tab-PatientInfo</value>
+    </element>
+    <element>
+        <name>End_Treatment</name>
+        <type>css</type>
+        <value>.el-button.el-button--danger.el-button--medium.colorful</value>
+    </element>
+    <element>
+        <name>Time</name>
+        <type>css</type>
+        <value>[placeholder="请选择出院时间"]</value>
+    </element>
+    <element>
+        <name>Choose_Time</name>
+        <type>css</type>
+        <value>[class="el-button el-button--text el-button--mini el-picker-panel__link-btn"]</value>
+    </element>
+    <element>
+        <name>Leave_Ensure</name>
+        <type>css</type>
+        <value>.confirm-btn</value>
+    </element>
+    <element>
+        <name>Again_Ensure</name>
+        <type>css</type>
+        <value>[class="el-button el-button--default el-button--small el-button--primary"]</value>
+    </element>
+    <element>
+        <name>Treatment_Stoped</name>
+        <type>css</type>
+        <value>.el-row>div .treatment-stoped</value>
+    </element>
+
+</elements>

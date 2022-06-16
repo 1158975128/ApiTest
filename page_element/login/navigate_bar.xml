@@ -41,13 +41,23 @@
     </element>
     <element>
         <name>Treatment_Preserve</name>
-        <type>xpath</type>
-        <value>//*[@name='治疗维护']</value>
+        <type>css</type>
+        <value>[name='治疗维护']</value>
     </element>
     <element>
         <name>Disease_Type</name>
-        <type>name</type>
-        <value>//*[@name='疾病类型']</value>
+        <type>css</type>
+        <value>[name='疾病类型']</value>
+    </element>
+    <element>
+        <name>System_Maintain</name>
+        <type>css</type>
+        <value>[name='系统维护']</value>
+    </element>
+    <element>
+        <name>Personnel_List</name>
+        <type>css</type>
+        <value>[name="人员列表"]</value>
     </element>
     <element>
         <name>DengJiGuaHao</name>
