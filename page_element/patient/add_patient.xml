@@ -1,0 +1,69 @@
+<elements>
+    <!--  新增患者对话框  -->
+    <element>
+        <!--  新增患者标题  -->
+        <name>AddPatientTitle</name>
+        <type>css</type>
+        <value>div.large > div.el-dialog__header</value>
+    </element>
+    <element>
+        <!--  关闭按钮  -->
+        <name>CloseBtn</name>
+        <type>css</type>
+        <value>div.large > div.el-dialog__header > button.el-dialog__headerbtn</value>
+    </element>
+    <element>
+        <!--  基本信息模块  -->
+        <name>BasicInfoModule</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(1) > div.el-row</value>
+    </element>
+    <element>
+        <!--  基本信息模块展开按钮  -->
+        <name>BasicInfoModuleExpandedBtn</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(1) > div.el-row > div.fr-folder</value>
+    </element>
+    <element>
+        <!--  姓名输入框  -->
+        <name>NameInput</name>
+        <type>css</type>
+        <value>label[for="name"]+div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  姓名输入框提示语  -->
+        <name>NameInputError</name>
+        <type>css</type>
+        <value>label[for="name"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  疗程信息模块  -->
+        <name>TreatmentInfoModule</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(2) > div.el-row</value>
+    </element>
+    <element>
+        <!--  疗程信息模块展开按钮  -->
+        <name>TreatmentInfoModuleExpandedBtn</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(2) > div.el-row > div.fr-folder</value>
+    </element>
+    <element>
+        <!--  住院信息模块  -->
+        <name>HospitalInfoModule</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(3) > div.el-row</value>
+    </element>
+    <element>
+        <!--  住院信息模块展开按钮  -->
+        <name>HospitalInfoModuleExpandedBtn</name>
+        <type>css</type>
+        <value>div.add-patient > div.body > form:nth-child(3) > div.el-row > div.fr-folder</value>
+    </element>
+    <element>
+        <!--  确定按钮  -->
+        <name>Confirm</name>
+        <type>css</type>
+        <value>div.add-patient > button > span</value>
+    </element>
+</elements>
