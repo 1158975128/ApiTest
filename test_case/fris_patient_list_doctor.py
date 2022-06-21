@@ -18,9 +18,9 @@ class Test_Patient_List():
         self.mylogin = LoginPage(self.driver)
         self.mylogin.login_fris('doctor')
         time.sleep(1)
-        self.work_in = Work_Clock_In(self.driver)
-        self.work_in.start_work("OT")
-        time.sleep(1)
+        # self.work_in = Work_Clock_In(self.driver)
+        # self.work_in.start_work("OT")
+        # time.sleep(1)
 
     def teardown(self):
         self.Patient = Patient_List(self.driver)
@@ -89,7 +89,6 @@ class Test_Patient_List():
         self.patient.choose_date(data[2])
         self.driver.implicitly_wait(30)
         self.patient.verify_screen(data[0])
-
 
 
     @pytest.mark.parametrize('data',[("其他女","关节炎","关","女","其他","我的患者"),("住院男","关节炎","关","男","住院","全部患者")])

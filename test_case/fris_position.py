@@ -23,6 +23,7 @@ class TestPosition():
         self.Position = Position(self.driver)
         self.driver.quit()
 
+    # 需求号S#1960
     data = [('新增职务','职务名称','创建时间','修改时间','操作')]
     @pytest.mark.parametrize('new_additional,position,create_time,modification_time,operation',data)
     def test_01_positio_page(self,new_additional,position,create_time,modification_time,operation):

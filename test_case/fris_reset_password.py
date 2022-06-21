@@ -27,7 +27,7 @@ class TestDepartment():
         self.Reset = Reset_pwd(self.driver)
         self.driver.quit()
 
-
+    # 需求号S#1650
     def test_01_check_persion_list_page(self):
         self.reset = Reset_pwd(self.driver)
         self.reset.check_persion_list_page()
