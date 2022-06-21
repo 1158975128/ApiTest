@@ -3,6 +3,9 @@ import time
 import random
 from selenium import webdriver
 from utils.object_map import ObjectMap
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -21,8 +24,14 @@ class AddPatient:
         """
         打开新增患者对话框
         """
-        add_patient_btn = self.patient.getLocator(self.driver, 'New_patient')
-        add_patient_btn.click()
+        wait = WebDriverWait(self.driver, 30)
+        try:
+            wait.until(lambda x: self.patient.getLocator(self.driver, 'New_patient'))
+        except TimeoutException:
+            raise TimeoutException("超时！没找到 新增患者 按钮！")
+        else:
+            add_patient_btn = self.patient.getLocator(self.driver, 'New_patient')
+            add_patient_btn.click()
 
     def close_add_patient_dialog(self):
         """

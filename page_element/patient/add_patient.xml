@@ -43,6 +43,156 @@
         <value>label[for="name"]+div > div.el-form-item__error</value>
     </element>
     <element>
+        <!--  性别男  -->
+        <name>SexMale</name>
+        <type>css</type>
+        <value>label[for="sex"]+div > div > div > span:nth-child(1)</value>
+    </element>
+    <element>
+        <!--  性别女  -->
+        <name>SexFemale</name>
+        <type>css</type>
+        <value>label[for="sex"]+div > div > div > span:nth-child(2)</value>
+    </element>
+    <element>
+        <!--  身份证号输入框  -->
+        <name>IdentityNumberInput</name>
+        <type>css</type>
+        <value>label[for="identityNumber"]+div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  身份证号输入框提示语  -->
+        <name>IdentityNumberInputError</name>
+        <type>css</type>
+        <value>label[for="identityNumber"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  生日输入框  -->
+        <name>BirthdayInput</name>
+        <type>css</type>
+        <value>label[for="birthday"]+div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  年龄输入框  -->
+        <name>AgeInput</name>
+        <type>css</type>
+        <value>label[for="age"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  年龄输入框提示语  -->
+        <name>AgeInputError</name>
+        <type>css</type>
+        <value>label[for="age"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  民族输入框  -->
+        <name>NationalityInput</name>
+        <type>css</type>
+        <value>label[for="nationality"]+div > div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  社保号输入框  -->
+        <name>SocialSecurityNumberInput</name>
+        <type>css</type>
+        <value>label[for="socialSecurityNumber"]+div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  未婚  -->
+        <name>Unmarried</name>
+        <type>css</type>
+        <value>label[for="marriage"]+div > div > div > span:nth-child(1)</value>
+    </element>
+    <element>
+        <!--  已婚  -->
+        <name>Married</name>
+        <type>css</type>
+        <value>label[for="marriage"]+div > div > div > span:nth-child(2)</value>
+    </element>
+    <element>
+        <!--  身高输入框  -->
+        <name>HeightInput</name>
+        <type>css</type>
+        <value>label[for="height"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  身高输入框提示语  -->
+        <name>HeightInputError</name>
+        <type>css</type>
+        <value>label[for="height"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  体重输入框  -->
+        <name>WeightInput</name>
+        <type>css</type>
+        <value>label[for="weight"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  体重输入框提示语  -->
+        <name>WeightInputError</name>
+        <type>css</type>
+        <value>label[for="weight"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  手机号输入框  -->
+        <name>PhoneInput</name>
+        <type>css</type>
+        <value>label[for="phone"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  手机号输入框提示语  -->
+        <name>PhoneInputError</name>
+        <type>css</type>
+        <value>label[for="phone"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  邮箱输入框  -->
+        <name>EmailInput</name>
+        <type>css</type>
+        <value>label[for="email"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  邮箱输入框提示语  -->
+        <name>EmailInputError</name>
+        <type>css</type>
+        <value>label[for="email"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  职业输入框  -->
+        <name>ProfessionInput</name>
+        <type>css</type>
+        <value>label[for="profession"]+div > div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  联系人输入框  -->
+        <name>LinkmanInput</name>
+        <type>css</type>
+        <value>label[for="linkman"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  关系输入框  -->
+        <name>RelationInput</name>
+        <type>css</type>
+        <value>label[for="relation"]+div > div > div > div > div > input</value>
+    </element>
+    <element>
+        <!--  紧急电话输入框  -->
+        <name>LinkmanPhoneInput</name>
+        <type>css</type>
+        <value>label[for="linkmanPhone"]+div > div > div > input</value>
+    </element>
+    <element>
+        <!--  紧急电话输入框提示语  -->
+        <name>LinkmanPhoneInputError</name>
+        <type>css</type>
+        <value>label[for="linkmanPhone"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  住址输入框  -->
+        <name>AddressInput</name>
+        <type>css</type>
+        <value>label[for="address"]+div > div > div > input</value>
+    </element>
+    <element>
         <!--  疗程信息模块  -->
         <name>TreatmentInfoModule</name>
         <type>css</type>

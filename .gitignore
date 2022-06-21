@@ -6,3 +6,12 @@
 /caches/
 /.idea/
 /*.iml
+/.idea/**
+allure-report/
+allure-results/
+logs/
+report/
+reports/
+*.html
+*.log
+*.pyc
