@@ -23,6 +23,7 @@ class TestDepartment():
         self.Type = Department_Type(self.driver)
         self.driver.quit()
 
+    # 需求号S#1958
     data = [("新增部门", "部门名称","操作")]
     @pytest.mark.parametrize('new_additional, check_department_name,check_operation_name',data)
     def test_01_department_type_page(self,new_additional, check_department_name,check_operation_name):

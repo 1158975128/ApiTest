@@ -55,6 +55,16 @@
         <value>[name='系统维护']</value>
     </element>
     <element>
+        <name>System_Management</name>
+        <type>css</type>
+        <value>[name="系统管理"]</value>
+    </element>
+    <element>
+        <name>Version_Management</name>
+        <type>css</type>
+        <value>[name="版本管理"]</value>
+    </element>
+    <element>
         <name>Personnel_List</name>
         <type>css</type>
         <value>[name="人员列表"]</value>

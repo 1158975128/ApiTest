@@ -78,6 +78,18 @@ class NavigateBar(object):
             department = self.navigate.getLocator(self.driver, 'Department')
             department.click()
 
+    def go_to_system_management(self):
+        system_management = self.navigate.getLocator(self.driver, 'System_Management')
+        # 获取class的值，判断下拉框状态
+        system_class = system_management.get_attribute('class').strip()
+        if system_class.endswith('is-opened'):
+            version_manegement = self.navigate.getLocator(self.driver, 'Version_Management')
+            version_manegement.click()
+        else:
+            system_management.click()
+            version_manegement = self.navigate.getLocator(self.driver, 'Version_Management')
+            version_manegement.click()
+
     def go_to_system_maintain(self):
         system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
         # 获取class的值，判断下拉框状态

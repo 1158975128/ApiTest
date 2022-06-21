@@ -162,7 +162,6 @@ class Patient_List():
 
         except NoSuchElementException:
             pass
-
     def add_new_patient(self,patient,disease,diagnosis,patient_sex,patient_origin):
         '''
         新增一个住院患者
@@ -330,8 +329,9 @@ class Patient_List():
                 check.equal(split_month, split_registration_time, "检查当前页面患者的月份于所查找的是否一直")
             log.info('匹配成功')
 
-        else:
+        elif len(check_dates) == 0:
             log.info('当前日期无患者')
+        # print('13:选择日期执行完毕',time.strftime("%Y_%m_%d_%H_%M_%S"))
 
 
     def add_treatment_item(self,patient_name,item):
