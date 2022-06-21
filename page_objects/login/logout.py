@@ -53,6 +53,6 @@ class Logout():
         title = self.version.getLocator(self.driver, 'Title').get_attribute('textContent')
         print(title)
 
-        log.info("重置密码成功")
+
 
 

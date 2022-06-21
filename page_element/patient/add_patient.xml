@@ -37,6 +37,12 @@
         <value>label[for="name"]+div > div.el-form-item__error</value>
     </element>
     <element>
+        <!--  性别男  -->
+        <name>SexMale</name>
+        <type>css</type>
+        <value>label[for="name"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
         <!--  疗程信息模块  -->
         <name>TreatmentInfoModule</name>
         <type>css</type>
