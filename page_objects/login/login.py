@@ -1,7 +1,7 @@
 import os
 import logging
 from utils.object_map import ObjectMap
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, StaleElementReferenceException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
@@ -37,7 +37,7 @@ class LoginPage(object):
         try:
             login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
             wait.until(expected_conditions.visibility_of(login_confirm_button))
-        except (NoSuchElementException, TimeoutException):
+        except (NoSuchElementException, TimeoutException, StaleElementReferenceException):
             logging.info("未找到登录确认按钮，继续！")
         else:
             logging.info("需要点击登录确认按钮")
