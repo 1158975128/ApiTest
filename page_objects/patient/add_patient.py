@@ -5,7 +5,7 @@ from selenium import webdriver
 from utils.object_map import ObjectMap
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
+# from selenium.webdriver.support import expected_conditions
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))

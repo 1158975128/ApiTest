@@ -1,7 +1,9 @@
 import os
 import logging
 from utils.object_map import ObjectMap
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 # log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -30,10 +32,24 @@ class LoginPage(object):
         pwd_area.send_keys(pwd)
         login_button = self.login.getLocator(self.driver, 'LoginButton')
         login_button.click()
-        self.driver.implicitly_wait(3)
-        login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
-        self.driver.implicitly_wait(3)
-        login_confirm_button.click()
+        self.driver.implicitly_wait(5)
+        wait = WebDriverWait(self.driver, 30)
+        try:
+            login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
+            wait.until(expected_conditions.visibility_of(login_confirm_button))
+        except (NoSuchElementException, TimeoutException):
+            logging.info("未找到登录确认按钮，继续！")
+        else:
+            logging.info("需要点击登录确认按钮")
+            login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
+            login_confirm_button.click()
+        # logging.info("找到登录确认按钮")
+        # self.driver.implicitly_wait(5)
+        # if login_confirm_button.is_displayed():
+        #     logging.info("需要登录确认")
+        #     login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
+        #     login_confirm_button.click()
+        logging.info("登录成功！")
         # try:
         #     login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
         # except NoSuchElementException:
