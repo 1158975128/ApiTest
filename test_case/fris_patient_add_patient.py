@@ -38,16 +38,25 @@ class TestAddPatient:
     def setup_class(self):
         self.add_patient_map = ObjectMap(add_patient_map)
 
-    @pytest.mark.parametrize('name,exp_msg',[('张三', None),
+    @pytest.mark.parametrize('name,exp_msg',[('张三', None), ('123', None), ('!.', None), ('abc', None),
                                              ('一二三四五六七八九十一二三四五六七八九十一二', '最多21个汉字'),
                                              ('', '此项为必填')])
     def test_name(self, driver, add_patient_dialog, name, exp_msg):
+        """
+        TestCase: 姓名输入框格式校验
+        :param driver: 驱动
+        :param add_patient_dialog: 打开对话框fixture
+        :param name: 姓名
+        :param exp_msg: 报警信息
+        """
         print("姓名框输入：%s" % name)
+        add_patient = AddPatient(driver)
         name_input = self.add_patient_map.getLocator(driver, 'NameInput')
         name_input.click()
         name_input.send_keys(name)
-        add_patient_dialog_title = self.add_patient_map.getLocator(driver, 'AddPatientTitle')
-        add_patient_dialog_title.click()
+        add_patient.click_add_patient_dialog_title()
+        # add_patient_dialog_title = self.add_patient_map.getLocator(driver, 'AddPatientTitle')
+        # add_patient_dialog_title.click()
         if exp_msg is None:
             try:
                 act_msg_area = self.add_patient_map.getLocator(driver, 'NameInputError')
@@ -63,3 +72,24 @@ class TestAddPatient:
                 assert False, "无提示语，失败！"
             else:
                 assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
+
+    @pytest.mark.parametrize('identity_number,exp_msg',[('37098319941107224X', None), ('', None),
+                                                        ('123', '身份证号错误'), ('abc', '身份证号错误'),
+                                                        ('一二三', '身份证号错误'), ('!.', '身份证号错误')])
+    def test_identity_number(self, driver, add_patient_dialog, identity_number, exp_msg):
+        """
+        TestCase: 身份证号格式校验
+        :param driver: 驱动
+        :param add_patient_dialog: 打开对话框fixture
+        :param identity_number: 身份证号
+        :param exp_msg: 预计报警信息
+        """
+        print("身份证号输入框：%s" % str(identity_number))
+        add_patient = AddPatient(driver)
+        add_patient.expand_basic_info_module()
+        identity_number_input = self.add_patient_map.getLocator(driver, 'IdentityNumberInput')
+        identity_number_input.click()
+        identity_number_input.send_keys(identity_number)
+        add_patient.click_add_patient_dialog_title()
+
+

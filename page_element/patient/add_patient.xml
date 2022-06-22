@@ -40,12 +40,6 @@
         <!--  性别男  -->
         <name>SexMale</name>
         <type>css</type>
-        <value>label[for="name"]+div > div.el-form-item__error</value>
-    </element>
-    <element>
-        <!--  性别男  -->
-        <name>SexMale</name>
-        <type>css</type>
         <value>label[for="sex"]+div > div > div > span:nth-child(1)</value>
     </element>
     <element>
