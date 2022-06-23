@@ -199,6 +199,36 @@
         <value>div.add-patient > div.body > form:nth-child(2) > div.el-row > div.fr-folder</value>
     </element>
     <element>
+        <!--  疾病类型输入框  -->
+        <name>PatientTypeBox</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div > div > div > div</value>
+    </element>
+    <element>
+        <!--  疾病类型已选条目1  -->
+        <name>PatientTypeOne</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div > div > div > div > span :nth-child(1) > span</value>
+    </element>
+    <element>
+        <!--  疾病类型已选条目1关闭按钮  -->
+        <name>PatientTypeOneCloseBtn</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div > div > div > div > span :nth-child(1) > i</value>
+    </element>
+    <element>
+        <!--  疾病类型已选条目2  -->
+        <name>PatientTypeTwo</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div > div > div > div > span :nth-child(2) > span</value>
+    </element>
+    <element>
+        <!--  疾病类型已选条目2关闭按钮  -->
+        <name>PatientTypeTwoCloseBtn</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div > div > div > div > span :nth-child(2) > i</value>
+    </element>
+    <element>
         <!--  住院信息模块  -->
         <name>HospitalInfoModule</name>
         <type>css</type>

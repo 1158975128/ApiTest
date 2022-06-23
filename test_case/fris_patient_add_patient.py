@@ -190,3 +190,111 @@ class TestAddPatient:
             else:
                 assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
 
+    @pytest.mark.parametrize('phone,exp_msg', [(0, None), ('01-2', None),
+                                               ('01234567890123456789012345678901', None),
+                                               ('012345678901234567890123456789012', '请填写正确的手机号'),
+                                               ('abc', '请填写正确的手机号'), ('一二三', '请填写正确的手机号'),
+                                               ('?.', '请填写正确的手机号')])
+    def test_phone(self, driver, add_patient_dialog, phone, exp_msg):
+        """
+        TestCase: 校验手机号格式
+        """
+        print("手机号输入：%s" % str(phone))
+        add_patient = AddPatient(driver)
+        add_patient.expand_basic_info_module()
+        phone_input = self.add_patient_map.getLocator(driver, 'PhoneInput')
+        phone_input.click()
+        phone_input.send_keys(phone)
+        add_patient.click_add_patient_dialog_title()
+        if exp_msg is None:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'PhoneInputError')
+            except NoSuchElementException:
+                print("无提示语，通过！")
+                assert True
+            else:
+                assert False, "有提示信息(%s)，失败！" % str(act_msg_area.get_attribute('textContent'))
+        else:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'PhoneInputError')
+            except NoSuchElementException:
+                assert False, "无提示语，失败！"
+            else:
+                assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
+
+    @pytest.mark.parametrize('email,exp_msg', [('1@fftai.com', None), ('.@fftai', None), ('', None),
+                                               ('012345678901234567890123456789012345678901234567890123456789@123', None),
+                                               ('012345678901234567890123456789012345678901234567890123456789@1234', '请填写64位以内字符'),
+                                               ('1@', '请填写正确的邮箱'), ('@fftai', '请填写正确的邮箱'),
+                                               ('。@fftai', '请填写正确的邮箱'), ('abc', '请填写正确的邮箱')])
+    def test_email(self, driver, add_patient_dialog, email, exp_msg):
+        """
+        TestCase: 校验邮箱格式
+        """
+        print("邮箱输入：%s" % str(email))
+        add_patient = AddPatient(driver)
+        add_patient.expand_basic_info_module()
+        email_input = self.add_patient_map.getLocator(driver, 'EmailInput')
+        email_input.click()
+        email_input.send_keys(email)
+        add_patient.click_add_patient_dialog_title()
+        if exp_msg is None:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'EmailInputError')
+            except NoSuchElementException:
+                print("无提示语，通过！")
+                assert True
+            else:
+                assert False, "有提示信息(%s)，失败！" % str(act_msg_area.get_attribute('textContent'))
+        else:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'EmailInputError')
+            except NoSuchElementException:
+                assert False, "无提示语，失败！"
+            else:
+                assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
+
+    @pytest.mark.parametrize('linkman_phone,exp_msg', [(0, None), ('01-2', None),
+                                                       ('01234567890123456789012345678901', None),
+                                                       ('012345678901234567890123456789012', '请填写正确的手机号'),
+                                                       ('abc', '请填写正确的手机号'), ('一二三', '请填写正确的手机号'),
+                                                       ('?.', '请填写正确的手机号')])
+    def test_linkman_phone(self, driver, add_patient_dialog, linkman_phone, exp_msg):
+        """
+        TestCase: 校验紧急电话格式
+        """
+        print("紧急电话输入：%s" % str(linkman_phone))
+        add_patient = AddPatient(driver)
+        add_patient.expand_basic_info_module()
+        linkman_phone_input = self.add_patient_map.getLocator(driver, 'LinkmanPhoneInput')
+        linkman_phone_input.click()
+        linkman_phone_input.send_keys(linkman_phone)
+        add_patient.click_add_patient_dialog_title()
+        if exp_msg is None:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'LinkmanPhoneInputError')
+            except NoSuchElementException:
+                print("无提示语，通过！")
+                assert True
+            else:
+                assert False, "有提示信息(%s)，失败！" % str(act_msg_area.get_attribute('textContent'))
+        else:
+            try:
+                act_msg_area = self.add_patient_map.getLocator(driver, 'LinkmanPhoneInputError')
+            except NoSuchElementException:
+                assert False, "无提示语，失败！"
+            else:
+                assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
+
+    @pytest.mark.parametrize('search_word_1,search_word_2,exp_patient_type_1,exp_patient_type_2,exp_msg',
+                             [('头晕和眩晕', 'E10.500x051', '头晕和眩晕(R42.x00)', '1型糖尿病性下肢感染(E10.500x051)',
+                               '此项为必填')])
+    def test_patient_type(self, driver, add_patient_dialog, search_word_1, search_word_2, exp_patient_type_1,
+                          exp_patient_type_2, exp_msg):
+        """
+        TestCase:
+        """
+        print("两个搜索关键词分别为%(search_word_1)s和%(search_word_2)s" % {"search_word_1": search_word_1, "search_word_2": search_word_2})
+        print("两个期待结果为%(exp_1)s和%(exp_2)s" % {"exp_1": exp_patient_type_1, "exp_2": exp_patient_type_2})
+        patient_type_box = self.add_patient_map.getLocator(driver, 'PatientTypeBox')
+

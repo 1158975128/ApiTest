@@ -56,3 +56,10 @@ class AddPatient:
         """
         expand_btn = self.add_patient_map.getLocator(self.driver, 'BasicInfoModuleExpandedBtn')
         expand_btn.click()
+
+    def expand_treatment_info_module(self):
+        """
+        展开疗程信息模块
+        """
+        expand_btn = self.add_patient_map.getLocator(self.driver, 'TreatmentInfoModuleExpandedBtn')
+        expand_btn.click()
