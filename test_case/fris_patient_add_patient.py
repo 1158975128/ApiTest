@@ -9,6 +9,7 @@ from page_objects.navigate_bar import NavigateBar
 from config.account_info import doctorZhaoEmail, doctorZhaoPwd
 from utils.object_map import ObjectMap
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.actions.key_actions import KeyActions
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../page_element"))
@@ -296,5 +297,25 @@ class TestAddPatient:
         """
         print("两个搜索关键词分别为%(search_word_1)s和%(search_word_2)s" % {"search_word_1": search_word_1, "search_word_2": search_word_2})
         print("两个期待结果为%(exp_1)s和%(exp_2)s" % {"exp_1": exp_patient_type_1, "exp_2": exp_patient_type_2})
+        add_patient = AddPatient(driver)
         patient_type_box = self.add_patient_map.getLocator(driver, 'PatientTypeBox')
-
+        print("选择疾病类型")
+        # js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_1
+        # driver.execute_script(js)
+        patient_type_box.send_keys(search_word_1)
+        add_patient.select_drop_down_item_one()
+        js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_2
+        driver.execute_script(js)
+        add_patient.select_drop_down_item_one()
+        act_patient_type_1 = self.add_patient_map.getLocator(driver, 'PatientTypeOne').get_attribute('textContent')
+        act_patient_type_2 = self.add_patient_map.getLocator(driver, 'PatientTypeTwo').get_attribute('textContent')
+        assert act_patient_type_1 == exp_patient_type_1, "所选疾病类型不正确，失败！"
+        assert act_patient_type_2 == exp_patient_type_2, "所选疾病类型不正确，失败！"
+        print("删除所选疾病类型")
+        close_btn = self.add_patient_map.getLocator(driver, 'PatientTypeTwoCloseBtn')
+        close_btn.click()
+        close_btn = self.add_patient_map.getLocator(driver, 'PatientTypeOneCloseBtn')
+        close_btn.click()
+        print("查看提示信息")
+        act_msg = self.add_patient_map.getLocator(driver, 'PatientTypeError').get_attribute('textContent')
+        assert act_msg == exp_msg, "疾病类型提示语不正确，失败！"

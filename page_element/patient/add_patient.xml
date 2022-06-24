@@ -229,6 +229,12 @@
         <value>label[for="type"]+div > div > div > div > div > span :nth-child(2) > i</value>
     </element>
     <element>
+        <!--  疾病类型提示语  -->
+        <name>PatientTypeError</name>
+        <type>css</type>
+        <value>label[for="type"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
         <!--  住院信息模块  -->
         <name>HospitalInfoModule</name>
         <type>css</type>
@@ -245,5 +251,17 @@
         <name>Confirm</name>
         <type>css</type>
         <value>div.add-patient > button > span</value>
+    </element>
+    <element>
+        <!--  下拉菜单  -->
+        <name>DropDown</name>
+        <type>css</type>
+        <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > div > div > ul</value>
+    </element>
+    <element>
+        <!--  下拉菜单选项一  -->
+        <name>DropDownItemOne</name>
+        <type>css</type>
+        <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > div > div > ul > li:nth-child(1) > span</value>
     </element>
 </elements>

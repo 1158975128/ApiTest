@@ -63,3 +63,10 @@ class AddPatient:
         """
         expand_btn = self.add_patient_map.getLocator(self.driver, 'TreatmentInfoModuleExpandedBtn')
         expand_btn.click()
+
+    def select_drop_down_item_one(self):
+        """
+        选择下拉菜单第一个
+        """
+        item_one = self.add_patient_map.getLocator(self.driver, 'DropDownItemOne')
+        item_one.click()
