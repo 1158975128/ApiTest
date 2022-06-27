@@ -20,8 +20,8 @@ class TestDepartment():
         self.driver = Browser.open_browser()
         self.mylogin = LoginPage(self.driver)
         self.mylogin.login_fris('admin')
-        self.work = Work_Clock_In(self.driver)
-        self.work.start_work('OT')
+        # self.work = Work_Clock_In(self.driver)
+        # self.work.start_work('OT')
 
     def teardown(self):
         self.Reset = Reset_pwd(self.driver)
@@ -32,7 +32,7 @@ class TestDepartment():
         self.reset = Reset_pwd(self.driver)
         self.reset.check_persion_list_page()
 
-    data = [("尹露")]
+    data = [("周治疗师全")]
     @pytest.mark.parametrize('user_name',data)
     def test_02_reset_pwd(self,user_name):
         self.reset = Reset_pwd(self.driver)

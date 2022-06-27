@@ -32,7 +32,7 @@ class Reset_pwd():
         search = self.version.getLocator(self.driver, 'Search').text
         navigate = self.version.getLocator(self.driver, 'Navigate').get_attribute('textContent')
         check.equal(new_additional,'新增账号','检查新增账号按钮')
-        check.equal(inpu_name,'输入搜索内容','检查输入框默认内容')
+        check.equal(inpu_name,'请输入姓名','检查输入框默认内容')
         check.equal(search,'查询','检查查询按钮')
         check.equal(navigate,'id用户名邮箱手机号创建时间操作','检查菜单栏')
         log.info("页面元素正确")
