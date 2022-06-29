@@ -10,21 +10,17 @@ import pytest_check as check
 
 log = MyLogging(__name__).logger
 
+@pytest.fixture(scope='module', autouse=True)
+def login(driver):
+    mylogin = LoginPage(driver)
+    mylogin.login_fris('admin')
 
 class Test_Patient_Modify():
 
-    def setup(self):
-        self.driver = Browser.open_browser()
-        self.mylogin = LoginPage(self.driver)
-        self.mylogin.login_fris('doctor')
-
-    def teardown(self):
-        self.Patient = Patient_Info_Modify(self.driver)
-        self.driver.quit()
     # 需求号S#1696
     data = [("新增患者", "门诊", "全部患者")]
     @pytest.mark.parametrize('new_patient,origin_droplist,patient_droplist', data)
-    def test_01_check_patient_page(self,new_patient,origin_droplist,patient_droplist):
+    def test_01_check_patient_page(self,new_patient,origin_droplist,patient_droplist,driver):
         '''
         检查患者管理页面是否正确
         :param new_patient: 新增患者按钮
@@ -32,7 +28,7 @@ class Test_Patient_Modify():
         :param patient_droplist:默认为全部患者
         :return:
         '''
-        self.patient = Patient_Info_Modify(self.driver)
+        self.patient = Patient_Info_Modify(driver)
         page_list = self.patient.check_patient_page()
         print(page_list)
         check.equal(new_patient,page_list[0],"判断新增患者按钮")
