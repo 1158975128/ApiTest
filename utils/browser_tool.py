@@ -5,10 +5,10 @@ from selenium.webdriver.chrome.options import Options
 
 lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../drivers"))
 # windows driver
-# driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址x
+driver_path = lib_path + "/" + "chromedriver.exe"  # excel地址x
 
 # mac driver
-driver_path = lib_path + "/" + "chromedriver-102"
+# driver_path = lib_path + "/" + "chromedriver-102"
 
 class Browser:
     @staticmethod
