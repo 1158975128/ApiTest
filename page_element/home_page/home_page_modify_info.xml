@@ -1,0 +1,134 @@
+<elements>
+    <element>
+        <!--  基本信息标题  -->
+        <name>InfoTitle</name>
+        <type>css</type>
+        <value>.el-form > .fr-form-group-title > .content</value>
+    </element>
+    <element>
+        <!--  我的头像  -->
+        <name>My_Photo</name>
+        <type>css</type>
+        <value>.my-photo-box</value>
+    </element>
+    <element>
+        <!--  姓名输入框  -->
+        <name>NameInput</name>
+        <type>css</type>
+        <value>[placeholder="请输入姓名"]</value>
+    </element>
+    <element>
+        <!--  姓名输入框提示语  -->
+        <name>NameInputError</name>
+        <type>css</type>
+        <value>label[for="name"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  性别男  -->
+        <name>SexMale</name>
+        <type>css</type>
+        <value>label[for="sex"]+div > div > div > span:nth-child(1)</value>
+    </element>
+    <element>
+        <!--  性别女  -->
+        <name>SexFemale</name>
+        <type>css</type>
+        <value>label[for="sex"]+div > div > div > span:nth-child(2)</value>
+    </element>
+    <element>
+        <!--  出生日期输入框  -->
+        <name>BirthdayInput</name>
+        <type>css</type>
+        <value>[placeholder="请选择日期"]</value>
+    </element>
+    <element>
+        <!--  出生日期框提示语  -->
+        <name>BirthdayInputError</name>
+        <type>css</type>
+        <value>.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  出生日期关闭按钮  -->
+        <name>BirthdayClose</name>
+        <type>css</type>
+        <value>[class="el-input__icon el-icon-circle-close"]</value>
+    </element>
+    <element>
+        <!--  选择上个月  -->
+        <name>ChooseMonth</name>
+        <type>css</type>
+        <value>[aria-label="上个月"]</value>
+    </element>
+    <element>
+        <!--  选择出生日期  -->
+        <name>ChooseBirthday</name>
+        <type>css</type>
+        <value>[class="el-picker-panel__content"] tr:nth-child(5) td:nth-child(3)</value>
+    </element>
+    <element>
+        <!--  年龄输入框提示语  -->
+        <name>AgeInputError</name>
+        <type>css</type>
+        <value>label[for="age"]+div > div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  手机号输入框  -->
+        <name>PhoneInput</name>
+        <type>css</type>
+        <value>.el-col:nth-child(4) .fr-form-item > .el-input</value>
+    </element>
+    <element>
+        <!--  邮箱输入框  -->
+        <name>EmailInput</name>
+        <type>css</type>
+        <value>.el-col:nth-child(5) .fr-form-item > .el-input</value>
+    </element>
+    <element>
+        <!--  科室下拉框  -->
+        <name>Offices</name>
+        <type>css</type>
+        <value>.el-col:nth-child(1) .el-select .el-input</value>
+    </element>
+    <element>
+        <!--  部门  -->
+        <name>Department</name>
+        <type>css</type>
+        <value>.el-col:nth-child(2) .el-input</value>
+    </element>
+    <element>
+        <!--  职称  -->
+        <name>Title</name>
+        <type>css</type>
+        <value>.el-col:nth-child(3) .el-select  .el-input</value>
+    </element>
+    <element>
+        <!--  所属机构  -->
+        <name>Organization</name>
+        <type>css</type>
+        <value>.el-col:nth-child(4) .el-select .el-input</value>
+    </element>
+    <element>
+        <!--  所属岗位下拉框  -->
+        <name>Position</name>
+        <type>css</type>
+        <value>.el-col:nth-child(5) .select-trigger .el-input</value>
+    </element>
+    <element>
+        <!--  职务下拉框  -->
+        <name>Post</name>
+        <type>css</type>
+        <value>.el-col:nth-child(6) .el-input</value>
+    </element>
+    <element>
+        <!--  保存修改  -->
+        <name>Save</name>
+        <type>css</type>
+        <value>.colorful>span</value>
+    </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+</elements>
