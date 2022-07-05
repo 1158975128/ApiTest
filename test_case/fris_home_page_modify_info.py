@@ -112,28 +112,43 @@ class TestHomePageModify:
         TestCase: 校验年龄格式
         """
         print("年龄输入：%s" % str(sex))
-        # driver.refresh()
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
-        if sex == '女':
-            print('is female')
+        home_page_info = HomePage(driver)
+        home_page_info.click_my_photo()
+        default_sex = driver.find_element(By.CSS_SELECTOR,value='[class="el-tag el-tag--medium el-tag--dark fr-radio-tag"]').text
+        print(default_sex)
+        if default_sex == "男":
             sex_female = self.home_page_map.getLocator(driver, 'SexFemale')
             sex_female.click()
             time.sleep(1)
-            print(sex_female.get_attribute('class'))
-        else:
-            print('is male')
+            assert default_sex != sex_female.text
+
+        elif default_sex == "女":
             sex_male = self.home_page_map.getLocator(driver, 'SexMale')
             sex_male.click()
             time.sleep(1)
-            print(sex_male.get_attribute('class'))
+            assert default_sex != sex_male.text
+
+        else:
+            if sex == "男":
+                sex_male = self.home_page_map.getLocator(driver, 'SexMale')
+                sex_male.click()
+                assert sex == sex_male.text
+
+            elif sex == "女":
+                sex_female = self.home_page_map.getLocator(driver, 'SexFemale')
+                sex_female.click()
+                assert sex == sex_female.text
+
+            else:
+                print('请传入要修改的性别')
 
     def test_phone(self, driver):
         """
         TestCase: 校验手机号为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         phone_input = self.home_page_map.getLocator(driver, 'PhoneInput')
         if phone_input.get_attribute('class').split(' ')[-1] == 'is-disabled':
             assert True
@@ -145,8 +160,9 @@ class TestHomePageModify:
         """
         TestCase: 校验邮箱为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         email_input = self.home_page_map.getLocator(driver, 'EmailInput')
         time.sleep(1)
         if email_input.get_attribute('class').split(' ')[-1] == 'is-disabled':
@@ -158,8 +174,9 @@ class TestHomePageModify:
         """
         TestCase: 校验科室为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         offices_input = self.home_page_map.getLocator(driver, 'Offices')
         time.sleep(1)
         if offices_input.get_attribute('class').split(' ')[-2] == 'is-disabled':
@@ -171,8 +188,9 @@ class TestHomePageModify:
         """
         TestCase: 校验部门为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         department_input = self.home_page_map.getLocator(driver, 'Department')
         time.sleep(1)
         if department_input.get_attribute('class').split(' ')[-2] == 'is-disabled':
@@ -184,8 +202,9 @@ class TestHomePageModify:
         """
         TestCase: 校验职称为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         title_input = self.home_page_map.getLocator(driver, 'Title')
         time.sleep(1)
         if title_input.get_attribute('class').split(' ')[-2] == 'is-disabled':
@@ -197,8 +216,9 @@ class TestHomePageModify:
         """
         TestCase: 校验所属岗位为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         positing_input = self.home_page_map.getLocator(driver, 'Position')
         time.sleep(1)
         if positing_input.get_attribute('class').split(' ')[-2] == 'is-disabled':
@@ -210,8 +230,9 @@ class TestHomePageModify:
         """
         TestCase: 校验职务为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         post_input = self.home_page_map.getLocator(driver, 'Post')
         time.sleep(1)
         if post_input.get_attribute('class').split(' ')[-2] == 'is-disabled':
@@ -223,8 +244,9 @@ class TestHomePageModify:
         """
         TestCase: 校验岗位小类为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         job_category = driver.find_element(By.CSS_SELECTOR,value='.el-col:nth-child(7) [class="el-checkbox-group"]')
         categorys = job_category.find_elements(By.TAG_NAME, value='label')
         time.sleep(1)
@@ -238,9 +260,9 @@ class TestHomePageModify:
         """
         TestCase: 校验角色为不可填
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
-        time.sleep(1)
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         role = driver.find_element(By.CSS_SELECTOR,value='.el-col:nth-child(8) .el-checkbox-group')
         role_labels = role.find_elements(By.TAG_NAME, value='label')
         time.sleep(1)
@@ -255,9 +277,9 @@ class TestHomePageModify:
         """
         TestCase: 校验成功保存修改
         """
-        my_photo = self.home_page_map.getLocator(driver, 'My_Photo')
-        my_photo.click()
-        time.sleep(3)
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
         name_input = self.home_page_map.getLocator(driver, 'NameInput')
         time.sleep(1)
         old_name = name_input.get_attribute('value')
@@ -278,38 +300,79 @@ class TestHomePageModify:
             time.sleep(1)
             name_input.clear()
             name_input.send_keys(old_name)
+            save.click()
 
+    @pytest.mark.parametrize('exp_msg',[('修改成功')])
+    def test_save_date(self, driver,exp_msg):
+        """
+        TestCase: 校验成功保存修改
+        """
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
+        birthday_input = self.home_page_map.getLocator(driver, 'BirthdayInput')
+        time.sleep(1)
+        birthday_input.click()
+        old_birthday = birthday_input.get_attribute('value')
+        choose_month = self.home_page_map.getLocator(driver, 'ChooseMonth')
+        choose_month.click()
+        choose_birthday = self.home_page_map.getLocator(driver, 'ChooseBirthday')
+        choose_birthday.click()
+        time.sleep(1)
+        new_birthday = birthday_input.get_attribute('value')
+        print(old_birthday,new_birthday)
+        assert old_birthday != new_birthday
+        time.sleep(1)
+        save = self.home_page_map.getLocator(driver, 'Save')
+        save.click()
+        try:
+            act_msg_area = self.home_page_map.getLocator(driver, 'Tips')
+        except NoSuchElementException:
+            assert False, "无提示语，失败！"
+        else:
+            assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
 
+    @pytest.mark.parametrize('sex,exp_msg',[('男','修改成功'),('女','修改成功')])
+    def test_save_sex(self, driver,sex,exp_msg):
+        """
+        TestCase: 校验成功保存修改
+        """
+        home_page_info = HomePage(driver)
+        home_page_info.close_login_tips()
+        home_page_info.click_my_photo()
+        default_sex = driver.find_element(By.CSS_SELECTOR,value='[class="el-tag el-tag--medium el-tag--dark fr-radio-tag"]').text
+        print(default_sex)
+        if default_sex == "男":
+            sex_female = self.home_page_map.getLocator(driver, 'SexFemale')
+            sex_female.click()
+            assert default_sex != sex_female.text
+            save = self.home_page_map.getLocator(driver, 'Save')
+            save.click()
+        elif default_sex == "女":
+            sex_male = self.home_page_map.getLocator(driver, 'SexMale')
+            sex_male.click()
+            assert default_sex != sex_male.text
+            save = self.home_page_map.getLocator(driver, 'Save')
+            save.click()
+        else:
+            if sex == "男":
+                sex_male = self.home_page_map.getLocator(driver, 'SexMale')
+                sex_male.click()
+                assert sex == sex_male.text
+                save = self.home_page_map.getLocator(driver, 'Save')
+                save.click()
+            elif sex == "女":
+                sex_female = self.home_page_map.getLocator(driver, 'SexFemale')
+                sex_female.click()
+                assert sex == sex_female.text
+                save = self.home_page_map.getLocator(driver, 'Save')
+                save.click()
+            else:
+                print('请传入要修改的性别')
+        try:
+            act_msg_area = self.home_page_map.getLocator(driver, 'Tips')
+        except NoSuchElementException:
+            assert False, "无提示语，失败！"
+        else:
+            assert act_msg_area.get_attribute('textContent') == exp_msg, "预期提示语不正确，失败!"
 
-    # @pytest.mark.parametrize('search_word_1,search_word_2,exp_patient_type_1,exp_patient_type_2,exp_msg',
-    #                          [('头晕和眩晕', 'E10.500x051', '头晕和眩晕(R42.x00)', '1型糖尿病性下肢感染(E10.500x051)',
-    #                            '此项为必填')])
-    # def test_patient_type(self, driver, add_patient_dialog, search_word_1, search_word_2, exp_patient_type_1,
-    #                       exp_patient_type_2, exp_msg):
-    #     """
-    #     TestCase:
-    #     """
-    #     print("两个搜索关键词分别为%(search_word_1)s和%(search_word_2)s" % {"search_word_1": search_word_1, "search_word_2": search_word_2})
-    #     print("两个期待结果为%(exp_1)s和%(exp_2)s" % {"exp_1": exp_patient_type_1, "exp_2": exp_patient_type_2})
-    #     add_patient = AddPatient(driver)
-    #     patient_type_box = self.add_patient_map.getLocator(driver, 'PatientTypeBox')
-    #     print("选择疾病类型")
-    #     # js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_1
-    #     # driver.execute_script(js)
-    #     patient_type_box.send_keys(search_word_1)
-    #     add_patient.select_drop_down_item_one()
-    #     js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_2
-    #     driver.execute_script(js)
-    #     add_patient.select_drop_down_item_one()
-    #     act_patient_type_1 = self.add_patient_map.getLocator(driver, 'PatientTypeOne').get_attribute('textContent')
-    #     act_patient_type_2 = self.add_patient_map.getLocator(driver, 'PatientTypeTwo').get_attribute('textContent')
-    #     assert act_patient_type_1 == exp_patient_type_1, "所选疾病类型不正确，失败！"
-    #     assert act_patient_type_2 == exp_patient_type_2, "所选疾病类型不正确，失败！"
-    #     print("删除所选疾病类型")
-    #     close_btn = self.add_patient_map.getLocator(driver, 'PatientTypeTwoCloseBtn')
-    #     close_btn.click()
-    #     close_btn = self.add_patient_map.getLocator(driver, 'PatientTypeOneCloseBtn')
-    #     close_btn.click()
-    #     print("查看提示信息")
-    #     act_msg = self.add_patient_map.getLocator(driver, 'PatientTypeError').get_attribute('textContent')
-    #     assert act_msg == exp_msg, "疾病类型提示语不正确，失败！"

@@ -131,4 +131,10 @@
         <type>css</type>
         <value>.el-message__content</value>
     </element>
+    <element>
+        <!--  关闭登录成功提示  -->
+        <name>CloseTips</name>
+        <type>css</type>
+        <value>.el-message__closeBtn</value>
+    </element>
 </elements>
