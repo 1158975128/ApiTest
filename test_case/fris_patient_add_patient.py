@@ -1,5 +1,7 @@
 import os
+import time
 import pytest
+import pytest_check as check
 from page_objects.login.login import LoginPage
 from utils.browser_tool import Browser
 from page_objects.login.login import LoginPage
@@ -7,6 +9,7 @@ from page_objects.login.logout import Logout
 from page_objects.patient.add_patient import AddPatient
 from page_objects.navigate_bar import NavigateBar
 from config.account_info import doctorZhaoEmail, doctorZhaoPwd
+from config.public_data.patient import Sex
 from utils.object_map import ObjectMap
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.actions.key_actions import KeyActions
@@ -319,3 +322,103 @@ class TestAddPatient:
         print("查看提示信息")
         act_msg = self.add_patient_map.getLocator(driver, 'PatientTypeError').get_attribute('textContent')
         assert act_msg == exp_msg, "疾病类型提示语不正确，失败！"
+
+    @pytest.mark.parametrize('search_word_1,search_word_2,exp_functional_1,exp_functional_2,exp_msg',
+                             [('Fine foot use', 'b830', 'Fine foot use(d446)', '皮肤的其他功能(b830)',
+                               '此项为必填')])
+    def test_functional(self, driver, add_patient_dialog, search_word_1, search_word_2, exp_functional_1,
+                        exp_functional_2, exp_msg):
+        """
+        TestCase: 1. 输入两个功能诊断，选择验证正确性  2. 清空该输入框，验证提示信息
+        """
+        print("两个搜索关键词分别为%(search_word_1)s和%(search_word_2)s" % {"search_word_1": search_word_1,
+                                                                 "search_word_2": search_word_2})
+        print("两个期待结果为%(exp_1)s和%(exp_2)s" % {"exp_1": exp_functional_1, "exp_2": exp_functional_2})
+        add_patient = AddPatient(driver)
+        print("选择功能诊断")
+        functional_box = self.add_patient_map.getLocator(driver, 'FunctionalBox')
+        # driver.implicitly_wait(10)
+        functional_box.send_keys(search_word_1)
+        print("已输入功能诊断1")
+        # driver.implicitly_wait(10)
+        add_patient.select_drop_down_item_one()
+        print("已选功能诊断1")
+        # driver.implicitly_wait(10)
+        functional_box.send_keys(search_word_2)
+        print("已输入功能诊断2")
+        # driver.implicitly_wait(10)
+        add_patient.select_drop_down_item_one()
+        print("已选择功能诊断2")
+        driver.implicitly_wait(10)
+        act_functional_1 = self.add_patient_map.getLocator(driver, 'FunctionalOne').get_attribute('textContent')
+        act_functional_2 = self.add_patient_map.getLocator(driver, 'FunctionalTwo').get_attribute('textContent')
+        assert act_functional_1 == exp_functional_1, "所选功能诊断不正确，失败！"
+        assert act_functional_2 == exp_functional_2, "所选功能诊断不正确，失败！"
+        print("删除所选功能诊断")
+        close_btn = self.add_patient_map.getLocator(driver, 'FunctionalTwoCloseBtn')
+        close_btn.click()
+        close_btn = self.add_patient_map.getLocator(driver, 'FunctionalOneCloseBtn')
+        close_btn.click()
+        print("查看提示信息")
+        act_msg = self.add_patient_map.getLocator(driver, 'FunctionalError').get_attribute('textContent')
+        assert act_msg == exp_msg, "功能诊断提示语不正确，失败！"
+
+    @pytest.mark.parametrize('exp_list', [('护理一级', '护理二级', '护理三级')])
+    def test_nursing_level(self, driver, add_patient_dialog, exp_list):
+        """
+        TestCase: 查看护理等级下拉菜单
+        """
+        add_patient = AddPatient(driver)
+        add_patient.expand_hospital_info_module()
+        nursing_level_box = self.add_patient_map.getLocator(driver, 'NursingLevelBox')
+        nursing_level_box.click()
+        nursing_level_drop_down = self.add_patient_map.getLocator(driver, 'DropDown')
+        nursing_level_list = nursing_level_drop_down.find_elements(By.CSS_SELECTOR, 'li > span')
+        act_nursing_level_list = tuple([item.get_attribute('textContent') for item in nursing_level_list])
+        assert act_nursing_level_list == exp_list, '护理等级列表错误'
+
+    @pytest.mark.parametrize('identity_number,exp_sex,exp_birthday,exp_age,exp_address',
+                             [('230882197703172611', Sex.male, '1977-03-17', '45', '黑龙江省佳木斯市富锦市')])
+    def test_identity_number_auto_input(self, driver, add_patient_dialog, identity_number, exp_sex, exp_birthday,
+                                        exp_age, exp_address):
+        """
+        TestCase: 输入身份证号，验证自动填充的性别、生日、年龄、地址
+        """
+        print("输入的身份证号是%(identity_number)s，自动填充性别：%(sex)s，生日：%(birthday)s，年龄：%(age)s，地址：%(address)s" %
+              {"identity_number": identity_number, "sex": exp_sex.value, "birthday": exp_birthday, "age": exp_age,
+               "address": exp_address})
+        add_patient = AddPatient(driver)
+        add_patient.expand_basic_info_module()
+        identity_number_input = self.add_patient_map.getLocator(driver, 'IdentityNumberInput')
+        identity_number_input.click()
+        identity_number_input.send_keys(identity_number)
+        add_patient.click_add_patient_dialog_title()
+        sex_male_box = self.add_patient_map.getLocator(driver, 'SexMale')
+        act_birthday = driver.execute_script(
+            "document.querySelector('label[for=\"birthday\"]+.el-form-item__content .el-input__inner').value")
+        act_age = driver.execute_script(
+            "document.querySelector('label[for=\"age\"]+.el-form-item__content .el-input__inner').value")
+        act_address = driver.execute_script(
+            "document.querySelector('label[for=\"address\"]+.el-form-item__content .el-input__inner').value")
+        check.is_in("el-tag--dark", sex_male_box.get_attribute("class"), "性别男未选择，失败！")
+        check.equal(act_birthday, exp_birthday, "生日错误，失败！")
+        check.equal(act_age, exp_age, "年龄错误，失败！")
+        check.equal(act_address, exp_address, "地址错误，失败！")
+
+    @pytest.mark.parametrize('source,exp_hospital_number_label', [('住院', '住院号'), ('其他', '就诊号')])
+    def test_hospital_number_label(self, driver, add_patient_dialog, source, exp_hospital_number_label):
+        """
+        TestCase: 点击来源（住院，其他），验证住院号标签
+        """
+        source_btn = driver.find_element(By.XPATH,
+                                         '//label[@for="sourceId"]/following-sibling::div/descendant::span[text()="%s"]' % source)
+        source_btn.click()
+        act_hospital_number_label = self.add_patient_map.getLocator(driver, 'HospitalNumberLabel')
+        assert act_hospital_number_label.get_attribute('textContent') == exp_hospital_number_label, "住院(就诊)号文字不正确，失败！"
+
+    def test_add_patient(self, driver, add_patient_dialog):
+        """
+        TestCase: 添加一个患者（仅必填项），查看结果
+        """
+        add_patient = AddPatient(driver)
+        exp_add_patient = add_patient.add_patient_required()

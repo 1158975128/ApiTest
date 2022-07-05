@@ -4,264 +4,320 @@
         <!--  新增患者标题  -->
         <name>AddPatientTitle</name>
         <type>css</type>
-        <value>div.large > div.el-dialog__header</value>
+        <value>.large .el-dialog__header</value>
     </element>
     <element>
         <!--  关闭按钮  -->
         <name>CloseBtn</name>
         <type>css</type>
-        <value>div.large > div.el-dialog__header > button.el-dialog__headerbtn</value>
+        <value>.large .el-dialog__header button.el-dialog__headerbtn</value>
     </element>
     <element>
         <!--  基本信息模块  -->
         <name>BasicInfoModule</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(1) > div.el-row</value>
+        <value>.add-patient .body form:nth-child(1) .el-row</value>
     </element>
     <element>
         <!--  基本信息模块展开按钮  -->
         <name>BasicInfoModuleExpandedBtn</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(1) > div.el-row > div.fr-folder</value>
+        <value>.add-patient .body form:nth-child(1) .el-row .fr-folder</value>
     </element>
     <element>
         <!--  姓名输入框  -->
         <name>NameInput</name>
         <type>css</type>
-        <value>label[for="name"]+div > div > div > div > input</value>
+        <value>label[for="name"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  姓名输入框提示语  -->
         <name>NameInputError</name>
         <type>css</type>
-        <value>label[for="name"]+div > div.el-form-item__error</value>
+        <value>label[for="name"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  性别男  -->
         <name>SexMale</name>
         <type>css</type>
-        <value>label[for="sex"]+div > div > div > span:nth-child(1)</value>
+        <value>label[for="sex"]+.el-form-item__content span:nth-child(1)</value>
     </element>
     <element>
         <!--  性别女  -->
         <name>SexFemale</name>
         <type>css</type>
-        <value>label[for="sex"]+div > div > div > span:nth-child(2)</value>
+        <value>label[for="sex"]+.el-form-item__content span:nth-child(2)</value>
     </element>
     <element>
         <!--  身份证号输入框  -->
         <name>IdentityNumberInput</name>
         <type>css</type>
-        <value>label[for="identityNumber"]+div > div > div > div > input</value>
+        <value>label[for="identityNumber"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  身份证号输入框提示语  -->
         <name>IdentityNumberInputError</name>
         <type>css</type>
-        <value>label[for="identityNumber"]+div > div.el-form-item__error</value>
+        <value>label[for="identityNumber"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  生日输入框  -->
         <name>BirthdayInput</name>
         <type>css</type>
-        <value>label[for="birthday"]+div > div > div > div > input</value>
+        <value>label[for="birthday"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  年龄输入框  -->
         <name>AgeInput</name>
         <type>css</type>
-        <value>label[for="age"]+div > div > div > input</value>
+        <value>label[for="age"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  年龄输入框提示语  -->
         <name>AgeInputError</name>
         <type>css</type>
-        <value>label[for="age"]+div > div.el-form-item__error</value>
+        <value>label[for="age"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  民族输入框  -->
         <name>NationalityInput</name>
         <type>css</type>
-        <value>label[for="nationality"]+div > div > div > div > div > input</value>
+        <value>label[for="nationality"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  社保号输入框  -->
         <name>SocialSecurityNumberInput</name>
         <type>css</type>
-        <value>label[for="socialSecurityNumber"]+div > div > div > div > input</value>
+        <value>label[for="socialSecurityNumber"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  未婚  -->
         <name>Unmarried</name>
         <type>css</type>
-        <value>label[for="marriage"]+div > div > div > span:nth-child(1)</value>
+        <value>label[for="marriage"]+.el-form-item__content span:nth-child(1)</value>
     </element>
     <element>
         <!--  已婚  -->
         <name>Married</name>
         <type>css</type>
-        <value>label[for="marriage"]+div > div > div > span:nth-child(2)</value>
+        <value>label[for="marriage"]+.el-form-item__content span:nth-child(2)</value>
     </element>
     <element>
         <!--  身高输入框  -->
         <name>HeightInput</name>
         <type>css</type>
-        <value>label[for="height"]+div > div > div > input</value>
+        <value>label[for="height"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  身高输入框提示语  -->
         <name>HeightInputError</name>
         <type>css</type>
-        <value>label[for="height"]+div > div.el-form-item__error</value>
+        <value>label[for="height"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  体重输入框  -->
         <name>WeightInput</name>
         <type>css</type>
-        <value>label[for="weight"]+div > div > div > input</value>
+        <value>label[for="weight"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  体重输入框提示语  -->
         <name>WeightInputError</name>
         <type>css</type>
-        <value>label[for="weight"]+div > div.el-form-item__error</value>
+        <value>label[for="weight"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  手机号输入框  -->
         <name>PhoneInput</name>
         <type>css</type>
-        <value>label[for="phone"]+div > div > div > input</value>
+        <value>label[for="phone"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  手机号输入框提示语  -->
         <name>PhoneInputError</name>
         <type>css</type>
-        <value>label[for="phone"]+div > div.el-form-item__error</value>
+        <value>label[for="phone"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  邮箱输入框  -->
         <name>EmailInput</name>
         <type>css</type>
-        <value>label[for="email"]+div > div > div > input</value>
+        <value>label[for="email"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  邮箱输入框提示语  -->
         <name>EmailInputError</name>
         <type>css</type>
-        <value>label[for="email"]+div > div.el-form-item__error</value>
+        <value>label[for="email"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  职业输入框  -->
         <name>ProfessionInput</name>
         <type>css</type>
-        <value>label[for="profession"]+div > div > div > div > div > input</value>
+        <value>label[for="profession"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  联系人输入框  -->
         <name>LinkmanInput</name>
         <type>css</type>
-        <value>label[for="linkman"]+div > div > div > input</value>
+        <value>label[for="linkman"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  关系输入框  -->
         <name>RelationInput</name>
         <type>css</type>
-        <value>label[for="relation"]+div > div > div > div > div > input</value>
+        <value>label[for="relation"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  紧急电话输入框  -->
         <name>LinkmanPhoneInput</name>
         <type>css</type>
-        <value>label[for="linkmanPhone"]+div > div > div > input</value>
+        <value>label[for="linkmanPhone"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  紧急电话输入框提示语  -->
         <name>LinkmanPhoneInputError</name>
         <type>css</type>
-        <value>label[for="linkmanPhone"]+div > div.el-form-item__error</value>
+        <value>label[for="linkmanPhone"]+.el-form-item__content .el-form-item__error</value>
     </element>
     <element>
         <!--  住址输入框  -->
         <name>AddressInput</name>
         <type>css</type>
-        <value>label[for="address"]+div > div > div > input</value>
+        <value>label[for="address"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  疗程信息模块  -->
         <name>TreatmentInfoModule</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(2) > div.el-row</value>
+        <value>.add-patient .body form:nth-child(2) .el-row</value>
     </element>
     <element>
         <!--  疗程信息模块展开按钮  -->
         <name>TreatmentInfoModuleExpandedBtn</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(2) > div.el-row > div.fr-folder</value>
+        <value>.add-patient .body form:nth-child(2) .el-row .fr-folder</value>
     </element>
     <element>
         <!--  疾病类型输入框  -->
         <name>PatientTypeBox</name>
         <type>css</type>
         <value>label[for="type"]+div > div > div > div > div</value>
+        <value>label[for="type"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  疾病类型已选条目1  -->
         <name>PatientTypeOne</name>
         <type>css</type>
-        <value>label[for="type"]+div > div > div > div > div > span :nth-child(1) > span</value>
+        <value>label[for="type"]+.el-form-item__content span :nth-child(1) > span</value>
     </element>
     <element>
         <!--  疾病类型已选条目1关闭按钮  -->
         <name>PatientTypeOneCloseBtn</name>
         <type>css</type>
-        <value>label[for="type"]+div > div > div > div > div > span :nth-child(1) > i</value>
+        <value>label[for="type"]+.el-form-item__content span :nth-child(1) > i</value>
     </element>
     <element>
         <!--  疾病类型已选条目2  -->
         <name>PatientTypeTwo</name>
         <type>css</type>
-        <value>label[for="type"]+div > div > div > div > div > span :nth-child(2) > span</value>
+        <value>label[for="type"]+.el-form-item__content span :nth-child(2) > span</value>
     </element>
     <element>
         <!--  疾病类型已选条目2关闭按钮  -->
         <name>PatientTypeTwoCloseBtn</name>
         <type>css</type>
-        <value>label[for="type"]+div > div > div > div > div > span :nth-child(2) > i</value>
+        <value>label[for="type"]+.el-form-item__content span :nth-child(2) > i</value>
     </element>
     <element>
         <!--  疾病类型提示语  -->
         <name>PatientTypeError</name>
         <type>css</type>
-        <value>label[for="type"]+div > div.el-form-item__error</value>
+        <value>label[for="type"]+.el-form-item__content div.el-form-item__error</value>
+    </element>
+    <element>
+        <!--  功能诊断输入框  -->
+        <name>FunctionalBox</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content .el-input__inner</value>
+    </element>
+    <element>
+        <!--  功能诊断已选条目1  -->
+        <name>FunctionalOne</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content span :nth-child(1) > span</value>
+    </element>
+    <element>
+        <!--  功能诊断已选条目1关闭按钮  -->
+        <name>FunctionalOneCloseBtn</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content span :nth-child(1) > i</value>
+    </element>
+    <element>
+        <!--  功能诊断已选条目2  -->
+        <name>FunctionalTwo</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content span :nth-child(2) > span</value>
+    </element>
+    <element>
+        <!--  功能诊断已选条目2关闭按钮  -->
+        <name>FunctionalTwoCloseBtn</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content span :nth-child(2) > i</value>
+    </element>
+    <element>
+        <!--  功能诊断提示语  -->
+        <name>FunctionalError</name>
+        <type>css</type>
+        <value>label[for="functional"]+.el-form-item__content .el-form-item__error</value>
+    </element>
+    <element>
+        <!--  主治医生输入框  -->
+        <name>AttendingDoctorBox</name>
+        <type>css</type>
+        <value>label[for="attendingDoctorId"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  住院信息模块  -->
         <name>HospitalInfoModule</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(3) > div.el-row</value>
+        <value>.add-patient .body form:nth-child(3) .el-row</value>
     </element>
     <element>
         <!--  住院信息模块展开按钮  -->
         <name>HospitalInfoModuleExpandedBtn</name>
         <type>css</type>
-        <value>div.add-patient > div.body > form:nth-child(3) > div.el-row > div.fr-folder</value>
+        <value>.add-patient .body form:nth-child(3) .el-row .fr-folder</value>
+    </element>
+    <element>
+        <!--  住院号标签  -->
+        <name>HospitalNumberLabel</name>
+        <type>css</type>
+        <value>.add-patient .body form:nth-child(3) .el-row div:nth-child(4) label</value>
+    </element>
+    <element>
+        <!--  护理等级输入框  -->
+        <name>NursingLevelBox</name>
+        <type>css</type>
+        <value>label[for="nursingLevel"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
         <!--  确定按钮  -->
         <name>Confirm</name>
         <type>css</type>
-        <value>div.add-patient > button > span</value>
+        <value>.add-patient .el-button span</value>
     </element>
     <element>
         <!--  下拉菜单  -->
         <name>DropDown</name>
         <type>css</type>
         <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > div > div > ul</value>
+        <value>body > div[aria-hidden="false"][class*="el-select__popper"] div:not([class*="is-empty"][style="display: none;"])</value>
     </element>
     <element>
         <!--  下拉菜单选项一  -->
         <name>DropDownItemOne</name>
         <type>css</type>
-        <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > div > div > ul > li:nth-child(1) > span</value>
+        <value>body > div[aria-hidden="false"][class*="el-select__popper"] ul > li:nth-child(1) > span</value>
     </element>
 </elements>
