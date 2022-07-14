@@ -137,4 +137,53 @@
         <type>css</type>
         <value>.el-message__closeBtn</value>
     </element>
+<!--  修改密码  -->
+    <element>
+        <!--  修改密码按钮  -->
+        <name>ModifyPwd</name>
+        <type>css</type>
+        <value>.is-active</value>
+    </element>
+    <element>
+        <!--  原密码  -->
+        <name>PWD</name>
+        <type>css</type>
+        <value>[placeholder="请输入原密码"]</value>
+    </element>
+    <element>
+        <!--  原密码提示语  -->
+        <name>Post</name>
+        <type>css</type>
+        <value>.el-col:nth-child(2) .el-form-item__error</value>
+    </element>
+    <element>
+        <!--  新密码  -->
+        <name>NewPwd</name>
+        <type>css</type>
+        <value>[placeholder="请输入新密码"]</value>
+    </element>
+    <element>
+        <!--  新密码提示语  -->
+        <name>Post</name>
+        <type>css</type>
+        <value>.el-col:nth-child(3) .el-form-item__error</value>
+    </element>
+    <element>
+        <!--  确认密码  -->
+        <name>ConfirmPwd</name>
+        <type>css</type>
+        <value>[placeholder="请输入确认密码"]</value>
+    </element>
+    <element>
+        <!--  确认密码提示  -->
+        <name>ConfirmPwdError</name>
+        <type>css</type>
+        <value>.el-col:nth-child(4) .el-form-item__error</value>
+    </element>
+    <element>
+        <!--  关闭登录成功提示  -->
+        <name>CloseTips</name>
+        <type>css</type>
+        <value>.el-message__closeBtn</value>
+    </element>
 </elements>

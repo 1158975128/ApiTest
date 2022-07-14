@@ -1,0 +1,32 @@
+<elements>
+    <element>
+        <name>Menu_Bar</name>
+        <type>css</type>
+        <value>.has-gutter</value>
+    </element>
+    <element>
+        <name>Menu_Content</name>
+        <type>classname</type>
+        <value>[class="el-table__row"]</value>
+    </element>
+    <element>
+        <name>Modify_button</name>
+        <type>css</type>
+        <value>.el-button--text > span</value>
+    </element>
+    <element>
+        <name>Save</name>
+        <type>css</type>
+        <value>.el-button--primary > span</value>
+    </element>
+    <element>
+        <name>Version_Number</name>
+        <type>css</type>
+        <value>.el-col:nth-child(1) .el-input__inner</value>
+    </element>
+    <element>
+        <name>Describe</name>
+        <type>css</type>
+        <value>.el-col:nth-child(2) .el-input__inner</value>
+    </element>
+</elements>

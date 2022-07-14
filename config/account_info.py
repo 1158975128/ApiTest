@@ -12,4 +12,5 @@ conf.read(configPath, encoding='UTF-8')
 doctorZhaoEmail = conf.get("userInfo", "doctorZhaoEmail")
 doctorZhaoPwd = conf.get("userInfo", "doctorZhaoPwd")
 
-print(doctorZhaoEmail,doctorZhaoPwd)
+adminEmail = conf.get("userInfo", "adminEmail")
+adminPwd = conf.get("userInfo", "adminPwd")
