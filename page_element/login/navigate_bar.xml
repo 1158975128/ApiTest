@@ -40,6 +40,28 @@
         <value>//*[@name='职务']</value>
     </element>
     <element>
+        <name>JobType</name>
+        <type>css</type>
+        <value>[name='岗位小类']</value>
+    </element>
+    <element>
+        <name>Office</name>
+        <type>css</type>
+        <value>[name='科室']</value>
+    </element>
+    <element>
+        <name>Title</name>
+        <type>css</type>
+        <value>[name='职称']</value>
+    </element>
+    <element>
+        <name>Job</name>
+        <type>css</type>
+        <value>[name='岗位']</value>
+    </element>
+
+
+    <element>
         <name>Treatment_Preserve</name>
         <type>css</type>
         <value>[name='治疗维护']</value>

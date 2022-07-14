@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from config.public_data.delay_time import *
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
+from selenium.common.exceptions import NoSuchElementException
 from page_objects.navigate_bar import NavigateBar
 
 log = MyLogging(__name__).logger
@@ -20,8 +21,6 @@ class Department_Type():
         self.driver = driver
         self.version = ObjectMap(department_type_map)
         self.department = NavigateBar(self.driver)
-        # self.management = VersionExpanded(self.driver)
-        # self.management.navigate_version_control()
 
     def check_department_page(self):
         '''
@@ -49,26 +48,51 @@ class Department_Type():
         import_words.send_keys(dep_name)
         ensure = self.version.getLocator(self.driver, "Ensure")
         ensure.click()
-        time.sleep(1)
-        log.info("新增成功")
+        try:
+            tips = self.version.getLocator(self.driver, 'Tips')
+        except NoSuchElementException:
+            assert False, "无提示语，失败！"
+        else:
+            time.sleep(1)
+            log.info("新增成功")
+            print(tips.get_attribute('textContent'))
+            return tips.get_attribute('textContent')
 
-    def find_department_name(self,name):
+    def find_department(self,name):
         """
-        查找部门名称是否在列表中
-        :param name: 部门名称
+        查找部门是否在列表中
+        :param name: 部门
         :return: True/Flase
         """
         self.department.go_to_department()
         department_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
-        flag = 0
-        for department_name in department_names:
-            if department_name.text == name:
-                flag = 1
-        if flag == 1:
-            return True
-        else:
-            print('没有匹配的'+name)
-            return False
+        next_page = self.version.getLocator(self.driver, "Next_Page")
+        name_list = []
+        flag = True
+        status = 0
+        while flag:
+            # print('执行了if')
+            if len(department_names) == 10 and next_page.is_displayed():
+                for department_name in department_names:
+                    name_list.append(department_name.text.strip())
+                if name in name_list:
+                    flag = False
+                    return True
+                else:
+                    next_page.click()
+            else:
+                for department_name in department_names:
+                    name_list.append(department_name.get_attribute('textContent').strip())
+                for department_name in name_list:
+                    if department_name == name:
+                        status = 1
+                if status == 1:
+                    return True
+                else:
+                    print('没有匹配的' + name)
+                    return False
+                flag = False
+                print(flag,'*******')
 
 
     def delete_department(self,department_name):

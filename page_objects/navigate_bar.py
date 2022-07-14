@@ -55,6 +55,59 @@ class NavigateBar(object):
             position_Preserv.click()
             department = self.navigate.getLocator(self.driver, 'Position')
             department.click()
+    # 岗位小类
+    def go_to_job_type(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            job_type = self.navigate.getLocator(self.driver, 'JobType')
+            job_type.click()
+        else:
+            department_Preserv.click()
+            job_type = self.navigate.getLocator(self.driver, 'JobType')
+            job_type.click()
+
+    # 科室
+    def go_to_office(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            office = self.navigate.getLocator(self.driver, 'Office')
+            office.click()
+        else:
+            department_Preserv.click()
+            office = self.navigate.getLocator(self.driver, 'Office')
+            office.click()
+
+    # 职称
+    def go_to_title(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            title = self.navigate.getLocator(self.driver, 'Title')
+            title.click()
+        else:
+            department_Preserv.click()
+            title = self.navigate.getLocator(self.driver, 'Title')
+            title.click()
+
+    # 岗位
+    def go_to_job(self):
+        department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
+        # 获取class的值，判断下拉框状态
+        department_class = department_Preserv.get_attribute('class').strip()
+        if department_class.endswith('is-opened'):
+            job = self.navigate.getLocator(self.driver, 'Job')
+            job.click()
+        else:
+            department_Preserv.click()
+            job = self.navigate.getLocator(self.driver, 'Job')
+            job.click()
+
+
 
     # 疾病类型
     def go_to_disease(self):

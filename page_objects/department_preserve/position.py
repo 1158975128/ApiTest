@@ -7,7 +7,7 @@ from config.public_data.delay_time import *
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
-from page_objects.navigate_bar_all.navigate_version import VersionExpanded
+from selenium.common.exceptions import NoSuchElementException
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -42,8 +42,8 @@ class Position():
 
     def add_new_position(self,position_name):
         '''
-        新增部门
-        :param dep_name: 新增部门的名称
+        新增职务
+        :param dep_name: 新增职务名称
         '''
         self.positon_page.go_to_Position()
         self.driver.implicitly_wait(20)
@@ -53,26 +53,51 @@ class Position():
         import_words.send_keys(position_name)
         ensure = self.version.getLocator(self.driver, "Ensure")
         ensure.click()
-        time.sleep(1)
-        log.info("新增成功")
+        try:
+            tips = self.version.getLocator(self.driver, 'Tips')
+        except NoSuchElementException:
+            assert False, "无提示语，失败！"
+        else:
+            time.sleep(1)
+            log.info("新增成功")
+            print(tips.get_attribute('textContent'))
+            return tips.get_attribute('textContent')
 
-    def find_position_name(self,name):
+    def find_position(self,name):
         """
-        查找部门名称是否在列表中
-        :param name: 部门名称
+        查找职务是否在列表中
+        :param name: 职务
         :return: True/Flase
         """
         self.positon_page.go_to_Position()
-        position_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
-        flag = 0
-        for position_name in position_names:
-            if position_name.text.strip() == name:
-                flag = 1
-        if flag == 1:
-            return True
-        else:
-            print('没有匹配的'+name)
-            return False
+        positon_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
+        next_page = self.version.getLocator(self.driver, "Next_Page")
+        name_list = []
+        flag = True
+        status = 0
+        while flag:
+            if len(positon_names) == 10 and next_page.is_displayed():
+                for positon_name in positon_names:
+                    name_list.append(positon_name.text.strip())
+                if name in name_list:
+                    flag = False
+                    return True
+                else:
+                    next_page.click()
+            else:
+                for positon_name in positon_names:
+                    name_list.append(positon_name.get_attribute('textContent').strip())
+                for positon_name in name_list:
+                    if positon_name == name:
+                        status = 1
+                if status == 1:
+                    return True
+                else:
+                    print('没有匹配的' + name)
+                    return False
+                flag = False
+                print(flag,'*******')
+
 
 
     def delete_position(self,position_name):
