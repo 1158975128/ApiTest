@@ -50,6 +50,21 @@
         <value>[name='疾病类型']</value>
     </element>
     <element>
+        <name>Treatment_Equipment</name>
+        <type>css</type>
+        <value>[name="治疗设备"]</value>
+    </element>
+    <element>
+        <name>Region</name>
+        <type>css</type>
+        <value>[name="部位"]</value>
+    </element>
+    <element>
+        <name>Project_Template</name>
+        <type>css</type>
+        <value>[name="项目模板"]</value>
+    </element>
+    <element>
         <name>System_Maintain</name>
         <type>css</type>
         <value>[name='系统维护']</value>
@@ -63,6 +78,11 @@
         <name>Version_Management</name>
         <type>css</type>
         <value>[name="版本管理"]</value>
+    </element>
+    <element>
+        <name>Organization_Management</name>
+        <type>css</type>
+        <value>[name="机构管理"]</value>
     </element>
     <element>
         <name>Personnel_List</name>

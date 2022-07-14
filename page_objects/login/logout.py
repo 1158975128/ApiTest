@@ -21,7 +21,6 @@ class Logout():
     def __init__(self, driver):
         self.driver = driver
         self.version = ObjectMap(logout_map)
-        # self.logout = NavigateBar(self.driver)
 
 
     def check_persion_list_page(self):
@@ -38,9 +37,6 @@ class Logout():
         log.info("页面元素正确")
 
     def logout(self):
-        # self.reset.go_to_system_maintain()
-        # time.sleep(1)
-        # print(123)
         my_photo = self.version.getLocator(self.driver, 'My_Photo')
         my_photo.click()
         time.sleep(1)
@@ -50,8 +46,8 @@ class Logout():
         ensure = self.version.getLocator(self.driver, 'Ensure')
         ensure.click()
         time.sleep(1)
-        title = self.version.getLocator(self.driver, 'Title').get_attribute('textContent')
-        print(title)
+        title = self.version.getLocator(self.driver, 'Title').get_attribute('textContent').strip()
+        return title
 
 
 

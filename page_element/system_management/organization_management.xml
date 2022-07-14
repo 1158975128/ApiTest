@@ -1,32 +1,73 @@
 <elements>
     <element>
-        <name>Menu_Bar</name>
-        <type>css</type>
-        <value>.has-gutter</value>
-    </element>
-    <element>
-        <name>Menu_Content</name>
+        <name>New_Additional</name>
         <type>classname</type>
-        <value>[class="el-table__row"]</value>
+        <value>head-btn-text</value>
     </element>
     <element>
-        <name>Modify_button</name>
+        <name>Import_Words</name>
         <type>css</type>
-        <value>.el-button--text > span</value>
+        <value>[class="el-input__inner"]</value>
     </element>
     <element>
-        <name>Save</name>
+        <name>Cancel</name>
         <type>css</type>
-        <value>.el-button--primary > span</value>
+        <value>.el-button.el-button--primary.el-button--medium.is-plain.cancel-btn</value>
     </element>
     <element>
-        <name>Version_Number</name>
+        <name>Ensure</name>
         <type>css</type>
-        <value>.el-col:nth-child(1) .el-input__inner</value>
+        <value>.el-button.el-button--primary.el-button--medium.confirm-btn</value>
     </element>
     <element>
-        <name>Describe</name>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
         <type>css</type>
-        <value>.el-col:nth-child(2) .el-input__inner</value>
+        <value>.el-message__content</value>
+    </element>
+    <element>
+        <name>Next_Page</name>
+        <type>css</type>
+        <value>.el-icon.el-icon-arrow-right</value>
+    </element>
+    <element>
+        <name>Change</name>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[2]/table/tbody/tr[1]/td[2]/div/button[1]</value>
+    </element>
+    <element>
+        <name>Delete</name>
+        <type>css</type>
+        <value>.el-table__fixed-body-wrapper tr:nth-child(1) td:nth-child(2) button.deleteBtn</value>
+    </element>
+    <element>
+        <name>Delete_Ensure</name>
+        <type>css</type>
+        <value>.el-button.el-button--primary.el-button--small.el-button--primary</value>
+    </element>
+    <element>
+        <name>Position_Name</name>
+        <type>css</type>
+        <value>.is-scrolling-none tr td:nth-child(1) div</value>
+    </element>
+    <element>
+        <name>Check_Position_Name</name>
+        <type>css</type>
+        <value>.el-table__header-wrapper th div</value>
+    </element>
+    <element>
+        <name>Check_Operation_Name</name>
+        <type>xpath</type>
+        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[1]/table/thead/tr/th[4]/div</value>
+    </element>
+    <element>
+        <name>Table</name>
+        <type>xpath</type>
+        <value>//*[@class="el-table__fixed-body-wrapper"]//tbody</value>
+    </element>
+    <element>
+        <name>Next_Page</name>
+        <type>css</type>
+        <value>.el-icon-arrow-right:nth-child(1)</value>
     </element>
 </elements>

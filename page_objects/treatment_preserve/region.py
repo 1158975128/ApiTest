@@ -11,32 +11,28 @@ from selenium.common.exceptions import NoSuchElementException
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-equipment_map = map_path + "/treatment_preserve/treatment_equipment.xml"
+region_map = map_path + "/treatment_preserve/region.xml"
 
 delay_time = DelayTime.short_time.value
 
 
-class Equipment():
+class Region():
     def __init__(self, driver):
         self.driver = driver
-        self.equipment = ObjectMap(equipment_map)
-        self.equipment_page = NavigateBar(self.driver)
+        self.region = ObjectMap(region_map)
+        self.region_page = NavigateBar(self.driver)
 
-    def add_new_equipment(self,number,name,shorter):
-        self.equipment_page.go_to_treatment_equipment()
+    def add_new_region(self,name):
+        self.region_page.go_to_region()
         self.driver.implicitly_wait(20)
-        new_additional = self.equipment.getLocator(self.driver, "New_Additional")
+        new_additional = self.region.getLocator(self.driver, "New_Additional")
         new_additional.click()
-        equ_number = self.equipment.getLocator(self.driver, "Number")
-        equ_number.send_keys(number)
-        equ_name = self.equipment.getLocator(self.driver, "Name")
-        equ_name.send_keys(name)
-        equ_shorter = self.equipment.getLocator(self.driver, "Shorter")
-        equ_shorter.send_keys(shorter)
-        ensure = self.equipment.getLocator(self.driver, "Ensure")
+        region_name = self.region.getLocator(self.driver, "Name")
+        region_name.send_keys(name)
+        ensure = self.region.getLocator(self.driver, "Ensure")
         ensure.click()
         try:
-            tips = self.equipment.getLocator(self.driver, 'Tips')
+            tips = self.region.getLocator(self.driver, 'Tips')
         except NoSuchElementException:
             assert False, "无提示语，失败！"
         else:
@@ -48,27 +44,27 @@ class Equipment():
         """
         关闭登录成功提示
         """
-        close_tips = self.equipment.getLocator(self.driver, 'CloseTips')
+        close_tips = self.region.getLocator(self.driver, 'CloseTips')
         close_tips.click()
         time.sleep(1)
 
-    def find_equipment_name(self,name):
+    def find_region(self,name):
         """
         查找部门名称是否在列表中
         :param name: 部门名称
         :return: True/Flase
         """
-        self.equipment_page.go_to_treatment_equipment()
-        disease_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
-        next_page = self.equipment.getLocator(self.driver, "Next_Page")
+        self.region_page.go_to_region()
+        region_names = self.driver.find_elements(By.CSS_SELECTOR,value='.is-scrolling-none tr td:nth-child(1) div')
+        next_page = self.region.getLocator(self.driver, "Next_Page")
         name_list = []
         flag = True
         status = 0
         while flag:
             # print('执行了if')
-            if len(disease_names) == 10 and next_page.is_displayed():
-                for disease_name in disease_names:
-                    name_list.append(disease_name.text.strip())
+            if len(region_names) == 10 and next_page.is_displayed():
+                for region_name in region_names:
+                    name_list.append(region_name.text.strip())
                 if name in name_list:
                     flag = False
                     return True
@@ -77,11 +73,11 @@ class Equipment():
                 # print(name_list,status,flag)
             else:
                 # print('执行了else')
-                for disease_name in disease_names:
+                for region_name in region_names:
                     # print(disease_name.get_attribute('textContent').strip(),flag)
-                    name_list.append(disease_name.get_attribute('textContent').strip())
-                for disease_name in name_list:
-                    if disease_name == name:
+                    name_list.append(region_name.get_attribute('textContent').strip())
+                for region_name in name_list:
+                    if region_name == name:
                         status = 1
                 # print(name_list)
                 if status == 1:

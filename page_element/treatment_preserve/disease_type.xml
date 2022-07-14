@@ -7,8 +7,7 @@
     <element>
         <name>Import_Words</name>
         <type>classname</type>
-        <value>el-input__inner
-        </value>
+        <value>el-input__inne</value>
     </element>
     <element>
         <name>Cancel</name>

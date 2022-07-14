@@ -1,6 +1,4 @@
 import os
-import time
-
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
 
@@ -17,18 +15,22 @@ class NavigateBar(object):
         self.driver = driver
         self.navigate = ObjectMap(navigate_bar_map)
         log.info("end of init")
+    # 首页
     def go_to_home_page(self):
         shou_ye = self.navigate.getLocator(self.driver, 'ShouYe')
         shou_ye.click()
 
+    # 患者管理
     def go_to_patient(self):
         patient = self.navigate.getLocator(self.driver, 'HuanZheGuanLi')
         patient.click()
 
+    # 就诊详情
     def go_to_registration(self):
         registration = self.navigate.getLocator(self.driver, 'Registration')
         registration.click()
 
+    # 我的工单
     def go_to_work_order(self):
         work_order = self.navigate.getLocator(self.driver, 'Work_order')
         # 获取class的值，判断下拉框状态
@@ -41,7 +43,7 @@ class NavigateBar(object):
             my_work = self.navigate.getLocator(self.driver, 'My_Work')
             my_work.click()
 
-
+    # 职务
     def go_to_Position(self):
         position_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
         # 获取class的值，判断下拉框状态
@@ -54,6 +56,7 @@ class NavigateBar(object):
             department = self.navigate.getLocator(self.driver, 'Position')
             department.click()
 
+    # 疾病类型
     def go_to_disease(self):
         treatment_preserve = self.navigate.getLocator(self.driver, "Treatment_Preserve")
         # 获取class的值，判断下拉框状态
@@ -66,6 +69,44 @@ class NavigateBar(object):
             disease_type = self.navigate.getLocator(self.driver, "Disease_Type")
             disease_type.click()
 
+    # 治疗设备
+    def go_to_treatment_equipment(self):
+        treatment_preserve = self.navigate.getLocator(self.driver, "Treatment_Preserve")
+        # 获取class的值，判断下拉框状态
+        treatment_class = treatment_preserve.get_attribute('class').strip()
+        if treatment_class.endswith('is-opened'):
+            equipment = self.navigate.getLocator(self.driver, "Treatment_Equipment")
+            equipment.click()
+        else:
+            treatment_preserve.click()
+            equipment = self.navigate.getLocator(self.driver, "Treatment_Equipment")
+            equipment.click()
+    # 部位
+    def go_to_region(self):
+        treatment_preserve = self.navigate.getLocator(self.driver, "Treatment_Preserve")
+        # 获取class的值，判断下拉框状态
+        treatment_class = treatment_preserve.get_attribute('class').strip()
+        if treatment_class.endswith('is-opened'):
+            region = self.navigate.getLocator(self.driver, "Region")
+            region.click()
+        else:
+            treatment_preserve.click()
+            region = self.navigate.getLocator(self.driver, "Region")
+            region.click()
+    # 项目模板
+    def go_to_project_template(self):
+        treatment_preserve = self.navigate.getLocator(self.driver, "Treatment_Preserve")
+        # 获取class的值，判断下拉框状态
+        treatment_class = treatment_preserve.get_attribute('class').strip()
+        if treatment_class.endswith('is-opened'):
+            project_template = self.navigate.getLocator(self.driver, "Project_Template")
+            project_template.click()
+        else:
+            treatment_preserve.click()
+            project_template = self.navigate.getLocator(self.driver, "Project_Template")
+            project_template.click()
+
+    # 部门
     def go_to_department(self):
         department_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')
         # 获取class的值，判断下拉框状态
@@ -78,6 +119,7 @@ class NavigateBar(object):
             department = self.navigate.getLocator(self.driver, 'Department')
             department.click()
 
+    # 版本管理
     def go_to_system_management(self):
         system_management = self.navigate.getLocator(self.driver, 'System_Management')
         # 获取class的值，判断下拉框状态
@@ -89,7 +131,20 @@ class NavigateBar(object):
             system_management.click()
             version_manegement = self.navigate.getLocator(self.driver, 'Version_Management')
             version_manegement.click()
+    # 机构管理
+    def go_to_organization_management(self):
+        system_management = self.navigate.getLocator(self.driver, 'System_Management')
+        # 获取class的值，判断下拉框状态
+        system_class = system_management.get_attribute('class').strip()
+        if system_class.endswith('is-opened'):
+            organization_manegement = self.navigate.getLocator(self.driver, 'Organization_Management')
+            organization_manegement.click()
+        else:
+            system_management.click()
+            organization_manegement = self.navigate.getLocator(self.driver, 'Organization_Management')
+            organization_manegement.click()
 
+    # 人员列表
     def go_to_system_maintain(self):
         system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
         # 获取class的值，判断下拉框状态
@@ -102,100 +157,3 @@ class NavigateBar(object):
             personnel_list = self.navigate.getLocator(self.driver, 'Personnel_List')
             personnel_list.click()
 
-    def navigate_bar(self):
-        organization = self.navigate.getLocator(self.driver, 'Organization')
-        organization.click()
-        time.sleep(delay_time)
-        shou_ye = self.navigate.getLocator(self.driver, 'ShouYe')
-        shou_ye.click()
-        time.sleep(delay_time)
-        huan_zhe_guan_li = self.navigate.getLocator(self.driver, 'HuanZheGuanLi')
-        huan_zhe_guan_li.click()
-        time.sleep(delay_time)
-        deng_ji_gua_hao = self.navigate.getLocator(self.driver, 'DengJiGuaHao')
-        deng_ji_gua_hao.click()
-        time.sleep(delay_time)
-        jiu_zhen_xiang_qing = self.navigate.getLocator(self.driver, 'JiuZhenXiangQing')
-        jiu_zhen_xiang_qing.click()
-        time.sleep(delay_time)
-        gong_dan_guan_li = self.navigate.getLocator(self.driver, 'GongDanGuanLi')
-        gong_dan_guan_li.click()
-        time.sleep(delay_time)
-        mywork = self.navigate.getLocator(self.driver, 'MyWork')
-        mywork.click()
-        time.sleep(delay_time)
-        patientwork = self.navigate.getLocator(self.driver, 'PatientWork')
-        patientwork.click()
-        time.sleep(delay_time)
-        allwork = self.navigate.getLocator(self.driver, 'AllWork')
-        allwork.click()
-        time.sleep(delay_time)
-        ping_ding_guan_li = self.navigate.getLocator(self.driver,'PingDingGuanLi')
-        ping_ding_guan_li.click()
-        time.sleep(delay_time)
-        kang_fu_ping_ding = self.navigate.getLocator(self.driver, 'KangFuPingDing')
-        kang_fu_ping_ding.click()
-        time.sleep(delay_time)
-        kang_fu_ping_ding_hui = self.navigate.getLocator(self.driver, 'KangFuPingDingHui')
-        kang_fu_ping_ding_hui.click()
-        time.sleep(delay_time)
-        quan_bu_ping_ding = self.navigate.getLocator(self.driver, 'QuanBuPingDing')
-        quan_bu_ping_ding.click()
-        time.sleep(delay_time)
-        quan_bu_ping_ding_hui = self.navigate.getLocator(self.driver, 'QuanBuPingDingHui')
-        quan_bu_ping_ding_hui.click()
-        time.sleep(delay_time)
-        kang_fu_xin_shi = self.navigate.getLocator(self.driver, 'KangFuXinShi')
-        kang_fu_xin_shi.click()
-        time.sleep(delay_time)
-        wo_de_xin_xi = self.navigate.getLocator(self.driver, 'WoDeXinXi')
-        wo_de_xin_xi.click()
-        time.sleep(delay_time)
-        fa_song_xin_xi = self.navigate.getLocator(self.driver, 'FaSongXinXi')
-        fa_song_xin_xi.click()
-        time.sleep(delay_time)
-        pai_ban_cha_xun = self.navigate.getLocator(self.driver, 'PaiBanChaXun')
-        pai_ban_cha_xun.click()
-        time.sleep(delay_time)
-        zhi_liao_shi_pai_ban = self.navigate.getLocator(self.driver, 'ZhiLiaoShiPaiBan')
-        zhi_liao_shi_pai_ban.click()
-        time.sleep(delay_time)
-        yi_sheng_pai_ban = self.navigate.getLocator(self.driver, 'YiShengPaiBan')
-        yi_sheng_pai_ban.click()
-        time.sleep(delay_time)
-        quan_bu_pai_ban = self.navigate.getLocator(self.driver, 'QuanBuPaiBan')
-        quan_bu_pai_ban.click()
-        time.sleep(delay_time)
-        lun_ban_guan_li = self.navigate.getLocator(self.driver, 'LunBanGuanLi')
-        lun_ban_guan_li.click()
-        time.sleep(delay_time)
-        ji_xiao_tong_ji = self.navigate.getLocator(self.driver, 'JiXiaoTongJi')
-        ji_xiao_tong_ji.click()
-        time.sleep(delay_time)
-        # yi_sheng_gong_zuo_liang = self.navigate.getLocator(self.driver, 'YiShengGongZuoLiang')
-        # yi_sheng_gong_zuo_liang.click()
-        # time.sleep(delay_time)
-        # yi_sheng_ji_xiao = self.navigate.getLocator(self.driver, 'YiShengJiXiao')
-        # yi_sheng_ji_xiao.click()
-        # time.sleep(delay_time)
-        # zhi_liao_shi_gong_zuo_liang = self.navigate.getLocator(self.driver, 'ZhiLiaoShiGongZuoLiang')
-        # zhi_liao_shi_gong_zuo_liang.click()
-        # time.sleep(delay_time)
-        # zhi_liao_shi_ji_xiao = self.navigate.getLocator(self.driver, 'ZhiLiaoShiJiXiao')
-        # zhi_liao_shi_ji_xiao.click()
-        # time.sleep(delay_time)
-        # ke_shi_hua_pai_ban = self.navigate.getLocator(self.driver, 'PaiBanKeShiHua')
-        # ke_shi_hua_pai_ban.click()
-        # time.sleep(delay_time)
-        # ren_yuan_guan_li = self.navigate.getLocator(self.driver, 'RenYuanGuanLi')
-        # ren_yuan_guan_li.click()
-        # time.sleep(delay_time)
-
-        self.driver.implicitly_wait(10)
-
-
-    '''
-    def confirm_login(self):
-        try:
-            login_reminder = Alert()
-    '''

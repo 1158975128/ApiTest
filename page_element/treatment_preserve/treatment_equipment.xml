@@ -5,10 +5,25 @@
         <value>head-btn-text</value>
     </element>
     <element>
-        <name>Import_Words</name>
-        <type>classname</type>
-        <value>el-input__inner
-        </value>
+        <name>Number</name>
+        <type>css</type>
+        <value>[placeholder="请输入设备编号"]</value>
+    </element>
+    <element>
+        <name>Name</name>
+        <type>css</type>
+        <value>[placeholder="请输入设备名称"]</value>
+    </element>
+    <element>
+        <name>Shorter</name>
+        <type>css</type>
+        <value>[placeholder="请输入设备简称"]</value>
+    </element>
+    <element>
+        <!--  关闭登录成功提示  -->
+        <name>CloseTips</name>
+        <type>css</type>
+        <value>.el-message__closeBtn</value>
     </element>
     <element>
         <name>Cancel</name>
@@ -18,7 +33,13 @@
     <element>
         <name>Ensure</name>
         <type>css</type>
-        <value>.el-button.el-button--primary.el-button--medium.confirm-btn</value>
+        <value>.save-btn > span</value>
+    </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
     </element>
     <element>
         <name>Next_Page</name>

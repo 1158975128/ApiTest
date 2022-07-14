@@ -5,19 +5,9 @@
         <value>head-btn-text</value>
     </element>
     <element>
-        <name>Number</name>
-        <type>css</type>
-        <value>[placeholder="请输入设备编号"]</value>
-    </element>
-    <element>
         <name>Name</name>
         <type>css</type>
-        <value>[placeholder="请输入设备名称"]</value>
-    </element>
-    <element>
-        <name>Shorter</name>
-        <type>css</type>
-        <value>[placeholder="请输入设备简称"]</value>
+        <value>[placeholder="请输入名称"]</value>
     </element>
     <element>
         <!--  关闭登录成功提示  -->
@@ -33,7 +23,7 @@
     <element>
         <name>Ensure</name>
         <type>css</type>
-        <value>.save-btn > span</value>
+        <value>.confirm-btn>span</value>
     </element>
     <element>
         <!--  保存成功提示  -->

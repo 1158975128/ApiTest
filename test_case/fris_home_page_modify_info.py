@@ -16,7 +16,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../page_element"))
 home_page_path = map_path + "/home_page/home_page_modify_info.xml"
 
-# S#1993
+# S#1993 修改基本信息
 
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):

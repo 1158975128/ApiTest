@@ -4,6 +4,8 @@ from utils.object_map import ObjectMap
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, StaleElementReferenceException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.by import By
+
 
 # log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -43,27 +45,19 @@ class LoginPage(object):
             logging.info("需要点击登录确认按钮")
             login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
             login_confirm_button.click()
-        # logging.info("找到登录确认按钮")
-        # self.driver.implicitly_wait(5)
-        # if login_confirm_button.is_displayed():
-        #     logging.info("需要登录确认")
-        #     login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
-        #     login_confirm_button.click()
         logging.info("登录成功！")
-        # try:
-        #     login_confirm_button = self.login.getLocator(self.driver, 'LoginPrimary')
-        # except NoSuchElementException:
-        #     logging.info("直接登录，无需确认")
-        # else:
-        #     login_confirm_button.click()
-        # finally:
-        #     logging.info("已登录")
+
 
     def select_organization(self):
         """
         选择机构
         """
         logging.info("选择机构")
+        # org_ul = self.driver.find_element(By.CSS_SELECTOR, value='.organization-checkout-list')
+        # org_lis =org_ul.find_elements(By.TAG_NAME, value='li')
+        # print('-----',len(org_lis),'-----')
+        # for org_li in org_lis:
+        #     print(org_li.get_attribute('textContent').strip())
         organization = self.login.getLocator(self.driver, 'Organization')
         organization.click()
         logging.info("已选机构")
