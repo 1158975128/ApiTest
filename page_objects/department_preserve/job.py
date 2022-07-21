@@ -7,6 +7,8 @@ from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
 from selenium.common.exceptions import NoSuchElementException
+from utils.close_tips_tool import cancel_button
+from utils.close_tips_tool import close_login_tips
 
 
 log = MyLogging(__name__).logger
@@ -33,30 +35,26 @@ class Job():
         title_name.send_keys(name)
         ensure = self.job.getLocator(self.driver, "Ensure")
         ensure.click()
+        time.sleep(1)
         try:
-            tips = self.job.getLocator(self.driver, 'Tips')
+            tips = self.job.getLocator(self.driver, 'Tips').get_attribute('textContent')
         except NoSuchElementException:
+            cancel_button(self.driver)
             assert False, "无提示语，失败！"
         else:
-            time.sleep(1)
-            log.info("新增成功")
-            print(tips.get_attribute('textContent'))
-            # close_tips = self.title.getLocator(self.driver, 'CloseTips')
-            # close_tips.click()
-            # return tips.get_attribute('textContent')
+            if tips != '新增成功':
+                cancel_button(self.driver)
+                close_login_tips(self.driver)
+                assert False, "新增失败,提示语:%s"%tips
+            else:
+                log.info("新增成功")
+                return tips
 
-    def close_login_tips(self):
-        """
-        关闭登录成功提示
-        """
-        close_tips = self.title.getLocator(self.driver, 'CloseTips')
-        close_tips.click()
-        time.sleep(1)
 
     def find_job(self,name):
         """
-        查找职称是否在列表中
-        :param name: 职称
+        查找岗位是否在列表中
+        :param name: 岗位
         :return: True/Flase
         """
         self.job_page.go_to_job()
@@ -66,7 +64,6 @@ class Job():
         flag = True
         status = 0
         while flag:
-            # print('执行了if')
             if len(job_names) == 10 and next_page.is_displayed():
                 for job_name in job_names:
                     name_list.append(job_name.text.strip())
@@ -75,16 +72,12 @@ class Job():
                     return True
                 else:
                     next_page.click()
-                # print(name_list,status,flag)
             else:
-                # print('执行了else')
                 for job_name in job_names:
-                    # print(disease_name.get_attribute('textContent').strip(),flag)
                     name_list.append(job_name.get_attribute('textContent').strip())
                 for job_name in name_list:
                     if job_name == name:
                         status = 1
-                # print(name_list)
                 if status == 1:
                     return True
                 else:

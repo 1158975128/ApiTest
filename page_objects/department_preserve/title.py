@@ -7,6 +7,8 @@ from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
 from selenium.common.exceptions import NoSuchElementException
+from utils.close_tips_tool import cancel_button
+from utils.close_tips_tool import close_login_tips
 
 
 log = MyLogging(__name__).logger
@@ -33,15 +35,20 @@ class Title():
         title_name.send_keys(name)
         ensure = self.title.getLocator(self.driver, "Ensure")
         ensure.click()
+        time.sleep(1)
         try:
-            tips = self.title.getLocator(self.driver, 'Tips')
+            tips = self.title.getLocator(self.driver, 'Tips').get_attribute('textContent')
         except NoSuchElementException:
+            cancel_button(self.driver)
             assert False, "无提示语，失败！"
         else:
-            time.sleep(1)
-            log.info("新增成功")
-            print(tips.get_attribute('textContent'))
-            return tips.get_attribute('textContent')
+            if tips != '新增成功':
+                cancel_button(self.driver)
+                close_login_tips(self.driver)
+                assert False, "新增失败,提示语:%s"%tips
+            else:
+                log.info("新增成功")
+                return tips
 
     def close_login_tips(self):
         """
