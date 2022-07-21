@@ -16,5 +16,18 @@ def close_login_tips(driver):
     close_tips = driver.find_element(By.CSS_SELECTOR,value='.el-message__closeBtn')
     close_tips.click()
 
+def right_corner_cancel(driver):
+    """
+    点击右上角×取消
+    """
+    right_corner = driver.find_element(By.CSS_SELECTOR,value='[aria-label="close"]:nth-child(1) > .el-dialog__close')
+    right_corner.click()
 
+
+def cancel_button(driver):
+    """
+    点击取消按钮
+    """
+    cancel_button = driver.find_element(By.CSS_SELECTOR,value='.cancel-btn > span')
+    cancel_button.click()
 
