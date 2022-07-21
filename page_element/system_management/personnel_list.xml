@@ -113,14 +113,20 @@
         <value>.el-message__content</value>
     </element>
     <element>
+        <!--  新增账号标题  -->
+        <name>AccountTitle</name>
+        <type>css</type>
+        <value>.el-overlay:nth-child(1) .el-dialog__header</value>
+    </element>
+    <element>
         <name>Next_Page</name>
         <type>css</type>
         <value>.el-icon.el-icon-arrow-right</value>
     </element>
     <element>
         <name>Change</name>
-        <type>xpath</type>
-        <value>//*[@id="app"]/div/div[2]/div[1]/div/div/div[2]/div[4]/div[2]/table/tbody/tr[1]/td[2]/div/button[1]</value>
+        <type>css</type>
+        <value>.cancel-btn > span</value>
     </element>
     <element>
         <name>Delete</name>
