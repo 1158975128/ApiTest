@@ -25,7 +25,7 @@ class Job():
 
     def add_job(self,name):
         self.job_page.go_to_job()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.job.getLocator(self.driver, "New_Additional")
         new_additional.click()
         time.sleep(1)
@@ -41,7 +41,9 @@ class Job():
             time.sleep(1)
             log.info("新增成功")
             print(tips.get_attribute('textContent'))
-            return tips.get_attribute('textContent')
+            # close_tips = self.title.getLocator(self.driver, 'CloseTips')
+            # close_tips.click()
+            # return tips.get_attribute('textContent')
 
     def close_login_tips(self):
         """

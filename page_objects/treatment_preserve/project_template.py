@@ -16,23 +16,82 @@ project_map = map_path + "/treatment_preserve/project_template.xml"
 delay_time = DelayTime.short_time.value
 
 
+def select_droplist(driver,name):
+    droplist_ul = driver.find_element(By.CSS_SELECTOR, value='[aria-hidden="false"] ul')
+    droplist_lis = droplist_ul.find_elements(By.TAG_NAME, value='li')
+    for droplist_li in droplist_lis:
+        # print(droplist_li.get_attribute('textContent').strip())
+        if droplist_li.get_attribute('textContent').strip() == name:
+            droplist_li.click()
+            time.sleep(1)
+            break
+
 class ProjectTemplate():
     def __init__(self, driver):
         self.driver = driver
         self.project = ObjectMap(project_map)
         self.project_page = NavigateBar(self.driver)
 
-    def add_new_project(self,number,name,shorter):
+    def add_new_project(self,number,name,p_type,bedside,unit,dose,price,freq,cycle,t_time,j_type):
         self.project_page.go_to_project_template()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.project.getLocator(self.driver, "New_Additional")
         new_additional.click()
-        equ_number = self.project.getLocator(self.driver, "Number")
-        equ_number.send_keys(number)
-        equ_name = self.project.getLocator(self.driver, "Name")
-        equ_name.send_keys(name)
-        equ_shorter = self.project.getLocator(self.driver, "Shorter")
-        equ_shorter.send_keys(shorter)
+        time.sleep(1)
+        # 项目编号
+        p_number = self.project.getLocator(self.driver, "Number")
+        p_number.send_keys(number)
+        # 项目名称
+        p_name = self.project.getLocator(self.driver, "Name")
+        p_name.send_keys(name)
+        # 项目类型
+        project_type = self.project.getLocator(self.driver, "Type")
+        project_type.click()
+        self.driver.implicitly_wait(100)
+        select_droplist(self.driver,p_type)
+        # 是否床边
+        if bedside == '是':
+            bedside_y = self.project.getLocator(self.driver, "BedsideY")
+            bedside_y.click()
+        elif bedside == '否':
+            bedside_n = self.project.getLocator(self.driver, "BedsideN")
+            bedside_n.click()
+        # 剂量单位
+        p_unit = self.project.getLocator(self.driver, "Unit")
+        p_unit.click()
+        self.driver.implicitly_wait(100)
+        select_droplist(self.driver,unit)
+        # 剂量
+        p_dose = self.project.getLocator(self.driver, "Dose")
+        p_dose.clear()
+        p_dose.send_keys(dose)
+        # 剂量单价
+        dose_price = self.project.getLocator(self.driver, "DosePrice")
+        dose_price.send_keys(price)
+        # 频次
+        frequency = self.project.getLocator(self.driver, "Frequency")
+        frequency.send_keys(freq)
+        # 长短期
+        slect_time = self.project.getLocator(self.driver, "Time")
+        slect_time.click()
+        self.driver.implicitly_wait(100)
+        select_droplist(self.driver,cycle)
+        if cycle == '短期':
+            # 总次数
+            times = self.project.getLocator(self.driver, "TreatTimes")
+            times.clear()
+            times.send_keys('1')
+        time.sleep(1)
+        # 治疗时长
+        treat_time = self.project.getLocator(self.driver, "TreatTime")
+        treat_time.send_keys(t_time)
+        time.sleep(1)
+        # 岗位小类
+        job_type = self.project.getLocator(self.driver, "JobType")
+        job_type.click()
+        self.driver.implicitly_wait(100)
+        select_droplist(self.driver,j_type)
+        # 点击确定
         ensure = self.project.getLocator(self.driver, "Ensure")
         ensure.click()
         try:
@@ -44,14 +103,6 @@ class ProjectTemplate():
             log.info("新增成功")
             print(tips.get_attribute('textContent'))
             return tips.get_attribute('textContent')
-
-    def close_login_tips(self):
-        """
-        关闭登录成功提示
-        """
-        close_tips = self.project.getLocator(self.driver, 'CloseTips')
-        close_tips.click()
-        time.sleep(1)
 
     def find_project_template(self,name):
         """

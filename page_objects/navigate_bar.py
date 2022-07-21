@@ -1,4 +1,6 @@
 import os
+import time
+
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
 
@@ -107,8 +109,6 @@ class NavigateBar(object):
             job = self.navigate.getLocator(self.driver, 'Job')
             job.click()
 
-
-
     # 疾病类型
     def go_to_disease(self):
         treatment_preserve = self.navigate.getLocator(self.driver, "Treatment_Preserve")
@@ -132,6 +132,7 @@ class NavigateBar(object):
             equipment.click()
         else:
             treatment_preserve.click()
+            time.sleep(1)
             equipment = self.navigate.getLocator(self.driver, "Treatment_Equipment")
             equipment.click()
     # 部位
@@ -210,3 +211,87 @@ class NavigateBar(object):
             personnel_list = self.navigate.getLocator(self.driver, 'Personnel_List')
             personnel_list.click()
 
+    # 单位
+    def go_to_unit(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            unit = self.navigate.getLocator(self.driver, 'Unit')
+            unit.click()
+        else:
+            system_maintain.click()
+            unit = self.navigate.getLocator(self.driver, 'Unit')
+            unit.click()
+    # 租赁设备
+    def go_to_lease(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            lease = self.navigate.getLocator(self.driver, 'Lease')
+            lease.click()
+        else:
+            system_maintain.click()
+            lease = self.navigate.getLocator(self.driver, 'Lease')
+            lease.click()
+    # 职业
+    def go_to_profession(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            profession = self.navigate.getLocator(self.driver, 'Profession')
+            profession.click()
+        else:
+            system_maintain.click()
+            profession = self.navigate.getLocator(self.driver, 'Profession')
+            profession.click()
+    # 关系
+    def go_to_relation(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            relation = self.navigate.getLocator(self.driver, 'Relation')
+            relation.click()
+        else:
+            system_maintain.click()
+            relation = self.navigate.getLocator(self.driver, 'Relation')
+            relation.click()
+    # 时间模板
+    def go_to_timetemplate(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            timetemplate = self.navigate.getLocator(self.driver, 'TimeTemplate')
+            timetemplate.click()
+        else:
+            system_maintain.click()
+            timetemplate = self.navigate.getLocator(self.driver, 'TimeTemplate')
+            timetemplate.click()
+    # 支付管理
+    def go_to_pay(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            pay = self.navigate.getLocator(self.driver, 'Pay')
+            pay.click()
+        else:
+            system_maintain.click()
+            pay = self.navigate.getLocator(self.driver, 'Pay')
+            pay.click()
+    # 挂号费用
+    def go_to_register(self):
+        system_maintain = self.navigate.getLocator(self.driver, 'System_Maintain')
+        # 获取class的值，判断下拉框状态
+        work_order_class = system_maintain.get_attribute('class').strip()
+        if work_order_class.endswith('is-opened'):
+            register = self.navigate.getLocator(self.driver, 'Register')
+            register.click()
+        else:
+            system_maintain.click()
+            register = self.navigate.getLocator(self.driver, 'Register')
+            register.click()

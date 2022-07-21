@@ -5,78 +5,19 @@
         <value>head-btn-text</value>
     </element>
     <element>
-        <name>Number</name>
-        <type>css</type>
-        <value>[placeholder="请输入项目编号"]</value>
-    </element>
-    <element>
         <name>Name</name>
         <type>css</type>
-        <value>[placeholder="请输入项目名称"]</value>
-    </element>
-    <!--  床边选择是  -->
-    <element>
-        <name>BedsideY</name>
-        <type>css</type>
-        <value>.el-tag:nth-child(1)</value>
-    </element>
-    <!--  床边选择否  -->
-    <element>
-        <name>BedsideN</name>
-        <type>css</type>
-        <value>.el-tag:nth-child(2)</value>
+        <value>[placeholder="请输入名称"]</value>
     </element>
     <element>
-        <name>Type</name>
+        <name>Cancel</name>
         <type>css</type>
-        <value>[placeholder="请选择项目类型"]</value>
-    </element>
-    <!--  剂量单位  -->
-    <element>
-        <name>Unit</name>
-        <type>css</type>
-        <value>.el-col:nth-child(5) .el-input__inner</value>
-    </element>
-    <!--  剂量输入框  -->
-    <element>
-        <name>Dose</name>
-        <type>css</type>
-        <value>[placeholder="请输入剂量"]</value>
-    </element>
-    <element>
-        <name>DosePrice</name>
-        <type>css</type>
-        <value>[placeholder="请输入剂量单价"]</value>
-    </element>
-    <element>
-        <name>Frequency</name>
-        <type>css</type>
-        <value>[placeholder="请输入频次"]</value>
-    </element>
-    <element>
-        <name>Time</name>
-        <type>css</type>
-        <value>[placeholder="请选择长短期"]</value>
-    </element>
-    <element>
-        <name>TreatTimes</name>
-        <type>css</type>
-        <value>[placeholder="请输入总次数"]</value>
-    </element>
-    <element>
-        <name>TreatTime</name>
-        <type>css</type>
-        <value>[placeholder="请输入正整数（单位：分钟）"]</value>
-    </element>
-    <element>
-        <name>JobType</name>
-        <type>css</type>
-        <value>[placeholder="请选择岗位小类"]</value>
+        <value>.el-button.el-button--primary.el-button--medium.is-plain.cancel-btn</value>
     </element>
     <element>
         <name>Ensure</name>
         <type>css</type>
-        <value>.save-btn > span</value>
+        <value>.confirm-btn>span</value>
     </element>
     <element>
         <!--  保存成功提示  -->

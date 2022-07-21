@@ -25,8 +25,10 @@ class Office():
 
     def add_office(self,name):
         self.office_page.go_to_office()
+        time.sleep(1)
         new_additional = self.office.getLocator(self.driver, "New_Additional")
         new_additional.click()
+        time.sleep(1)
         office_name = self.office.getLocator(self.driver, "Name")
         office_name.send_keys(name)
         ensure = self.office.getLocator(self.driver, "Ensure")

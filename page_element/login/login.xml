@@ -42,6 +42,6 @@
     <element>
         <name>Organization</name>
         <type>css</type>
-        <value>li:nth-child(36)</value>
+        <value>li:nth-child(33)</value>
     </element>
 </elements>

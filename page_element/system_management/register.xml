@@ -1,0 +1,28 @@
+<elements>
+    <element>
+        <name>Operation</name>
+        <type>css</type>
+        <value>.el-table__fixed-body-wrapper span</value>
+    </element>
+    <element>
+        <name>Price</name>
+        <type>css</type>
+        <value>.el-col:nth-child(2) .el-input__inner</value>
+    </element>
+    <element>
+        <name>Pay</name>
+        <type>css</type>
+        <value>.is-scrolling-none tr>td:nth-child(2)</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.el-button--primary</value>
+    </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+</elements>

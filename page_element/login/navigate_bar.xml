@@ -59,8 +59,6 @@
         <type>css</type>
         <value>[name='岗位']</value>
     </element>
-
-
     <element>
         <name>Treatment_Preserve</name>
         <type>css</type>
@@ -102,14 +100,49 @@
         <value>[name="版本管理"]</value>
     </element>
     <element>
-        <name>Organization_Management</name>
-        <type>css</type>
-        <value>[name="机构管理"]</value>
-    </element>
-    <element>
         <name>Personnel_List</name>
         <type>css</type>
         <value>[name="人员列表"]</value>
+    </element>
+    <element>
+        <name>Unit</name>
+        <type>css</type>
+        <value>[name="单位"]</value>
+    </element>
+    <element>
+        <name>Lease</name>
+        <type>css</type>
+        <value>[name="租赁设备"]</value>
+    </element>
+    <element>
+        <name>Profession</name>
+        <type>css</type>
+        <value>[name="职业"]</value>
+    </element>
+    <element>
+        <name>Relation</name>
+        <type>css</type>
+        <value>[name="关系"]</value>
+    </element>
+    <element>
+        <name>TimeTemplate</name>
+        <type>css</type>
+        <value>[name="时间模板"]</value>
+    </element>
+    <element>
+        <name>Pay</name>
+        <type>css</type>
+        <value>[name="支付管理"]</value>
+    </element>
+    <element>
+        <name>Register</name>
+        <type>css</type>
+        <value>[name="挂号费用"]</value>
+    </element>
+    <element>
+        <name>Organization_Management</name>
+        <type>css</type>
+        <value>[name="机构管理"]</value>
     </element>
     <element>
         <name>DengJiGuaHao</name>
@@ -141,106 +174,4 @@
         <type>xpath</type>
         <value>//*[@id="app"]/div/div[1]/div/div[1]/ul/li[5]/ul/li[3]</value>
     </element>
-    <element>
-        <name>PingDingGuanLi</name>
-        <type>xpath</type>
-        <value>//*[text()='评定管理']</value>
-    </element>
-    <element>
-        <name>KangFuPingDing</name>
-        <type>xpath</type>
-        <value>//li[text()='康复评定']</value>
-    </element>
-    <element>
-        <name>KangFuPingDingHui</name>
-        <type>xpath</type>
-        <value>//li[text()='康复评定会']</value>
-    </element>
-    <element>
-        <name>QuanBuPingDing</name>
-        <type>xpath</type>
-        <value>//li[text()='全部评定']</value>
-    </element>
-    <element>
-        <name>QuanBuPingDingHui</name>
-        <type>xpath</type>
-        <value>//li[text()='全部评定会']</value>
-    </element>
-    <element>
-        <name>KangFuXinShi</name>
-        <type>xpath</type>
-        <value>//*[text()='康复信使']</value>
-    </element>
-    <element>
-        <name>WoDeXinXi</name>
-        <type>xpath</type>
-        <value>//li[text()='我的信息']</value>
-    </element>
-    <element>
-        <name>FaSongXinXi</name>
-        <type>xpath</type>
-        <value>//li[text()='发送消息']</value>
-    </element>
-    <element>
-        <name>PaiBanChaXun</name>
-        <type>xpath</type>
-        <value>//*[text()='排班查询']</value>
-    </element>
-    <element>
-        <name>ZhiLiaoShiPaiBan</name>
-        <type>xpath</type>
-        <value>//li[text()='治疗师排班']</value>
-    </element>
-    <element>
-        <name>YiShengPaiBan</name>
-        <type>xpath</type>
-        <value>//li[text()='医生排班']</value>
-    </element>
-    <element>
-        <name>QuanBuPaiBan</name>
-        <type>xpath</type>
-        <value>//li[text()='全部排班']</value>
-    </element>
-    <element>
-        <name>LunBanGuanLi</name>
-        <type>xpath</type>
-        <value>//*[text()=' 轮班管理']</value>
-    </element>
-    <element>
-        <name>JiXiaoTongJi</name>
-        <type>xpath</type>
-        <value>//*[text()='绩效统计']</value>
-    </element>
-    <element>
-        <name>YiShengGongZuoLiang</name>
-        <type>xpath</type>
-        <value>//li[text()=' 医生工作量']</value>
-    </element>
-    <element>
-        <name>YiShengJiXiao</name>
-        <type>xpath</type>
-        <value>//*[text()='医生绩效']</value>
-    </element>
-    <element>
-        <name>ZhiLiaoShiGongZuoLiang</name>
-        <type>xpath</type>
-        <value>//li[text()='治疗师工作量']</value>
-    </element>
-    <element>
-        <name>ZhiLiaoShiJiXiao</name>
-        <type>xpath</type>
-        <value>//li[text()='治疗师绩效']</value>
-    </element>
-    <element>
-        <name>PaiBanKeShiHua</name>
-        <type>xpath</type>
-        <value>//*[text()=' 排班可视化']</value>
-    </element>
-    <element>
-        <name>RenYuanGuanLi</name>
-        <type>xpath</type>
-        <value>//*[text()=' 人员管理']</value>
-    </element>
-
-
 </elements>

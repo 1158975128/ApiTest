@@ -15,7 +15,7 @@ log = MyLogging(__name__).logger
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):
     mylogin = LoginPage(driver)
-    mylogin.login_fris('admin')
+    mylogin.login_fris('admin','傅利叶医院_ui_别碰我')
     yield
     logout = Logout(driver)
     logout.logout()

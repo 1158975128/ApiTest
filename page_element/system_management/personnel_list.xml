@@ -1,82 +1,110 @@
 <elements>
     <element>
         <name>New_Additional</name>
-        <type>classname</type>
-        <value>head-btn-text</value>
+        <type>css</type>
+        <value>.icon-icon_xinzeng</value>
     </element>
     <element>
-        <name>Number</name>
+        <name>Email</name>
         <type>css</type>
-        <value>[placeholder="请输入项目编号"]</value>
+        <value>[placeholder="请输入手机号/邮箱"]</value>
     </element>
+    <element>
+        <name>Confirm</name>
+        <type>css</type>
+        <value>.confirm-btn > span</value>
+    </element>
+    <!--  姓名  -->
     <element>
         <name>Name</name>
         <type>css</type>
-        <value>[placeholder="请输入项目名称"]</value>
+        <value>.el-col:nth-child(1) .fr-form-item > .el-input > .el-input__inner</value>
     </element>
-    <!--  床边选择是  -->
+    <!--  性别男  -->
     <element>
-        <name>BedsideY</name>
+        <name>Male</name>
         <type>css</type>
         <value>.el-tag:nth-child(1)</value>
     </element>
-    <!--  床边选择否  -->
+    <!--  性别女  -->
     <element>
-        <name>BedsideN</name>
+        <name>Female</name>
         <type>css</type>
         <value>.el-tag:nth-child(2)</value>
     </element>
+    <!--  出生日期  -->
     <element>
-        <name>Type</name>
+        <name>Brithday</name>
         <type>css</type>
-        <value>[placeholder="请选择项目类型"]</value>
+        <value>[placeholder="请选择日期"]</value>
     </element>
-    <!--  剂量单位  -->
+    <!--  选择当天  -->
     <element>
-        <name>Unit</name>
+        <name>SelectBrithday</name>
         <type>css</type>
-        <value>.el-col:nth-child(5) .el-input__inner</value>
+        <value>[class="available today"]</value>
     </element>
-    <!--  剂量输入框  -->
+    <!--  手机号  -->
     <element>
-        <name>Dose</name>
+        <name>Phone</name>
         <type>css</type>
-        <value>[placeholder="请输入剂量"]</value>
+        <value>[placeholder="请输入手机号"]</value>
+    </element>
+    <!--  验证码  -->
+    <element>
+        <name>Verfy</name>
+        <type>css</type>
+        <value>.code-input > .el-input__inner</value>
+    </element>
+    <!--  发送验证码  -->
+    <element>
+        <name>SendVerfy</name>
+        <type>css</type>
+        <value>.code-set-box</value>
+    </element>
+
+    <!--  密码  -->
+    <element>
+        <name>Pwd</name>
+        <type>css</type>
+        <value>[placeholder="请输入密码"]</value>
+    </element>
+    <!--  确认密码  -->
+    <element>
+        <name>ConPwd</name>
+        <type>css</type>
+        <value>[placeholder="请输入确认密码"]</value>
     </element>
     <element>
-        <name>DosePrice</name>
+        <name>Office</name>
         <type>css</type>
-        <value>[placeholder="请输入剂量单价"]</value>
+        <value>[placeholder="请选择科室"]</value>
     </element>
     <element>
-        <name>Frequency</name>
+        <name>Department</name>
         <type>css</type>
-        <value>[placeholder="请输入频次"]</value>
+        <value>[placeholder="请选择部门"]</value>
     </element>
     <element>
-        <name>Time</name>
+        <name>Title</name>
         <type>css</type>
-        <value>[placeholder="请选择长短期"]</value>
+        <value>[placeholder="请选择职称"]</value>
     </element>
     <element>
-        <name>TreatTimes</name>
+        <name>Job</name>
         <type>css</type>
-        <value>[placeholder="请输入总次数"]</value>
+        <value>[placeholder="请选择所属岗位"]</value>
     </element>
     <element>
-        <name>TreatTime</name>
+        <name>Position</name>
         <type>css</type>
-        <value>[placeholder="请输入正整数（单位：分钟）"]</value>
+        <value>[placeholder="请选择职务"]</value>
     </element>
-    <element>
-        <name>JobType</name>
-        <type>css</type>
-        <value>[placeholder="请选择岗位小类"]</value>
-    </element>
+
     <element>
         <name>Ensure</name>
         <type>css</type>
-        <value>.save-btn > span</value>
+        <value>.save-btn</value>
     </element>
     <element>
         <!--  保存成功提示  -->

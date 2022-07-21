@@ -22,6 +22,7 @@ class Browser:
         driver.maximize_window()
         driver.get('https://qafris.fftai.com/fris2/#/login')
         # driver.get('https://uatfris.fftai.com/fris2/#/login')
+        # driver.get('https://fris.fftai.com/#/login')
 
 
         return driver

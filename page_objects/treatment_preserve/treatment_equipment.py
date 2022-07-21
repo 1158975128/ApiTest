@@ -24,9 +24,10 @@ class Equipment():
 
     def add_new_equipment(self,number,name,shorter):
         self.equipment_page.go_to_treatment_equipment()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.equipment.getLocator(self.driver, "New_Additional")
         new_additional.click()
+        time.sleep(1)
         equ_number = self.equipment.getLocator(self.driver, "Number")
         equ_number.send_keys(number)
         equ_name = self.equipment.getLocator(self.driver, "Name")
@@ -45,18 +46,10 @@ class Equipment():
             print(tips.get_attribute('textContent'))
             return tips.get_attribute('textContent')
 
-    def close_login_tips(self):
-        """
-        关闭登录成功提示
-        """
-        close_tips = self.equipment.getLocator(self.driver, 'CloseTips')
-        close_tips.click()
-        time.sleep(1)
-
     def find_equipment_name(self,name):
         """
-        查找部门名称是否在列表中
-        :param name: 部门名称
+        查找治疗设备是否在列表中
+        :param name: 治疗设备
         :return: True/Flase
         """
         self.equipment_page.go_to_treatment_equipment()
@@ -66,7 +59,6 @@ class Equipment():
         flag = True
         status = 0
         while flag:
-            # print('执行了if')
             if len(disease_names) == 10 and next_page.is_displayed():
                 for disease_name in disease_names:
                     name_list.append(disease_name.text.strip())
@@ -75,16 +67,12 @@ class Equipment():
                     return True
                 else:
                     next_page.click()
-                # print(name_list,status,flag)
             else:
-                # print('执行了else')
                 for disease_name in disease_names:
-                    # print(disease_name.get_attribute('textContent').strip(),flag)
                     name_list.append(disease_name.get_attribute('textContent').strip())
                 for disease_name in name_list:
                     if disease_name == name:
                         status = 1
-                # print(name_list)
                 if status == 1:
                     return True
                 else:

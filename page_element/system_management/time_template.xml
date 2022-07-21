@@ -1,0 +1,58 @@
+<elements>
+    <element>
+        <name>MStart</name>
+        <type>css</type>
+        <value>.el-col:nth-child(2) [placeholder="请输入起始时间"]</value>
+    </element>
+    <element>
+        <name>MEnd</name>
+        <type>css</type>
+        <value>.el-col:nth-child(3) [placeholder="请输入结束时间"]</value>
+    </element>
+    <element>
+        <name>MLength</name>
+        <type>css</type>
+        <value>.el-col:nth-child(4) [placeholder="请输入时间长度"]</value>
+    </element>
+    <element>
+        <name>MGap</name>
+        <type>css</type>
+        <value>.el-col:nth-child(5) [placeholder="请输入时间间隔"]</value>
+    </element>
+    <element>
+        <name>AStart</name>
+        <type>css</type>
+        <value>.el-col:nth-child(7) [placeholder="请输入起始时间"]</value>
+    </element>
+    <element>
+        <name>AEnd</name>
+        <type>css</type>
+        <value>.el-col:nth-child(8) [placeholder="请输入结束时间"]</value>
+    </element>
+    <element>
+        <name>ALength</name>
+        <type>css</type>
+        <value>.el-col:nth-child(9) [placeholder="请输入时间长度"]</value>
+    </element>
+    <element>
+        <name>AGap</name>
+        <type>css</type>
+        <value>.el-col:nth-child(10) [placeholder="请输入时间间隔"]</value>
+    </element>
+    <element>
+        <name>Preview</name>
+        <type>css</type>
+        <value>.is-plain</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.colorful</value>
+    </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+</elements>

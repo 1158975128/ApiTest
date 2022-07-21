@@ -25,7 +25,7 @@ class Title():
 
     def add_title(self,name):
         self.title_page.go_to_title()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.title.getLocator(self.driver, "New_Additional")
         new_additional.click()
         time.sleep(1)

@@ -41,7 +41,7 @@ class Department_Type():
         :param dep_name: 新增部门的名称
         '''
         self.department.go_to_department()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.version.getLocator(self.driver, "New_Additional")
         new_additional.click()
         import_words = self.version.getLocator(self.driver, "Import_Words")

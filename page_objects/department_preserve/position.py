@@ -46,7 +46,7 @@ class Position():
         :param dep_name: 新增职务名称
         '''
         self.positon_page.go_to_Position()
-        self.driver.implicitly_wait(20)
+        time.sleep(1)
         new_additional = self.version.getLocator(self.driver, "New_Additional")
         new_additional.click()
         import_words = self.version.getLocator(self.driver, "Import_Words")
