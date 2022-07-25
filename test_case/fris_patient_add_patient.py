@@ -13,6 +13,7 @@ from config.public_data.patient import Sex
 from utils.object_map import ObjectMap
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.actions.key_actions import KeyActions
+from selenium.webdriver.common.by import By
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../page_element"))
@@ -296,20 +297,26 @@ class TestAddPatient:
     def test_patient_type(self, driver, add_patient_dialog, search_word_1, search_word_2, exp_patient_type_1,
                           exp_patient_type_2, exp_msg):
         """
-        TestCase:
+        TestCase: 1. 输入两个疾病类型，选择验证正确性  2. 清空该输入框，验证提示信息
         """
         print("两个搜索关键词分别为%(search_word_1)s和%(search_word_2)s" % {"search_word_1": search_word_1, "search_word_2": search_word_2})
         print("两个期待结果为%(exp_1)s和%(exp_2)s" % {"exp_1": exp_patient_type_1, "exp_2": exp_patient_type_2})
         add_patient = AddPatient(driver)
-        patient_type_box = self.add_patient_map.getLocator(driver, 'PatientTypeBox')
         print("选择疾病类型")
-        # js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_1
-        # driver.execute_script(js)
+        patient_type_box = self.add_patient_map.getLocator(driver, 'PatientTypeBox')
+        # driver.implicitly_wait(10)
         patient_type_box.send_keys(search_word_1)
+        print("已输入疾病类型1")
+        # driver.implicitly_wait(10)
         add_patient.select_drop_down_item_one()
-        js = "document.querySelector('label[for=\"type\"]+div > div > div > div > div').innerHTML=\"%s\"" % search_word_2
-        driver.execute_script(js)
+        print("已选择疾病类型1")
+        # driver.implicitly_wait(10)
+        patient_type_box.send_keys(search_word_2)
+        print("已输入疾病类型2")
+        # driver.implicitly_wait(10)
         add_patient.select_drop_down_item_one()
+        print("已选择疾病类型2")
+        driver.implicitly_wait(10)
         act_patient_type_1 = self.add_patient_map.getLocator(driver, 'PatientTypeOne').get_attribute('textContent')
         act_patient_type_2 = self.add_patient_map.getLocator(driver, 'PatientTypeTwo').get_attribute('textContent')
         assert act_patient_type_1 == exp_patient_type_1, "所选疾病类型不正确，失败！"
@@ -422,3 +429,4 @@ class TestAddPatient:
         """
         add_patient = AddPatient(driver)
         exp_add_patient = add_patient.add_patient_required()
+        print(exp_add_patient)

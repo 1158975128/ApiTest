@@ -14,6 +14,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
+import logging
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
@@ -70,6 +71,13 @@ class AddPatient:
         展开疗程信息模块
         """
         expand_btn = self.add_patient_map.getLocator(self.driver, 'TreatmentInfoModuleExpandedBtn')
+        expand_btn.click()
+
+    def expand_hospital_info_module(self):
+        """
+        展开住院信息模块
+        """
+        expand_btn = self.add_patient_map.getLocator(self.driver, 'HospitalInfoModuleExpandedBtn')
         expand_btn.click()
 
     def select_drop_down_item_one(self):

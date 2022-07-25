@@ -202,7 +202,6 @@
         <!--  疾病类型输入框  -->
         <name>PatientTypeBox</name>
         <type>css</type>
-        <value>label[for="type"]+div > div > div > div > div</value>
         <value>label[for="type"]+.el-form-item__content .el-input__inner</value>
     </element>
     <element>
@@ -311,7 +310,6 @@
         <!--  下拉菜单  -->
         <name>DropDown</name>
         <type>css</type>
-        <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > div > div > ul</value>
         <value>body > div[aria-hidden="false"][class*="el-select__popper"] div:not([class*="is-empty"][style="display: none;"])</value>
     </element>
     <element>
@@ -319,5 +317,11 @@
         <name>DropDownItemOne</name>
         <type>css</type>
         <value>body > div[aria-hidden="false"][class*="el-select__popper"] ul > li:nth-child(1) > span</value>
+    </element>
+    <element>
+        <!--  下拉菜单空  -->
+        <name>DropDownEmpty</name>
+        <type>css</type>
+        <value>body > div[aria-hidden="false"][class*="el-select__popper"] > div > p</value>
     </element>
 </elements>
