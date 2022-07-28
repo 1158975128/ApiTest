@@ -81,17 +81,20 @@ class PersonnelList():
             user_con_pwd.send_keys(con_pwd)
             # 选择科室
             user_office = self.personnel.getLocator(self.driver, "Office")
-            user_office.click()
+            self.driver.execute_script("arguments[0].click();", user_office)
+            # user_office.click()
             self.driver.implicitly_wait(100)
             select_droplist(self.driver,office)
             # 选择部门
             user_depar = self.personnel.getLocator(self.driver, "Department")
-            user_depar.click()
+            self.driver.execute_script("arguments[0].click();", user_depar)
+            # user_depar.click()
             self.driver.implicitly_wait(100)
             select_droplist(self.driver,depar)
             # 选择职称
             user_title = self.personnel.getLocator(self.driver, "Title")
-            user_title.click()
+            self.driver.execute_script("arguments[0].click();", user_title)
+            # user_title.click()
             self.driver.implicitly_wait(100)
             select_droplist(self.driver,title)
             time.sleep(1)

@@ -28,7 +28,7 @@ from page_objects.login.logout import Logout
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):
     mylogin = LoginPage(driver)
-    mylogin.login_fris('admin','冒烟测试机构722')
+    mylogin.login_fris('admin')
     # yield
     # logout = Logout(driver)
     # logout.logout()
@@ -102,7 +102,7 @@ class TestSystem:
         assert self.device.find_lease(name) is True
         time.sleep(1)
 
-    @pytest.mark.parametrize('name', [('工人'),('农名'),('公务员')])
+    @pytest.mark.parametrize('name', [('工人'),('农民'),('公务员')])
     def test_add_profession(self, driver,name):
         self.profession = Profession(driver)
         self.profession.add_profession(name)
@@ -167,13 +167,13 @@ class TestTreat:
         time.sleep(1)
 
     @pytest.mark.parametrize('email,email_pwd,email_type,name,sex,phone,pwd,con_pwd,office,depar,title,job,job_type,role', [('jssdezyy025@163.com','jssdezyy123','163','刘玉栋-医生','男','183896854215','abc123456@','abc123456@','康复科', '门诊','助理医师','医生','OTPT传统','康复医生护士'),
-                                                                                                                            ('18389683007','jssdezyy123','163','刘玉栋-医生','男','183896854215','abc123456@','abc123456@','康复科', '门诊','助理医师','医生','OTPT传统','康复医生护士')])
+                                                                                                                            ('jssdezyy026@163.com','jssdezyy123','163','OT治疗师2','男','133896854215','abc123456@','abc123456@','康复科', '门诊','康复治疗士','治疗师','OT','治疗师')])
 
 
-    # @pytest.mark.parametrize('email,email_pwd,email_type,name,sex,phone,pwd,con_pwd,office,depar,title,job,job_type,role', [('jssdezyy026@163.com','jssdezyy123','163','刘玉栋-医生','男','183896854215','abc123456@','abc123456@','康复科', '门诊','助理医师','医生','OTPT传统','康复医生'),
-    #                                                                                                                         ('jssdezyy027@163.com','jssdezyy123','163','医生2','男','152896854215','abc123456@','abc123456@','骨科', '住院','住院医师','医生','OTPT传统','康复医生'),
+    # @pytest.mark.parametrize('email,email_pwd,email_type,name,sex,phone,pwd,con_pwd,office,depar,title,job,job_type,role', [('jssdezyy027@163.com','jssdezyy123','163','医生2','男','152896854215','abc123456@','abc123456@','骨科', '住院','住院医师','医生','OTPT传统','康复医生'),
     #                                                                                                                         ('jssdezyy028@163.com','jssdezyy123','163','刘玉栋-治疗师','男','175896854215','abc123456@','abc123456@','康复科', '门诊','康复治疗士','治疗师','PT','治疗师'),
-    #                                                                                                                         ('jssdezyy029@163.com','jssdezyy123','163','OT治疗师2','女','138896854215','abc123456@','abc123456@','康复科', '门诊','康复治疗士','治疗师','OT','治疗师')])
+    #                                                                                                                         ('jssdezyy029@163.com','jssdezyy123','163','OT治疗师2','女','138896854215','abc123456@','abc123456@','康复科', '门诊','康复治疗士','治疗师','OT传统','治疗师'),
+    #                                                                                                                         ('jssdezyy030@163.com','jssdezyy123','163','刘玉栋-治疗师长','女','188896854215','abc123456@','abc123456@','康复科', '门诊','副主任康复师','治疗师','OTPTST传统','治疗师长')])
     def test_add_personnel(self, driver,email,email_pwd,email_type,name,sex,phone,pwd,con_pwd,office,depar,title,job,job_type,role):
         self.personnel = PersonnelList(driver)
         self.personnel.add_new_personnel(email,email_pwd,email_type,name,sex,phone,pwd,con_pwd,office,depar,title,job,job_type,role)
