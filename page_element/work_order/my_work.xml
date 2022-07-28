@@ -27,6 +27,23 @@
         <type>css</type>
         <value>.el-message__content</value>
     </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+<!--  工单授权  -->
+    <element>
+        <name>Grant</name>
+        <type>css</type>
+        <value>[placeholder="请选择授权治疗师"]</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.confirm-btn > span</value>
+    </element>
 <!--  撤回  -->
     <element>
         <name>Reroll_Work</name>
