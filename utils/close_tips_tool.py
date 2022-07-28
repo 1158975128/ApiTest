@@ -23,6 +23,12 @@ def right_corner_cancel(driver):
     right_corner = driver.find_element(By.CSS_SELECTOR,value='[aria-label="close"]:nth-child(1) > .el-dialog__close')
     right_corner.click()
 
+def left_corner_cancel(driver):
+    """
+    点击左上角×取消
+    """
+    left_corner = driver.find_element(By.CSS_SELECTOR,value='.fr-drawer-content-header > .el-icon-close')
+    left_corner.click()
 
 def cancel_button(driver):
     """

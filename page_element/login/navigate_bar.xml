@@ -174,4 +174,14 @@
         <type>xpath</type>
         <value>//*[@id="app"]/div/div[1]/div/div[1]/ul/li[5]/ul/li[3]</value>
     </element>
+    <element>
+        <name>ArrangeQuery</name>
+        <type>css</type>
+        <value>[name="排班查询"]</value>
+    </element>
+    <element>
+        <name>TherapeutistArrange</name>
+        <type>css</type>
+        <value>[name="治疗师排班"]</value>
+    </element>
 </elements>

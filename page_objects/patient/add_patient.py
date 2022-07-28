@@ -14,6 +14,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.by import By
+from page_objects.navigate_bar import NavigateBar
+from utils.droplist_select_tool import select_droplist
+from selenium.common.exceptions import NoSuchElementException
+from utils.close_tips_tool import right_corner_cancel
+from utils.close_tips_tool import close_login_tips
 import logging
 
 
@@ -30,7 +36,7 @@ class AddPatient:
         self.driver = driver
         self.patient_map = ObjectMap(patient_map)
         self.add_patient_map = ObjectMap(add_patient_map)
-        # self.patient = NavigateBar(self.driver)
+        self.navigate = NavigateBar(driver)
 
     def open_add_patient_dialog(self):
         """
@@ -133,7 +139,90 @@ class AddPatient:
         # 确定
         confirm_btn = self.add_patient_map.getLocator(self.driver, 'Confirm')
         confirm_btn.click()
+        time.sleep(5)
         # return
         return add_patient_object
 
+    def add_new_patient(self,name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source):
 
+        self.navigate.go_to_patient()
+        time.sleep(1)
+        new_patient = self.add_patient_map.getLocator(self.driver, "New_patient")
+        new_patient.click()
+        # 展开基本信息
+        expand_btn = self.add_patient_map.getLocator(self.driver, 'BasicInfoModuleExpandedBtn')
+        expand_btn.click()
+        # 患者姓名
+        patient_name = self.add_patient_map.getLocator(self.driver, "NameInput")
+        patient_name.send_keys(name)
+        # 身份证号
+        identity_number = self.add_patient_map.getLocator(self.driver, 'IdentityNumberInput')
+        identity_number.send_keys(identity)
+        # 手机号
+        phone_number = self.add_patient_map.getLocator(self.driver, 'PhoneInput')
+        phone_number.send_keys(phone)
+        # 职业
+        profession_input = self.add_patient_map.getLocator(self.driver, 'ProfessionInput')
+        profession_input.click()
+        time.sleep(1)
+        select_droplist(self.driver,profession)
+        # 联系人
+        linkman_input = self.add_patient_map.getLocator(self.driver, 'LinkmanInput')
+        linkman_input.send_keys(linkman)
+        # 关系
+        relation_input = self.add_patient_map.getLocator(self.driver, 'RelationInput')
+        relation_input.click()
+        time.sleep(1)
+        select_droplist(self.driver,relation)
+        # 收起基本信息
+        time.sleep(1)
+        expand_btn = self.add_patient_map.getLocator(self.driver, 'BasicInfoModuleExpandedBtn')
+        expand_btn.click()
+        time.sleep(1)
+        # 疾病类型
+        disease_type = self.add_patient_map.getLocator(self.driver, "PatientTypeBox")
+        disease_type.click()
+        time.sleep(1)
+        disease_type.send_keys(disease)
+        disease_type_select = self.add_patient_map.getLocator(self.driver, "Disease_type_select")
+        disease_type_select.click()
+        # 功能诊断
+        function_diagnosis = self.add_patient_map.getLocator(self.driver, "FunctionalBox")
+        function_diagnosis.click()
+        time.sleep(1)
+        function_diagnosis.send_keys(function)
+        function_diagnosis_select = self.add_patient_map.getLocator(self.driver, "Function_diagnosis_select")
+        function_diagnosis_select.click()
+        # 主治医生
+        doctor1 = self.add_patient_map.getLocator(self.driver, "AttendingDoctorBox")
+        doctor1.click()
+        time.sleep(1)
+        select_droplist(self.driver,doctor)
+        # 就诊科室
+        deparetment = self.add_patient_map.getLocator(self.driver, "Department")
+        deparetment.click()
+        time.sleep(1)
+        select_droplist(self.driver,depart)
+        # 来源-住院
+        source_btn = self.driver.find_element(By.XPATH,
+                                         '//label[@for="sourceId"]/following-sibling::div/descendant::span[text()="%s"]' % source)
+        source_btn.click()
+        time.sleep(1)
+        # 确定
+        ensure = self.add_patient_map.getLocator(self.driver, "Confirm")
+        ensure.click()
+        time.sleep(1)
+        try:
+            tips = self.add_patient_map.getLocator(self.driver, 'Tips').get_attribute('textContent')
+        except NoSuchElementException:
+            right_corner_cancel(self.driver)
+            assert False, "无提示语，失败！"
+        else:
+            time.sleep(1)
+            if tips != '登记患者成功！':
+                right_corner_cancel(self.driver)
+                close_login_tips(self.driver)
+                assert False, "新增失败,提示语：%s" % tips
+            else:
+                close_login_tips(self.driver)
+                return tips

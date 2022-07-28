@@ -1,29 +1,10 @@
 <elements>
 <!--  治疗排班  -->
     <element>
-        <name>Table</name>
-        <type>css</type>
-        <value>[class="el-table__body-wrapper is-scrolling-none"] tbody</value>
-    </element>
-    <element>
-        <name>Treatment_Scheduling</name>
-        <type>css</type>
-        <value>.el-button--primary:nth-child(1) > span</value>
-    </element>
-    <element>
-        <name>Treatment_Time</name>
-        <type>css</type>
-        <value>.fr-radio span:nth-child(12)</value>
-    </element>
-    <element>
+        <!--  选择治疗设备  -->
         <name>Treatment_Equipment</name>
         <type>css</type>
         <value>[placeholder="请选择治疗设备"]</value>
-    </element>
-    <element>
-        <name>Choose_Treatment</name>
-        <type>css</type>
-        <value>[aria-hidden="false"] [class="el-scrollbar__view el-select-dropdown__list"]>li:nth-child(1)</value>
     </element>
     <element>
         <name>Save</name>

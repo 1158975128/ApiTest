@@ -33,7 +33,7 @@ def login(driver):
 
 class TestAddPatient:
 
-    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('李世杰','230401198702276720','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
+    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('李世杰','339001197512156328','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
     def test_add_patient(self, driver,name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source):
         """
         TestCase: 添加一个患者（仅必填项），查看结果

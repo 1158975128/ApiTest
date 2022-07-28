@@ -85,7 +85,7 @@ class LoginPage(object):
         self.driver = driver
         self.login = ObjectMap(login_map)
 
-    def login_fris(self,login_role,org=None):
+    def login_fris(self,login_role,org='last'):
         '''
         fris登录方法，根据传入的登录角色进行身份判断，然后执行对应身份的登录操作
         :param login_role: 传入的登录角色
@@ -112,20 +112,32 @@ class LoginPage(object):
                 primary.click()
                 org_ul = self.driver.find_element(By.CSS_SELECTOR, value='.organization-checkout-list')
                 org_lis = org_ul.find_elements(By.TAG_NAME, value='li')
-                for org_li in org_lis:
-                    if org_li.get_attribute('textContent').strip() == org:
-                        org_li.click()
-                        break
+                if org == 'last':
+                    last_org = self.login.getLocator(self.driver, 'Organization')
+                    last_org.click()
+                else:
+                    for org_li in org_lis:
+                        if org_li.get_attribute('textContent').strip() == org:
+                            org_li.click()
+                            break
                 time.sleep(delay_time)
                 log.info("登录成功")
                 self.driver.implicitly_wait(10)
             else:
                 org_ul = self.driver.find_element(By.CSS_SELECTOR, value='.organization-checkout-list')
                 org_lis = org_ul.find_elements(By.TAG_NAME, value='li')
-                for org_li in org_lis:
-                    if org_li.get_attribute('textContent').strip() == org:
-                        org_li.click()
-                        break
+                if org == 'last':
+                    last_org = self.login.getLocator(self.driver, 'Organization')
+                    last_org.click()
+                else:
+                    for org_li in org_lis:
+                        if org_li.get_attribute('textContent').strip() == org:
+                            org_li.click()
+                            break
+                # for org_li in org_lis:
+                #     if org_li.get_attribute('textContent').strip() == org:
+                #         org_li.click()
+                #         break
                 time.sleep(delay_time)
                 log.info("登录成功")
                 self.driver.implicitly_wait(10)

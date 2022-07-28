@@ -1,7 +1,9 @@
 import time
 import pytest
-from page_objects.login.login_page import LoginPage
-from utils.browser_tool import Browser
+from page_objects.login.login import LoginPage
+from page_objects.login.logout import Logout
+from page_objects.patient.add_patient import AddPatient
+from config.account_info import therapistOTEmail, therapistOTPwd
 from common.logger import MyLogging
 from page_objects.work_order.my_work import My_Work
 
@@ -10,43 +12,28 @@ log = MyLogging(__name__).logger
 
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):
-    mylogin = LoginPage(driver)
-    mylogin.login_fris('therapistall')
+    login = LoginPage(driver)
+    login.login_fris(therapistOTEmail, therapistOTPwd)
+    # yield
+    # logout = Logout(driver)
+    # logout.logout()
 
 class Test_Work_Order():
+    # 治疗项目指定治疗师
+    @pytest.mark.parametrize('item,arrange,time_slot,device', [('手功能训练','未排班','08:00-08:30','徒手'),
+                                                               ('艾条灸','未排班','08:40-09:10','冲击波治疗仪'),
+                                                               ('手功能训练','未排班','09:20-09:50','上肢康复治疗仪'),
+                                                               ('艾条灸','未排班','09:20-09:50','上肢康复治疗仪')])
+    def test_checkbox_operation(self,driver,item,arrange,time_slot,device):
+        work = My_Work(driver)
+        work.start_work(item,arrange,time_slot,device)
+        time.sleep(1)
 
-    data = [("住院李四")]
-    @pytest.mark.parametrize('patient_name', data)
-    def test_01_check_work_order_page(self,patient_name,driver):
-        self.my_work = My_Work(driver)
-        self.my_work.check_my_work_page()
-        # result = self.my_work.check_my_work_page()
-        # print(result)
-
-
-    data = [("住院李四")]
-    @pytest.mark.parametrize('patient_name', data)
-    def test_02_start_work(self,patient_name,driver):
-        self.my_work = My_Work(driver)
-        start_work = self.my_work.start_work(patient_name)
-        assert start_work is True
-        log.info("开始工单成功")
-
-    data = [("住院李四")]
-    @pytest.mark.parametrize('patient_name', data)
-    def test_03_reroll_work(self,patient_name,driver):
-        self.my_work = My_Work(driver)
-        self.my_work.start_work(patient_name)
-        reroll_work = self.my_work.reroll_work(patient_name)
-        log.info("开始工单成功")
-        assert reroll_work is True
-
-    data = [("住院李四")]
-    @pytest.mark.parametrize('patient_name', data)
-    def test_04_end_work(self,patient_name,driver):
-        self.my_work = My_Work(driver)
-        self.my_work.start_work(patient_name)
-        end_work = self.my_work.end_work(patient_name)
-        log.info("结束工单成功")
-        assert end_work is True
-
+    @pytest.mark.parametrize('item,arrange_time', [('手功能训练李世杰徒手OT治疗师2','08:00-08:30'),
+                                                   ('艾条灸李世杰冲击波治疗仪OT治疗师2(实习生小李)','08:40-09:10'),
+                                                   ('手功能训练李世杰上肢康复治疗仪OT治疗师2','09:20-09:50'),
+                                                   ('艾条灸李世杰上肢康复治疗仪OT治疗师2(实习生小李)','09:20-09:50')])
+    def test_verify_arrange(self,driver,item,arrange_time):
+        work = My_Work(driver)
+        work.verify_arrang(item,arrange_time)
+        # time.sleep(3)

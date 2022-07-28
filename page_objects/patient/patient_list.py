@@ -10,7 +10,6 @@ from page_objects.navigate_bar import NavigateBar
 import pytest_check as check
 from selenium.webdriver.remote.errorhandler import ElementNotInteractableException
 from selenium.common.exceptions import NoSuchElementException
-from utils.close_tips_tool import Element
 
 
 

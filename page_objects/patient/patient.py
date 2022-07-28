@@ -7,20 +7,25 @@ from config.public_data.delay_time import *
 from utils.object_map import ObjectMap
 from common.logger import MyLogging
 from page_objects.navigate_bar import NavigateBar
-from page_objects.navigate_bar_all.navigate_version import VersionExpanded
+from selenium.common.exceptions import NoSuchElementException
+from utils.close_tips_tool import right_corner_cancel
+from utils.close_tips_tool import close_login_tips
+from utils.droplist_select_tool import select_droplist
+from utils.droplist_select_tool import Select
 
 log = MyLogging(__name__).logger
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../page_element"))
-patient_map = map_path + "/patient/patient_info_modify.xml"
+patient_map = map_path + "/patient/patient.xml"
 
 delay_time = DelayTime.short_time.value
 
 
-class Patient_Info_Modify():
+class Patient():
     def __init__(self, driver):
         self.driver = driver
         self.version = ObjectMap(patient_map)
         self.patient = NavigateBar(self.driver)
+        self.select = Select()
 
     def check_patient_page(self):
         '''
@@ -33,62 +38,6 @@ class Patient_Info_Modify():
         origin_droplist = self.version.getLocator(self.driver, "Origin_droplist").get_attribute('value')
         patient_droplist = self.version.getLocator(self.driver, "Patient_droplist").get_attribute('value')
         return new_patient,origin_droplist,patient_droplist
-
-    def add_new_patient(self,patient,disease,diagnosis):
-        '''
-        新增一个住院患者
-        :param patient: 传入患者姓名姓名
-        :param disease: 传入疾病类型
-        :param diagnosis: 传入功能诊断
-        :return: 成功返回True ，失败返回False
-        '''
-        self.patient.go_to_patient()
-        self.driver.implicitly_wait(20)
-        new_patient = self.version.getLocator(self.driver, "New_patient")
-        new_patient.click()
-        patient_name = self.version.getLocator(self.driver, "Patient_name")
-        patient_name.send_keys(patient)
-        sex = self.version.getLocator(self.driver, "Sex_man")
-        sex.click()
-        disease_type = self.version.getLocator(self.driver, "Disease_type")
-        disease_type.click()
-        time.sleep(1)
-        disease_type.send_keys(disease)
-        disease_type_select = self.version.getLocator(self.driver, "Disease_type_select")
-        disease_type_select.click()
-        time.sleep(2)
-        origin = self.version.getLocator(self.driver, "Origin")
-        origin.click()
-        time.sleep(1)
-        function_diagnosis = self.version.getLocator(self.driver, "Function_diagnosis")
-        function_diagnosis.click()
-        time.sleep(1)
-        function_diagnosis.send_keys(diagnosis)
-        function_diagnosis_select = self.version.getLocator(self.driver, "Function_diagnosis_select")
-        function_diagnosis_select.click()
-        time.sleep(1)
-        doctor = self.version.getLocator(self.driver, "Doctor")
-        doctor.click()
-        time.sleep(1)
-        doctor_select = self.version.getLocator(self.driver, "Doctor_select")
-        doctor_select.click()
-        time.sleep(1)
-        deparetment = self.version.getLocator(self.driver, "Department")
-        deparetment.click()
-        time.sleep(1)
-        deparetment_select = self.version.getLocator(self.driver, "Department_select")
-        deparetment_select.click()
-        time.sleep(1)
-        ensure = self.version.getLocator(self.driver, "Ensure")
-        ensure.click()
-        time.sleep(1)
-        tips = self.version.getLocator(self.driver, "Tips").text.strip()
-        if tips == '登记患者成功！':
-            print("新增患者成功：", tips)
-            return True
-        else:
-            return False
-        log.info("新增成功")
 
     def find_patient(self,patient_name):
         '''
@@ -104,54 +53,162 @@ class Patient_Info_Modify():
         hospital_select.click()
         time.sleep(1)
         name_input = self.version.getLocator(self.driver, "Name_input")
+        name_input.clear()
         name_input.send_keys(patient_name)
         time.sleep(1)
 
-
-    def add_treatment_item(self,patient_name,item):
+    def click_patient_card(self,patient_name):
         '''
-        新增一个治疗项目
-        :param patient_name: 传入患者姓名
-        :param item: 治疗项目名称
-        :return: 成功返回True ，失败返回False
+            点击患者卡片
         '''
+        time.sleep(1)
         check_name = self.version.getLocator(self.driver, "Check_name")
-        print(check_name.text,patient_name)
         if patient_name == check_name.text:
             check_name.click()
             time.sleep(1)
-            add_Treatment = self.version.getLocator(self.driver, "Add_Treatment")
-            add_Treatment.click()
-            item_name = self.version.getLocator(self.driver, "Item_name")
-            item_name.click()
-            time.sleep(1)
-            item_name.send_keys(item)
-            time.sleep(1)
-            item_name_select = self.version.getLocator(self.driver, "Item_name_select")
-            item_name_select.click()
-            time.sleep(1)
-            region_name = self.version.getLocator(self.driver, "Region_name")
-            region_name.click()
-            time.sleep(1)
-            region_name_select = self.version.getLocator(self.driver, "Region_name_select")
-            region_name_select.click()
-            time.sleep(1)
-            department_name = self.version.getLocator(self.driver, "Department_name")
-            department_name.click()
-            time.sleep(1)
-            department_name_select = self.version.getLocator(self.driver, "Department_name_select")
-            department_name_select.click()
-            time.sleep(1)
-            item_ensure = self.version.getLocator(self.driver, "Item_Ensure")
-            item_ensure.click()
-            time.sleep(1)
-            tips = self.version.getLocator(self.driver, "Tips").text
-            if tips == "新增项目成功":
-                print("新增治疗项目成功：",tips)
-                return True
-            else:
-                return False
 
+    def add_treatment_item(self,item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention):
+        '''
+        新增一个治疗项目
+        '''
+        time.sleep(1)
+        add_Treatment = self.version.getLocator(self.driver, "Add_Treatment")
+        add_Treatment.click()
+        # 项目名称
+        item_name = self.version.getLocator(self.driver, "Item_name")
+        item_name.send_keys(item)
+        time.sleep(1)
+        select_droplist(self.driver,item)
+        # 部位
+        region_name = self.version.getLocator(self.driver, "Region_name")
+        region_name.click()
+        time.sleep(1)
+        select_droplist(self.driver,region)
+        # 治疗科室
+        department_name = self.version.getLocator(self.driver, "Department_name")
+        department_name.click()
+        time.sleep(1)
+        select_droplist(self.driver,department)
+        # 实习生
+        if intern:
+            intern_name = self.version.getLocator(self.driver, "Intern")
+            intern_name.send_keys(intern)
+        # 治疗师
+        if therapeutist:
+            therapeutist_name = self.version.getLocator(self.driver, "Therapeutist")
+            therapeutist_name.click()
+            time.sleep(1)
+            select_droplist(self.driver,therapeutist)
+
+        # 是否床边
+        self.select.bed_side(self.driver,bed_side)
+        # 项目备注
+        if notes:
+            project_notes = self.version.getLocator(self.driver, "ProjectNotes")
+            project_notes.send_keys(notes)
+        # 注意事项
+        if attention:
+            matters_attention = self.version.getLocator(self.driver, "MattersNeedingAttention")
+            matters_attention.send_keys(attention)
+        if limit == '长期':
+            # 长短期
+            time_limit = self.version.getLocator(self.driver, "TimeLimit")
+            time_limit.click()
+            time.sleep(1)
+            select_droplist(self.driver,limit)
+            # 单次剂量
+            single_dose = self.version.getLocator(self.driver, "Dose")
+            single_dose.clear()
+            single_dose.send_keys(dose)
+            # 频次
+            frequency = self.version.getLocator(self.driver, "Frequency")
+            frequency.clear()
+            frequency.send_keys(frequen)
+        elif limit == '短期':
+            # 长短期
+            time_limit = self.version.getLocator(self.driver, "TimeLimit")
+            time_limit.click()
+            time.sleep(1)
+            select_droplist(self.driver,limit)
+            # 单次剂量
+            single_dose = self.version.getLocator(self.driver, "Dose")
+            single_dose.clear()
+            single_dose.send_keys(dose)
+            # 频次
+            frequency = self.version.getLocator(self.driver, "Frequency")
+            frequency.clear()
+            frequency.send_keys(frequen)
+            # 总次数
+            total_times = self.version.getLocator(self.driver, "Total")
+            total_times.clear()
+            total_times.send_keys(total)
+        # 点击确定
+        item_ensure = self.version.getLocator(self.driver, "Item_Ensure")
+        item_ensure.click()
+        time.sleep(1)
+        try:
+            tips = self.version.getLocator(self.driver, 'Tips').get_attribute('textContent')
+        except NoSuchElementException:
+            right_corner_cancel(self.driver)
+            assert False, "无提示语，失败！"
+        else:
+            # time.sleep(1)
+            if tips != '新增项目成功':
+                right_corner_cancel(self.driver)
+                close_login_tips(self.driver)
+                assert False, "新增失败,提示语：%s" % tips
+            else:
+                close_login_tips(self.driver)
+                return tips
+
+    def appoint_therapeutist(self,job_type,name):
+        '''
+        给某个小类指定治疗师
+        '''
+        appoint = self.version.getLocator(self.driver, "Appoint_Therapeutist")
+        appoint.click()
+        form = self.driver.find_element(By.CSS_SELECTOR, value='.dialog-form')
+        form_labels = form.find_elements(By.TAG_NAME, value='label')
+        for form_label in form_labels:
+            # print(job_type,'----->',form_label.get_attribute('textContent').strip())
+            if job_type in form_label.get_attribute('textContent').strip():
+                form.find_element(By.CSS_SELECTOR, value='.el-select--medium').click()
+                time.sleep(1)
+                break
+        select_droplist(self.driver,name)
+        item_ensure = self.version.getLocator(self.driver, "Item_Ensure")
+        item_ensure.click()
+        again_ensure = self.version.getLocator(self.driver, "Again_Ensure")
+        again_ensure.click()
+
+    def checkbox_operation(self,limit,name,therapeutist,operation):
+        '''
+        指定治疗师
+        '''
+        self.select.choose_limit_time(self.driver,limit)
+        self.select.checkbox(self.driver,name)
+        self.select.choose_operation(self.driver,operation)
+        therapeutist_name = self.version.getLocator(self.driver, "Therapeutist")
+        therapeutist_name.click()
+        time.sleep(1)
+        select_droplist(self.driver, therapeutist)
+        checkbox_ensure = self.version.getLocator(self.driver, "CheckboxEnsure")
+        checkbox_ensure.click()
+        time.sleep(1)
+        try:
+            tips = self.version.getLocator(self.driver, 'Tips').get_attribute('textContent')
+        except NoSuchElementException:
+            right_corner_cancel(self.driver)
+            assert False, "无提示语，失败！"
+        else:
+            # time.sleep(1)
+            if tips != '批量指定成功！':
+                right_corner_cancel(self.driver)
+                close_login_tips(self.driver)
+                assert False, "新增失败,提示语：%s" % tips
+            else:
+                close_login_tips(self.driver)
+                return tips
 
     def add_judge_item(self,patient_name,item):
         '''
@@ -231,8 +288,6 @@ class Patient_Info_Modify():
                 return True
             else:
                 return False
-
-
 
     def click_patientInfo(self):
         '''

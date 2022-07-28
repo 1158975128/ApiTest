@@ -41,7 +41,7 @@
     </element>
     <element>
         <name>Organization</name>
-        <type>css</type>
-        <value>li:nth-child(33)</value>
+        <type>xpath</type>
+        <value>//*[@class="organization-checkout-list"]//li[last()]</value>
     </element>
 </elements>

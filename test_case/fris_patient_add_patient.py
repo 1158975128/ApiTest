@@ -8,7 +8,7 @@ from page_objects.login.login import LoginPage
 from page_objects.login.logout import Logout
 from page_objects.patient.add_patient import AddPatient
 from page_objects.navigate_bar import NavigateBar
-from config.account_info import doctorZhaoEmail, doctorZhaoPwd
+from config.account_info import doctor2Email, doctor2Pwd
 from config.public_data.patient import Sex
 from utils.object_map import ObjectMap
 from selenium.common.exceptions import NoSuchElementException
@@ -23,7 +23,7 @@ add_patient_map = map_path + "/patient/add_patient.xml"
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):
     login = LoginPage(driver)
-    login.login_fris(doctorZhaoEmail, doctorZhaoPwd)
+    login.login_fris(doctor2Email, doctor2Pwd)
     yield
     logout = Logout(driver)
     logout.logout()

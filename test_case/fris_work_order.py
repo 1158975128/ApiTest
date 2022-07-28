@@ -24,7 +24,7 @@ class Test_Work_Order():
         # print(result)
 
 
-    data = [("住院李四")]
+    data = [("测试患者出院2022_05_26_15_36_36")]
     @pytest.mark.parametrize('patient_name', data)
     def test_02_start_work(self,patient_name,driver):
         self.my_work = My_Work(driver)

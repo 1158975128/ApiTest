@@ -45,6 +45,20 @@ class NavigateBar(object):
             my_work = self.navigate.getLocator(self.driver, 'My_Work')
             my_work.click()
 
+    # 治疗师排班
+    def go_to_therapeutist_arrange(self):
+        arrange_query = self.navigate.getLocator(self.driver, 'ArrangeQuery')
+        # 获取class的值，判断下拉框状态
+        arrange_query_class = arrange_query.get_attribute('class').strip()
+        if arrange_query_class.endswith('is-opened'):
+            therapeutist_arrange = self.navigate.getLocator(self.driver, 'TherapeutistArrange')
+            self.driver.execute_script("arguments[0].click();", therapeutist_arrange)
+        else:
+            arrange_query.click()
+            therapeutist_arrange = self.navigate.getLocator(self.driver, 'TherapeutistArrange')
+            self.driver.execute_script("arguments[0].click();", therapeutist_arrange)
+
+
     # 职务
     def go_to_Position(self):
         position_Preserv = self.navigate.getLocator(self.driver, 'Department_Preserve')

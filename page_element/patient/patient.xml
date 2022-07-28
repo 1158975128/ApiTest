@@ -111,37 +111,79 @@
     <element>
         <name>Item_name</name>
         <type>css</type>
-        <value>.el-row .el-autocomplete .el-input__inner</value>
+        <value>[placeholder="请选择项目名称"]</value>
     </element>
     <element>
-        <name>Item_name_select</name>
+        <name>Therapeutist</name>
         <type>css</type>
-        <value>.el-autocomplete-suggestion__wrap.el-scrollbar__wrap li:nth-child(1)</value>
+        <value>[placeholder="请选择治疗师"]</value>
     </element>
     <element>
         <name>Region_name</name>
         <type>css</type>
-        <value>.el-row [placeholder="请选择部位"]</value>
+        <value>[placeholder="请选择部位"]</value>
     </element>
     <element>
-        <name>Region_name_select</name>
+        <name>Intern</name>
         <type>css</type>
-        <value>.el-popup-parent--hidden>[aria-hidden="false"] ul>li:nth-child(1)</value>
+        <value>[placeholder="请输入实习生"]</value>
     </element>
     <element>
         <name>Department_name</name>
         <type>css</type>
-        <value>.el-row [placeholder="请选择治疗科室"]</value>
+        <value>[placeholder="请选择治疗科室"]</value>
     </element>
     <element>
-        <name>Department_name_select</name>
+        <name>TimeLimit</name>
         <type>css</type>
-        <value>.el-popup-parent--hidden>[aria-hidden="false"] li:nth-child(3)</value>
+        <value>[placeholder="请选择长短期"]</value>
+    </element>
+    <element>
+        <name>Dose</name>
+        <type>css</type>
+        <value>[placeholder="请输入单次剂量"]</value>
+    </element>
+    <element>
+        <name>Frequency</name>
+        <type>css</type>
+        <value>[placeholder="请输入频次"]</value>
+    </element>
+    <element>
+        <name>Total</name>
+        <type>css</type>
+        <value>[placeholder="请输入总次数"]</value>
+    </element>
+    <element>
+        <name>ProjectNotes</name>
+        <type>css</type>
+        <value>[placeholder="请输入项目备注"]</value>
+    </element>
+    <element>
+        <name>MattersNeedingAttention</name>
+        <type>css</type>
+        <value>[placeholder="请输入注意事项"]</value>
     </element>
     <element>
         <name>Item_Ensure</name>
         <type>css</type>
         <value>.colorful:nth-child(2)</value>
+    </element>
+    <!--  指定治疗师二次确认  -->
+    <element>
+        <name>Again_Ensure</name>
+        <type>css</type>
+        <value>[class="el-button el-button--default el-button--small el-button--primary"]</value>
+    </element>
+    <element>
+        <!--  指定治疗师确认  -->
+        <name>CheckboxEnsure</name>
+        <type>css</type>
+        <value>.el-overlay:nth-child(7) .confirm-btn</value>
+    </element>
+    <element>
+        <name>Appoint_Therapeutist</name>
+        <type>css</type>
+        <value>.el-row .card-bottom .mr-12</value>
     </element>
     <!--  新增评定项目  -->
     <element>
