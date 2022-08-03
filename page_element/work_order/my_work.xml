@@ -23,6 +23,11 @@
         <value>.el-button--default:nth-child(2) > span</value>
     </element>
     <element>
+        <name>EnsureInner</name>
+        <type>css</type>
+        <value>.el-button--small:nth-child(2) > span</value>
+    </element>
+    <element>
         <name>Start_Work_Tips</name>
         <type>css</type>
         <value>.el-message__content</value>
@@ -55,6 +60,11 @@
         <name>End_Work</name>
         <type>css</type>
         <value>.el-button--danger</value>
+    </element>
+    <element>
+        <name>AllChoose</name>
+        <type>css</type>
+        <value>.has-gutter .el-checkbox__inner</value>
     </element>
 <!--  标题栏  -->
     <element>

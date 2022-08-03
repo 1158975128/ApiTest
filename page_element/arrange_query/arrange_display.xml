@@ -1,0 +1,37 @@
+<elements>
+    <element>
+        <name>New_Additional</name>
+        <type>css</type>
+        <value>.el-button > span > span</value>
+    </element>
+    <element>
+        <name>Name</name>
+        <type>css</type>
+        <value>[placeholder="请输入大屏名称"]</value>
+    </element>
+    <element>
+        <name>Confirm</name>
+        <type>css</type>
+        <value>.sure-cancel > .el-button:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Look</name>
+        <type>css</type>
+        <value>.look</value>
+    </element>
+    <element>
+        <name>Quit</name>
+        <type>css</type>
+        <value>[class="iconfont icon-icon_tuichu"]</value>
+    </element>
+    <element>
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+    <element>
+        <name>Title</name>
+        <type>css</type>
+        <value>[class="header-background"]</value>
+    </element>
+</elements>

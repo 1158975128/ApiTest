@@ -13,11 +13,15 @@ def verify_arrange(driver, item, arrange_time):
     fr_div = driver.find_element(By.CSS_SELECTOR, value='.card-list-group')
     fr_uls = fr_div.find_elements(By.TAG_NAME, value='ul')
     number = 1
+    result_list = []
     for fr_ul in fr_uls:
         if item in fr_ul.get_attribute('textContent').strip():
             assert arrange_time == dict_time[number], '排班时间不一致'
-            print('匹配成功：', arrange_time, '--->', dict_time[number])
+            # print('匹配成功：', arrange_time, '--->', dict_time[number])
+            result_list.append('匹配成功')
             break
         else:
-            print('没有找到---》%s' % item)
+            # print('没有找到---》%s' % item)
+            result_list.append('匹配失败')
         number += 1
+    return result_list

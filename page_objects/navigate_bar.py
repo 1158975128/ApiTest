@@ -58,6 +58,22 @@ class NavigateBar(object):
             therapeutist_arrange = self.navigate.getLocator(self.driver, 'TherapeutistArrange')
             self.driver.execute_script("arguments[0].click();", therapeutist_arrange)
 
+    # 全部排班
+    def go_to_all_arrange(self):
+        arrange_query = self.navigate.getLocator(self.driver, 'ArrangeQuery')
+        # 获取class的值，判断下拉框状态
+        arrange_query_class = arrange_query.get_attribute('class').strip()
+        if arrange_query_class.endswith('is-opened'):
+            all_arrange = self.navigate.getLocator(self.driver, 'AllArrange')
+            self.driver.execute_script("arguments[0].click();", all_arrange)
+        else:
+            arrange_query.click()
+            all_arrange = self.navigate.getLocator(self.driver, 'AllArrange')
+            self.driver.execute_script("arguments[0].click();", all_arrange)
+
+    def go_to_arrange_display(self):
+        arrange_display = self.navigate.getLocator(self.driver, 'ArrangeDisplay')
+        arrange_display.click()
 
     # 职务
     def go_to_Position(self):
@@ -309,3 +325,68 @@ class NavigateBar(object):
             system_maintain.click()
             register = self.navigate.getLocator(self.driver, 'Register')
             register.click()
+
+    # 统计分析--》治疗师工作量
+    def go_to_therapist_workload(self):
+        statistic_analysis = self.navigate.getLocator(self.driver, 'StatisticAnalysis')
+        # 获取class的值，判断下拉框状态
+        statistic_analysis_class = statistic_analysis.get_attribute('class').strip()
+        if statistic_analysis_class.endswith('is-opened'):
+            therapist_workload = self.navigate.getLocator(self.driver, 'TherapistWorkLoad')
+            therapist_workload.click()
+        else:
+            statistic_analysis.click()
+            therapist_workload = self.navigate.getLocator(self.driver, 'TherapistWorkLoad')
+            therapist_workload.click()
+
+    # 统计分析--》科室工作量
+    def go_to_office_workload(self):
+        statistic_analysis = self.navigate.getLocator(self.driver, 'StatisticAnalysis')
+        # 获取class的值，判断下拉框状态
+        statistic_analysis_class = statistic_analysis.get_attribute('class').strip()
+        if statistic_analysis_class.endswith('is-opened'):
+            office_workload = self.navigate.getLocator(self.driver, 'OfficeWorkLoad')
+            office_workload.click()
+        else:
+            statistic_analysis.click()
+            office_workload = self.navigate.getLocator(self.driver, 'OfficeWorkLoad')
+            office_workload.click()
+
+    # 统计分析--》设备使用统计
+    def go_to_device_use_statistics(self):
+        statistic_analysis = self.navigate.getLocator(self.driver, 'StatisticAnalysis')
+        # 获取class的值，判断下拉框状态
+        statistic_analysis_class = statistic_analysis.get_attribute('class').strip()
+        if statistic_analysis_class.endswith('is-opened'):
+            device_use_statistics = self.navigate.getLocator(self.driver, 'DeviceUseStatistics')
+            device_use_statistics.click()
+        else:
+            statistic_analysis.click()
+            device_use_statistics = self.navigate.getLocator(self.driver, 'DeviceUseStatistics')
+            device_use_statistics.click()
+
+    # 统计分析--》费用统计
+    def go_to_cost_statistics(self):
+        statistic_analysis = self.navigate.getLocator(self.driver, 'StatisticAnalysis')
+        # 获取class的值，判断下拉框状态
+        statistic_analysis_class = statistic_analysis.get_attribute('class').strip()
+        if statistic_analysis_class.endswith('is-opened'):
+            cost_statistics = self.navigate.getLocator(self.driver, 'CostStatistics')
+            cost_statistics.click()
+        else:
+            statistic_analysis.click()
+            cost_statistics = self.navigate.getLocator(self.driver, 'CostStatistics')
+            cost_statistics.click()
+
+    # 统计分析--》项目统计
+    def go_to_item_statistics(self):
+        statistic_analysis = self.navigate.getLocator(self.driver, 'StatisticAnalysis')
+        # 获取class的值，判断下拉框状态
+        statistic_analysis_class = statistic_analysis.get_attribute('class').strip()
+        if statistic_analysis_class.endswith('is-opened'):
+            item_statistics = self.navigate.getLocator(self.driver, 'ItemStatistics')
+            item_statistics.click()
+        else:
+            statistic_analysis.click()
+            item_statistics = self.navigate.getLocator(self.driver, 'ItemStatistics')
+            item_statistics.click()

@@ -208,6 +208,11 @@
         <value>.el-button.el-button--danger.el-button--medium.colorful</value>
     </element>
     <element>
+        <name>HospitalId</name>
+        <type>css</type>
+        <value>.show > .el-row > .el-col:nth-child(3) .fr-form-item</value>
+    </element>
+    <element>
         <name>Time</name>
         <type>css</type>
         <value>[placeholder="请选择出院时间"]</value>

@@ -71,6 +71,19 @@ class Select:
                 fr_tr.find_element(By.CSS_SELECTOR, value='.color-danger').click()
                 break
 
+    def click_item_name(self,driver,name,arrange):
+        '''
+        根据项目名称和排班状态点击'未排班'项目名称按钮，只点击一个
+        :param name: 传入项目名称和排班状态
+        '''
+        fr_body = driver.find_element(By.CSS_SELECTOR, value='.el-table__body-wrapper .el-table__body')
+        fr_trs = fr_body.find_elements(By.TAG_NAME, value='tr')
+        for fr_tr in fr_trs:
+            print(name,arrange,'---->',fr_tr.get_attribute('textContent').strip())
+            if name in fr_tr.get_attribute('textContent').strip() and arrange in fr_tr.get_attribute('textContent').strip():
+                fr_tr.find_element(By.CSS_SELECTOR, value='td:nth-child(3)').click()
+                break
+
     def choose_checkbox_arrange(self,driver,name,arrange):
         '''
         根据项目名称和排班状态（未排班）点击复选框，只点击一个

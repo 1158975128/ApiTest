@@ -67,6 +67,18 @@ class Patient():
             check_name.click()
             time.sleep(1)
 
+    def find_hospital_id(self):
+        '''
+            点击患者卡片
+        '''
+        patient_info = self.version.getLocator(self.driver, "PatientInfo")
+        patient_info.click()
+        time.sleep(1)
+        patient_id = self.version.getLocator(self.driver, "HospitalId").text
+        return patient_id
+
+
+
     def add_treatment_item(self,item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention):
         '''
         新增一个治疗项目

@@ -184,4 +184,46 @@
         <type>css</type>
         <value>[name="治疗师排班"]</value>
     </element>
+    <element>
+        <name>AllArrange</name>
+        <type>css</type>
+        <value>[name="全部排班"]</value>
+    </element>
+    <element>
+        <name>ArrangeDisplay</name>
+        <type>css</type>
+        <value>[name="排班可视化"]</value>
+    </element>
+    <element>
+        <name>StatisticAnalysis</name>
+        <type>css</type>
+        <value>[name="统计分析"]</value>
+    </element>
+    <element>
+        <name>TherapistWorkLoad</name>
+        <type>css</type>
+        <value>[name="统计分析"] [name="治疗师工作量"]</value>
+    </element>
+    <element>
+        <name>OfficeWorkLoad</name>
+        <type>css</type>
+        <value>[name="科室工作量"]</value>
+    </element>
+    <element>
+        <name>DeviceUseStatistics</name>
+        <type>css</type>
+        <value>[name="设备使用统计"]</value>
+    </element>
+    <element>
+        <name>CostStatistics</name>
+        <type>css</type>
+        <value>[name="费用统计"]</value>
+    </element>
+    <element>
+        <name>ItemStatistics</name>
+        <type>css</type>
+        <value>[name="项目统计"]</value>
+    </element>
+
+
 </elements>

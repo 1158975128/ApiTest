@@ -1,0 +1,23 @@
+<elements>
+    <element>
+        <name>JobType</name>
+        <type>css</type>
+        <value>[placeholder="岗位小类"]</value>
+    </element>
+    <element>
+        <name>Cancel</name>
+        <type>css</type>
+        <value>.el-button:nth-child(1)</value>
+    </element>
+    <element>
+        <name>Ensure</name>
+        <type>css</type>
+        <value>.el-button--primary</value>
+    </element>
+    <element>
+        <!--  保存成功提示  -->
+        <name>Tips</name>
+        <type>css</type>
+        <value>.el-message__content</value>
+    </element>
+</elements>

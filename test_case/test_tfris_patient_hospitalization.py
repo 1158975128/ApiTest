@@ -22,7 +22,7 @@ def login(driver):
 
 class TestAddPatient:
 
-    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('李世杰','339001197512156328','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
+    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('张三','530822198605149804','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
     def test_add_patient(self, driver,name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source):
         """
         TestCase: 添加一个患者
@@ -36,9 +36,9 @@ class TestAddPatient:
 
 
 
-    @pytest.mark.parametrize('name,item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention', [('李世杰','艾条灸','四肢','康复科','是','长期','3','3',None,'OT治疗师2','实习生小李','经颅磁治疗',None),
-                                                                                                                                   ('李世杰','博巴斯训练','全身','康复科','否','短期','1','2','10',None,None,None,'注意事项1'),
-                                                                                                                                   ('李世杰','手功能训练','全身','骨科','否','短期','1','2','10',None,None,None,'注意事项1')])
+    @pytest.mark.parametrize('name,item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention', [('张三','艾条灸','四肢','康复科','是','长期','3','3',None,'OT治疗师2','实习生小李','经颅磁治疗',None),
+                                                                                                                                   ('张三','博巴斯训练','全身','康复科','否','短期','1','2','10',None,None,None,'注意事项1'),
+                                                                                                                                   ('张三','手功能训练','全身','骨科','否','短期','1','2','10',None,None,None,'注意事项1')])
     def test_add_treatment_item(self, driver,name,item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention):
         """
         TestCase: 给患者添加治疗项目
@@ -51,7 +51,7 @@ class TestAddPatient:
         patient.add_treatment_item(item,region,department,bed_side,limit,dose,frequen,total,therapeutist,intern,notes,attention)
 
     # 治疗项目指定治疗师
-    @pytest.mark.parametrize('patient_name,limit,name,therapeutist,operation', [('李世杰','短期项目','博巴斯训练','刘玉栋-治疗师长','指定')])
+    @pytest.mark.parametrize('patient_name,limit,name,therapeutist,operation', [('张三','短期项目','博巴斯训练','刘玉栋-治疗师长','指定')])
     def test_checkbox_operation(self,driver,patient_name,limit,name,therapeutist,operation):
         '''
         在治疗项目页面指定治疗师
@@ -65,7 +65,7 @@ class TestAddPatient:
         time.sleep(1)
 
     # 岗位小类指定治疗师
-    @pytest.mark.parametrize('patient_name,job_type,name', [('李世杰','OT','OT治疗师2')])
+    @pytest.mark.parametrize('patient_name,job_type,name', [('张三','OT','OT治疗师2')])
     def test_appoint_therapeutist(self,driver,patient_name,job_type,name):
         '''
         在患者管理页面对岗位小类指定治疗师
