@@ -19,6 +19,18 @@ def login(driver):
 
 class Test_Work_Order():
     # 治疗师完成治疗师长的授权工单操作--》7
+    @pytest.mark.parametrize('name', [('博巴斯训练')])
+    def test_arrange_button(self,driver,name):
+        '''
+        检查授权工单排版列是否为空
+        '''
+        work = My_Work(driver)
+        result = work.arrange_button(name)
+        if len(result) == 0:
+            assert True
+        else:
+            assert False,'“排班”列不为空，显示内容:%s'%result
+
     @pytest.mark.parametrize('item,time_slot,device,tips,operate', [('博巴斯训练','09:20-09:50','上肢康复治疗仪','患者当前时间段已排满,设备当前时间段已排满,治疗师当前时间段已排满','排班')])
     def test_scheduling_conflict(self,driver,item,time_slot,device,tips,operate):
         '''
@@ -31,6 +43,7 @@ class Test_Work_Order():
         '''
         work = My_Work(driver)
         work.grant_arrange_tips(item,time_slot,device,tips,operate)
+        time.sleep(1)
 
     @pytest.mark.parametrize('item,operate,time_slot,device', [('博巴斯训练','排班','10:40-11:10','上肢康复治疗仪')])
     def test_scheduling(self,driver,item,operate,time_slot,device):

@@ -5,14 +5,10 @@ from page_objects.login.logout import Logout
 from page_objects.patient.add_patient import AddPatient
 from config.account_info import masterEmail, masterPwd
 from common.logger import MyLogging
-from page_objects.work_order.my_work import My_Work
-from page_objects.arrange_query.arrange_display import Arrange_Display
-from page_objects.statistic_analysis.tharepist_workload import WorkLoad
 from utils.statistic_analysis_tool import statictic_analysis
 from page_objects.navigate_bar import NavigateBar
 from page_objects.patient.patient import Patient
-from utils.droplist_select_tool import Select
-from utils.object_map import ObjectMap
+
 
 
 
@@ -29,7 +25,7 @@ def login(driver):
 
 
 class TestWorkOrderTherapist():
-    @pytest.mark.parametrize('data', [('张三女住院医生2%320.00查看明细','合计-----320.00-','张三')])
+    @pytest.mark.parametrize('data', [('张三男住院医生2%320.00查看明细','合计-----320.00-','张三')])
     def test_cost_statistics(self, driver,data):
         '''
         费用统计

@@ -97,6 +97,16 @@ class Select:
                 fr_tr.find_element(By.CSS_SELECTOR, value='.el-checkbox__input').click()
                 break
 
+    def get_body_content(self,driver):
+        '''
+        治疗项目内容
+        '''
+        fr_body = driver.find_element(By.CSS_SELECTOR, value='.el-table__body-wrapper .el-table__body')
+        fr_trs = fr_body.find_elements(By.TAG_NAME, value='tr')
+        for fr_tr in fr_trs:
+            content = fr_tr.get_attribute('textContent').strip().split('进行中')[0]
+        return content
+
     def choose_limit_time(self,driver,name):
         '''
         患者管理--》治疗项目选择长期项目或短期项目

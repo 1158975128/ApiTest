@@ -13,14 +13,17 @@ log = MyLogging(__name__).logger
 def login(driver):
     login = LoginPage(driver)
     login.login_fris(therapistOTEmail, therapistOTPwd)
-    yield
-    logout = Logout(driver)
-    logout.logout()
+    # yield
+    # logout = Logout(driver)
+    # logout.logout()
 
 class Test_Work_Order():
     # 治疗师登录完成全部工单--》11
     @pytest.mark.parametrize('status', [('开始结束')])
     def test_button_status(self,driver,status):
+        '''
+        检查开始/结束按钮有没有隐藏
+        '''
         work = My_Work(driver)
         result = work.button_status()
         if status == result:
@@ -31,7 +34,11 @@ class Test_Work_Order():
 
     @pytest.mark.parametrize('item,arrange', [('艾条灸','未排班')])
     def test_inner_start_end(self,driver,item,arrange):
-
+        '''
+        在工单详情页开始和结束工单
+        :param item: 项目名
+        :param arrange:排班状态（只选择'未排班'）
+        '''
         work = My_Work(driver)
         work.inner_start_end(item,arrange)
 

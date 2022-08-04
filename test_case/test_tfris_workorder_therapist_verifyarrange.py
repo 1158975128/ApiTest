@@ -7,12 +7,6 @@ from config.account_info import masterEmail, masterPwd
 from common.logger import MyLogging
 from page_objects.work_order.my_work import My_Work
 from page_objects.arrange_query.arrange_display import Arrange_Display
-from page_objects.statistic_analysis.tharepist_workload import WorkLoad
-from utils.statistic_analysis_tool import statictic_analysis
-from page_objects.navigate_bar import NavigateBar
-from page_objects.patient.patient import Patient
-from utils.droplist_select_tool import Select
-from utils.object_map import ObjectMap
 
 
 
