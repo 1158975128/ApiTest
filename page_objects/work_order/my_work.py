@@ -44,6 +44,7 @@ class My_Work():
         self.select.choose_scheduling(self.driver,time_slot)
         equipment = self.version.getLocator(self.driver, 'Treatment_Equipment')
         equipment.click()
+        time.sleep(1)
         select_droplist(self.driver,device)
         save = self.version.getLocator(self.driver, 'Save')
         save.click()
@@ -77,22 +78,9 @@ class My_Work():
         self.select.choose_scheduling(self.driver,time_slot)
         equipment = self.version.getLocator(self.driver, 'Treatment_Equipment')
         equipment.click()
+        time.sleep(1)
         select_droplist(self.driver,device)
         scheduling_conflict(self.driver,tips)
-        # fr_tips = self.driver.find_elements(By.CSS_SELECTOR, value='.fr-tips')
-        # time.sleep(1)
-        # tips_list = []
-        # for fr_tip in fr_tips:
-        #     if fr_tip.is_displayed():
-        #         tips_list.append(fr_tip.get_attribute('textContent').strip())
-        # time.sleep(1)
-        # left_corner_cancel(self.driver)
-        # for tip in tips_list:
-        #     if tip in tips:
-        #         assert True
-        #     else:
-        #         assert False,'当前页面显示%d个;传入的提示语：%s;页面显示提示语：%s'%(len(tips_list),tips,tip)
-        # time.sleep(1)
 
     def grant_arrange_tips(self, item, time_slot, device, tips, operate):
         '''
@@ -109,9 +97,20 @@ class My_Work():
         self.select.choose_scheduling(self.driver, time_slot)
         equipment = self.version.getLocator(self.driver, 'Treatment_Equipment')
         equipment.click()
+        time.sleep(1)
         select_droplist(self.driver, device)
         scheduling_conflict(self.driver, tips)
 
+    def arrange_button(self, name):
+        self.my_work.go_to_work_order()
+        time.sleep(1)
+        fr_body = self.driver.find_element(By.CSS_SELECTOR, value='.el-table__body-wrapper .el-table__body')
+        fr_trs = fr_body.find_elements(By.TAG_NAME, value='tr')
+        for fr_tr in fr_trs:
+            if name in fr_tr.get_attribute('textContent').strip() in fr_tr.get_attribute('textContent').strip():
+                result = fr_tr.find_element(By.CSS_SELECTOR, value='td:nth-child(5)').get_attribute('textContent')
+                break
+        return result
     def grant(self,name,arrange,therapist,operate):
         '''
         工单授权
@@ -126,6 +125,7 @@ class My_Work():
         self.select.my_order_operation(self.driver,operate)
         grant = self.version.getLocator(self.driver, 'Grant')
         self.driver.execute_script("arguments[0].click();", grant)
+        time.sleep(1)
         select_droplist(self.driver,therapist)
         time.sleep(1)
         ensure = self.version.getLocator(self.driver, 'Ensure')
@@ -155,12 +155,13 @@ class My_Work():
         '''
         self.my_work.go_to_work_order()
         time.sleep(1)
-        self.select.checkbox(self.driver, item)
+        # self.select.checkbox(self.driver, item)
         self.select.my_order_operation(self.driver, operate)
         time.sleep(1)
         self.select.choose_scheduling(self.driver,time_slot)
         equipment = self.version.getLocator(self.driver, 'Treatment_Equipment')
         equipment.click()
+        time.sleep(1)
         select_droplist(self.driver,device)
         save = self.version.getLocator(self.driver, 'Save')
         save.click()

@@ -6,6 +6,7 @@ from page_objects.login.logout import Logout
 from page_objects.patient.add_patient import AddPatient
 from config.account_info import doctor2Email, doctor2Pwd
 from page_objects.patient.patient import Patient
+from utils.droplist_select_tool import Select
 
 
 map_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../page_element"))
@@ -22,7 +23,7 @@ def login(driver):
 
 class TestAddPatient:
 
-    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('张三','530822198605149804','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
+    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('张三','360924198104141413','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
     def test_add_patient(self, driver,name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source):
         """
         TestCase: 添加一个患者
@@ -64,6 +65,23 @@ class TestAddPatient:
         print(result)
         time.sleep(1)
 
+    # 验证项目名称上的（注），治疗师名称里的（实习生小李）
+    @pytest.mark.parametrize('patient_name,content', [('张三','艾条灸 (注)四肢康复科OT治疗师2(实习生小李)')])
+    def test_body_content(self,driver,patient_name,content):
+        '''
+        在治疗项目页面指定治疗师
+        '''
+        select = Select()
+        driver.refresh()
+        time.sleep(1)
+        result = select.get_body_content(driver)
+        if result == content:
+            time.sleep(1)
+            assert True
+        else:
+            time.sleep(1)
+            assert False,'传入数据:%s---》页面显示数据:%s'%(content,result)
+
     # 岗位小类指定治疗师
     @pytest.mark.parametrize('patient_name,job_type,name', [('张三','OT','OT治疗师2')])
     def test_appoint_therapeutist(self,driver,patient_name,job_type,name):
@@ -72,6 +90,5 @@ class TestAddPatient:
         '''
         patient = Patient(driver)
         patient.find_patient(patient_name)
-        # patient.click_patient_card(patient_name)
         time.sleep(1)
         patient.appoint_therapeutist(job_type,name)
