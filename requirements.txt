@@ -16,3 +16,4 @@ urllib3==1.25.11
 xlrd==1.2.0
 pytest
 selenium
+pytest_check
