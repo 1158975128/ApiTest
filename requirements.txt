@@ -8,9 +8,10 @@ iniconfig==1.1.1
 Jinja2==2.11.3
 jsonpath==0.82
 MarkupSafe==2.0.1
-mitmproxy==6.0.2
+# mitmproxy==6.0.2
 openpyxl==3.0.7
 parameterized==0.8.1
 requests==2.24.0
 urllib3==1.25.11
 xlrd==1.2.0
+pytest
