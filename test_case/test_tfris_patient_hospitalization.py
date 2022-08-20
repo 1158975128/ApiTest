@@ -23,7 +23,7 @@ def login(driver):
 
 class TestAddPatient:
 
-    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('张三','360924198104141413','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','医生2', '康复科','住院')])
+    @pytest.mark.parametrize('name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source', [('张三','360924198104141413','13613913813','公务员','老张','父子','脑梗死','单侧身体肌肉的力量','林依人', '康复科','住院')])
     def test_add_patient(self, driver,name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source):
         """
         TestCase: 添加一个患者
@@ -31,6 +31,7 @@ class TestAddPatient:
         add_patient = AddPatient(driver)
         patient = Patient(driver)
         add_patient.add_new_patient(name,identity,phone,profession,linkman,relation,disease,function,doctor,depart,source)
+        print("登记成功")
         patient.find_patient(name)
         patient.click_patient_card(name)
         time.sleep(1)
