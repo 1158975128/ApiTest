@@ -9,7 +9,7 @@ log = MyLogging(__name__).logger
 @pytest.fixture(scope='module', autouse=True)
 def login(driver):
     mylogin = LoginPage(driver)
-    mylogin.login_fris('admin')
+    mylogin.login_fris('doctor')
 
 
 class TestDepartment():
