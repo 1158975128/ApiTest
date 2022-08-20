@@ -52,7 +52,8 @@ class ObjectMap:
         elif self.locatorType.lower() == "partiallinktext":
             return driver.find_element_by_partial_link_text(self.locatorValue)
         elif self.locatorType.lower() == "css":
-            return driver.find_element_by_css_selector(self.locatorValue)
+            #return driver.find_element_by_css_selector(self.locatorValue)
+            return driver.find_element(By.CSS_SELECTOR,value=self.locatorValue)
         elif self.locatorType.lower() == "xpath":
             return driver.find_element_by_xpath(self.locatorValue)
         elif self.locatorType.lower() == "tagname":
